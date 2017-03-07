@@ -19,6 +19,8 @@ package wallettemplate;
 import com.google.common.util.concurrent.*;
 import javafx.scene.input.*;
 import org.bitcoinj.core.NetworkParameters;
+import org.bitcoinj.core.PeerAddress;
+import org.bitcoinj.core.Utils;
 import org.bitcoinj.kits.WalletAppKit;
 import org.bitcoinj.params.*;
 import org.bitcoinj.utils.BriefLogFormatter;
@@ -32,6 +34,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import sun.misc.Ref;
 import wallettemplate.controls.NotificationBarPane;
 import wallettemplate.utils.GuiUtils;
 import wallettemplate.utils.TextFieldValidator;
@@ -39,7 +42,10 @@ import wallettemplate.utils.TextFieldValidator;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 
 import static wallettemplate.utils.GuiUtils.*;
 
@@ -60,6 +66,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage mainWindow) throws Exception {
+        System.out.println("maxTargetBTC-j: " + Utils.decodeCompactBits(0x1d00ffff).toString(16));
+        System.out.println("maxTargetCREAj: " + Utils.decodeCompactBits(0x1e0ffff0).toString(16));
+        System.out.println("maxTargetBTC-c: 1d00ffff / " + Long.toHexString(Utils.encodeCompactBits(new BigInteger(Utils.HEX.decode("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff")))));
+        System.out.println("maxTargetCREAc: 1e0ffff0 / " + Long.toHexString(Utils.encodeCompactBits(params.getMaxTarget())));
+        System.out.println("nBits = " + Utils.encodeCompactBits(params.getMaxTarget()));
         try {
             realStart(mainWindow);
         } catch (Throwable e) {
@@ -138,13 +149,28 @@ public class Main extends Application {
                 // their own money!
                 bitcoin.wallet().allowSpendingUnconfirmedTransactions();
                 Platform.runLater(controller::onBitcoinSetup);
+                //bitcoin.peerGroup().connectToLocalHost();
             }
         };
         // Now configure and start the appkit. This will take a second or two - we could show a temporary splash screen
         // or progress widget to keep the user engaged whilst we initialise, but we don't.
-        if (params == RegTestParams.get()) {
-            bitcoin.connectToLocalHost();   // You should run a regtest mode bitcoind locally.
+        if (params == TestNet3Params.get()) {
+            bitcoin.connectToLocalHost();
+        } else {
+            String[] peers = {"localhost", /*"5.189.181.124", "80.241.212.178", "139.59.177.141"*/};
+
+            PeerAddress[] peerAddresses = new PeerAddress[peers.length];
+            for (int x = 0; x < peerAddresses.length; x++) {
+                try {
+                    peerAddresses[x] = new PeerAddress(params, InetAddress.getByName(peers[x]), params.getPort());
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            bitcoin.setPeerNodes(peerAddresses);   // You should run a regtest mode bitcoind locally.
         }
+
         bitcoin.setDownloadListener(controller.progressBarUpdater())
                .setBlockingStartup(false)
                .setUserAgent(APP_NAME, "1.0");

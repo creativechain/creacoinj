@@ -85,7 +85,7 @@ public class BitcoinURI {
     public static final String FIELD_PAYMENT_REQUEST_URL = "r";
 
     /**
-     * URI for Bitcoin network. Use {@link org.bitcoinj.params.AbstractBitcoinNetParams#BITCOIN_SCHEME} if you specifically
+     * URI for Bitcoin network. Use {@link org.bitcoinj.params.AbstractBitcoinNetParams#CREACOIN_SCHEME} if you specifically
      * need Bitcoin, or use {@link org.bitcoinj.core.NetworkParameters#getUriScheme} to get the scheme
      * from network parameters.
      */
@@ -123,7 +123,7 @@ public class BitcoinURI {
         checkNotNull(input);
 
         String scheme = null == params
-            ? AbstractBitcoinNetParams.BITCOIN_SCHEME
+            ? AbstractBitcoinNetParams.CREACOIN_SCHEME
             : params.getUriScheme();
 
         // Attempt to form the URI (fail fast syntax checking to official standards).

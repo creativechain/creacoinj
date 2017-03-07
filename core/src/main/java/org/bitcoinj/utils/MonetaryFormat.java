@@ -54,11 +54,11 @@ public final class MonetaryFormat {
     /** Standard format for fiat amounts. */
     public static final MonetaryFormat FIAT = new MonetaryFormat().shift(0).minDecimals(2).repeatOptionalDecimals(2, 1);
     /** Currency code for base 1 Bitcoin. */
-    public static final String CODE_BTC = "BTC";
+    public static final String CODE_CREA = "CREA";
     /** Currency code for base 1/1000 Bitcoin. */
-    public static final String CODE_MBTC = "mBTC";
+    public static final String CODE_MCREA = "mCREA";
     /** Currency code for base 1/1000000 Bitcoin. */
-    public static final String CODE_UBTC = "µBTC";
+    public static final String CODE_UCREA = "µCREA";
 
     public static final int MAX_DECIMALS = 8;
 
@@ -301,9 +301,9 @@ public final class MonetaryFormat {
         this.shift = 0;
         this.roundingMode = RoundingMode.HALF_UP;
         this.codes = new String[MAX_DECIMALS];
-        this.codes[0] = CODE_BTC;
-        this.codes[3] = CODE_MBTC;
-        this.codes[6] = CODE_UBTC;
+        this.codes[0] = CODE_CREA;
+        this.codes[3] = CODE_MCREA;
+        this.codes[6] = CODE_UCREA;
         this.codeSeparator = ' ';
         this.codePrefixed = true;
     }

@@ -65,7 +65,7 @@ public class Block extends Message {
      * upgrade everyone to change this, so Bitcoin can continue to grow. For now it exists as an anti-DoS measure to
      * avoid somebody creating a titanically huge but valid block and forcing everyone to download/store it forever.
      */
-    public static final int MAX_BLOCK_SIZE = 1 * 1000 * 1000;
+    public static final int MAX_BLOCK_SIZE = 4 * 1000 * 1000;
     /**
      * A "sigop" is a signature verification operation. Because they're expensive we also impose a separate limit on
      * the number in a block to prevent somebody mining a huge block that has way more sigops than normal, so is very
@@ -117,7 +117,7 @@ public class Block extends Message {
         super(params);
         // Set up a few basic things. We are not complete after this though.
         version = setVersion;
-        difficultyTarget = 0x1d07fff8L;
+        difficultyTarget = Utils.encodeCompactBits(new BigInteger(Utils.HEX.decode("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff")))/*0x1d07fff8L*/;
         time = System.currentTimeMillis() / 1000;
         prevBlockHash = Sha256Hash.ZERO_HASH;
 
@@ -479,6 +479,7 @@ public class Block extends Message {
         StringBuilder s = new StringBuilder();
         s.append(" block: \n");
         s.append("   hash: ").append(getHashAsString()).append('\n');
+        s.append("   pow: ").append(Long.toHexString(Utils.encodeCompactBits(getHash().toBigInteger()))).append(" / ").append(Long.toHexString(difficultyTarget)).append('\n');
         s.append("   version: ").append(version);
         String bips = Joiner.on(", ").skipNulls().join(isBIP34() ? "BIP34" : null, isBIP66() ? "BIP66" : null,
                 isBIP65() ? "BIP65" : null);
@@ -488,7 +489,7 @@ public class Block extends Message {
         s.append("   previous block: ").append(getPrevBlockHash()).append("\n");
         s.append("   merkle root: ").append(getMerkleRoot()).append("\n");
         s.append("   time: ").append(time).append(" (").append(Utils.dateTimeFormat(time * 1000)).append(")\n");
-        s.append("   difficulty target (nBits): ").append(difficultyTarget).append("\n");
+        s.append("   difficulty target (nBits): ").append(Long.toHexString(difficultyTarget)).append("\n");
         s.append("   nonce: ").append(nonce).append("\n");
         if (transactions != null && transactions.size() > 0) {
             s.append("   with ").append(transactions.size()).append(" transaction(s):\n");
@@ -542,16 +543,17 @@ public class Block extends Message {
         //
         // To prevent this attack from being possible, elsewhere we check that the difficultyTarget
         // field is of the right value. This requires us to have the preceeding blocks.
-        BigInteger target = getDifficultyTargetAsInteger();
 
-        BigInteger h = getHash().toBigInteger();
-        if (h.compareTo(target) > 0) {
+        BigInteger target = getDifficultyTargetAsInteger();
+        BigInteger blockHash = getHash().toBigInteger();
+        if (blockHash.compareTo(target) > 0) {
+            System.out.println("POW FAILED: " + toString());
             // Proof of work check failed!
-            if (throwException)
-                throw new VerificationException("Hash is higher than target: " + getHashAsString() + " vs "
-                        + target.toString(16));
+/*            if (throwException)
+                throw new VerificationException("Hash is higher than target: " + Utils.encodeCompactBits(getHash().toBigInteger()) + " vs "
+                        + Utils.encodeCompactBits(target));
             else
-                return false;
+                return false;*/
         }
         return true;
     }
