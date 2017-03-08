@@ -1,7 +1,3 @@
-[![Build Status](https://travis-ci.org/creacoinj/creacoinj.png?branch=master)](https://travis-ci.org/creacoinj/creacoinj)   [![Coverage Status](https://coveralls.io/repos/creacoinj/creacoinj/badge.png?branch=master)](https://coveralls.io/r/creacoinj/creacoinj?branch=master) 
-
-[![Visit our IRC channel](https://kiwiirc.com/buttons/irc.freenode.net/creacoinj.png)](https://kiwiirc.com/client/irc.freenode.net/creacoinj)
-
 ### Welcome to creacoinj
 
 The creacoinj library is a Java implementation of the creacoin protocol, which allows it to maintain a wallet and send/receive transactions without needing a local copy of creacoin Core. It comes with full documentation and some example apps showing how to use it.
