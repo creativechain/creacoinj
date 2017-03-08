@@ -18,14 +18,14 @@ package wallettemplate;
 
 import com.google.common.util.concurrent.*;
 import javafx.scene.input.*;
-import org.bitcoinj.core.NetworkParameters;
-import org.bitcoinj.core.PeerAddress;
-import org.bitcoinj.core.Utils;
-import org.bitcoinj.kits.WalletAppKit;
-import org.bitcoinj.params.*;
-import org.bitcoinj.utils.BriefLogFormatter;
-import org.bitcoinj.utils.Threading;
-import org.bitcoinj.wallet.DeterministicSeed;
+import org.creacoinj.core.NetworkParameters;
+import org.creacoinj.core.PeerAddress;
+import org.creacoinj.core.Utils;
+import org.creacoinj.kits.WalletAppKit;
+import org.creacoinj.params.*;
+import org.creacoinj.utils.BriefLogFormatter;
+import org.creacoinj.utils.Threading;
+import org.creacoinj.wallet.DeterministicSeed;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +34,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import sun.misc.Ref;
 import wallettemplate.controls.NotificationBarPane;
 import wallettemplate.utils.GuiUtils;
 import wallettemplate.utils.TextFieldValidator;
@@ -66,11 +65,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage mainWindow) throws Exception {
-        System.out.println("maxTargetBTC-j: " + Utils.decodeCompactBits(0x1d00ffff).toString(16));
-        System.out.println("maxTargetCREAj: " + Utils.decodeCompactBits(0x1e0ffff0).toString(16));
-        System.out.println("maxTargetBTC-c: 1d00ffff / " + Long.toHexString(Utils.encodeCompactBits(new BigInteger(Utils.HEX.decode("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff")))));
-        System.out.println("maxTargetCREAc: 1e0ffff0 / " + Long.toHexString(Utils.encodeCompactBits(params.getMaxTarget())));
-        System.out.println("nBits = " + Utils.encodeCompactBits(params.getMaxTarget()));
         try {
             realStart(mainWindow);
         } catch (Throwable e) {
@@ -111,7 +105,7 @@ public class Main extends Application {
 
         // Make log output concise.
         BriefLogFormatter.init();
-        // Tell bitcoinj to run event handlers on the JavaFX UI thread. This keeps things simple and means
+        // Tell creacoinj to run event handlers on the JavaFX UI thread. This keeps things simple and means
         // we cannot forget to switch threads when adding event handlers. Unfortunately, the DownloadListener
         // we give to the app kit is currently an exception and runs on a library thread. It'll get fixed in
         // a future version.
@@ -149,7 +143,7 @@ public class Main extends Application {
                 // their own money!
                 bitcoin.wallet().allowSpendingUnconfirmedTransactions();
                 Platform.runLater(controller::onBitcoinSetup);
-                //bitcoin.peerGroup().connectToLocalHost();
+                //creacoin.peerGroup().connectToLocalHost();
             }
         };
         // Now configure and start the appkit. This will take a second or two - we could show a temporary splash screen
