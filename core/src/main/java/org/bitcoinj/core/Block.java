@@ -20,12 +20,14 @@ package org.bitcoinj.core;
 import com.google.common.annotations.*;
 import com.google.common.base.*;
 import com.google.common.collect.*;
+import com.lambdaworks.crypto.SCrypt;
 import org.bitcoinj.script.*;
 import org.slf4j.*;
 
 import javax.annotation.*;
 import java.io.*;
 import java.math.*;
+import java.security.GeneralSecurityException;
 import java.util.*;
 
 import static org.bitcoinj.core.Coin.*;
@@ -544,17 +546,52 @@ public class Block extends Message {
         // To prevent this attack from being possible, elsewhere we check that the difficultyTarget
         // field is of the right value. This requires us to have the preceeding blocks.
 
-        BigInteger target = getDifficultyTargetAsInteger();
+/*        BigInteger target = getDifficultyTargetAsInteger();
         BigInteger blockHash = getHash().toBigInteger();
         if (blockHash.compareTo(target) > 0) {
             System.out.println("POW FAILED: " + toString());
             // Proof of work check failed!
-/*            if (throwException)
+            if (throwException)
                 throw new VerificationException("Hash is higher than target: " + Utils.encodeCompactBits(getHash().toBigInteger()) + " vs "
                         + Utils.encodeCompactBits(target));
             else
-                return false;*/
+                return false;
+        }*/
+
+        BigInteger target = getDifficultyTargetAsInteger();
+        byte[] bytes;
+
+        try (ByteArrayOutputStream bos = new UnsafeByteArrayOutputStream(Block.HEADER_SIZE)) {
+            writeHeader(bos);
+            bytes = bos.toByteArray();
+        } catch (IOException e) {
+            throw new RuntimeException(e); // Cannot happen.
         }
+
+        if (bytes.length != 80) {
+            if (throwException) {
+                throw new VerificationException("Incorrect block header size!");
+            } else {
+                return false;
+            }
+        }
+
+        byte[] hashed;
+        try {
+            hashed = Utils.reverseBytes(SCrypt.scryptJ(bytes, bytes, 1024, 1, 1, 32));
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException(e); //Cannot happen
+        }
+
+        if (new BigInteger(1, hashed).compareTo(target) == 1) {
+            if (throwException) {
+                throw new VerificationException("Hash is higher than target: " + Utils.HEX.encode(hashed) + " vs "
+                        + target.toString(16));
+            } else {
+                return false;
+            }
+        }
+
         return true;
     }
 
