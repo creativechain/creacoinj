@@ -49,7 +49,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
      * Scheme part for Bitcoin URIs.
      */
     public static final String CREACOIN_SCHEME = "creacoin";
-    public static final int REWARD_HALVING_INTERVAL = 210000;
+    public static final int REWARD_HALVING_INTERVAL = 840000;
 
     private static final Logger log = LoggerFactory.getLogger(AbstractBitcoinNetParams.class);
 
@@ -58,26 +58,17 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
     }
 
     /**
-     * Checks if we are at a reward halving point.
-     * @param height The height of the previous stored block
-     * @return If this is a reward halving point
-     */
-    public final boolean isRewardHalvingPoint(final int height) {
-        return ((height + 1) % REWARD_HALVING_INTERVAL) == 0;
-    }
-
-    /**
      * Checks if we are at a difficulty transition point.
      * @param height The height of the previous stored block
      * @return If this is a difficulty transition point
      */
     public final boolean isDifficultyTransitionPoint(final int height) {
-        return ((height + 1) % this.getInterval()) == 0;
+        //System.out.println("H: " + height + ", R: " + (height + 1) % this.getDifficultyAdjustmentInterval());
+        return ((height + 1) % this.getDifficultyAdjustmentInterval()) == 0;
     }
 
     @Override
-    public void checkDifficultyTransitions(final StoredBlock storedPrev, final Block nextBlock,
-    	final BlockStore blockStore) throws VerificationException, BlockStoreException {
+    public void checkDifficultyTransitions(final StoredBlock storedPrev, final Block nextBlock,	final BlockStore blockStore) throws VerificationException, BlockStoreException {
         final Block prev = storedPrev.getHeader();
 
         // Is this supposed to be a difficulty transition point?
@@ -96,7 +87,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
         final Stopwatch watch = Stopwatch.createStarted();
         Sha256Hash hash = prev.getHash();
         StoredBlock cursor = null;
-        final int interval = this.getInterval();
+        final int interval = this.getDifficultyAdjustmentInterval();
         for (int i = 0; i < interval; i++) {
             cursor = blockStore.get(hash);
             if (cursor == null) {
@@ -116,12 +107,15 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
         int timespan = (int) (prev.getTimeSeconds() - blockIntervalAgo.getTimeSeconds());
         // Limit the adjustment step.
         final int targetTimespan = this.getTargetTimespan();
+
         if (timespan < targetTimespan / 4)
             timespan = targetTimespan / 4;
         if (timespan > targetTimespan * 4)
             timespan = targetTimespan * 4;
 
+
         BigInteger newTarget = Utils.decodeCompactBits(prev.getDifficultyTarget());
+
         newTarget = newTarget.multiply(BigInteger.valueOf(timespan));
         newTarget = newTarget.divide(BigInteger.valueOf(targetTimespan));
 

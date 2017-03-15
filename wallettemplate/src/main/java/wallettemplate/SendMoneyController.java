@@ -74,6 +74,9 @@ public class SendMoneyController {
                 req = SendRequest.emptyWallet(destination);
             else
                 req = SendRequest.to(destination, amount);
+
+            req.feePerKb = Coin.valueOf(100000);
+
             req.aesKey = aesKey;
             sendResult = Main.bitcoin.wallet().sendCoins(req);
             Futures.addCallback(sendResult.broadcastComplete, new FutureCallback<Transaction>() {

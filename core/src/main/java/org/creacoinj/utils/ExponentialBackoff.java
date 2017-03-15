@@ -24,7 +24,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * <p>Tracks successes and failures and calculates a time to retry the operation.</p>
  *
- * <p>The retries are exponentially backed off, up to a maximum interval.  On success the back off interval is reset.</p>
+ * <p>The retries are exponentially backed off, up to a maximum difficultyAdjustmentInterval.  On success the back off difficultyAdjustmentInterval is reset.</p>
  */
 public class ExponentialBackoff implements Comparable<ExponentialBackoff> {
     public static final int DEFAULT_INITIAL_MILLIS = 100;

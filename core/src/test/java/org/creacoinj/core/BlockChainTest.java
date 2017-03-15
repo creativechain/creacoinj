@@ -155,7 +155,7 @@ public class BlockChainTest {
         // artificially shortened period.
         Block prev = PARAMS.getGenesisBlock();
         Utils.setMockClock(System.currentTimeMillis()/1000);
-        for (int height = 0; height < PARAMS.getInterval() - 1; height++) {
+        for (int height = 0; height < PARAMS.getDifficultyAdjustmentInterval() - 1; height++) {
             Block newBlock = prev.createNextBlock(coinbaseTo, 1, Utils.currentTimeSeconds(), height);
             assertTrue(chain.add(newBlock));
             prev = newBlock;
@@ -164,13 +164,13 @@ public class BlockChainTest {
         }
         // Now add another block that has no difficulty adjustment, it should be rejected.
         try {
-            chain.add(prev.createNextBlock(coinbaseTo, 1, Utils.currentTimeSeconds(), PARAMS.getInterval()));
+            chain.add(prev.createNextBlock(coinbaseTo, 1, Utils.currentTimeSeconds(), PARAMS.getDifficultyAdjustmentInterval()));
             fail();
         } catch (VerificationException e) {
         }
         // Create a new block with the right difficulty target given our blistering speed relative to the huge amount
         // of time it's supposed to take (set in the unit test network parameters).
-        Block b = prev.createNextBlock(coinbaseTo, 1, Utils.currentTimeSeconds(), PARAMS.getInterval() + 1);
+        Block b = prev.createNextBlock(coinbaseTo, 1, Utils.currentTimeSeconds(), PARAMS.getDifficultyAdjustmentInterval() + 1);
         b.setDifficultyTarget(0x201fFFFFL);
         b.solve();
         assertTrue(chain.add(b));

@@ -31,7 +31,7 @@ public class MainNetParams extends AbstractBitcoinNetParams {
 
     public MainNetParams() {
         super();
-        interval = INTERVAL;
+        difficultyAdjustmentInterval = INTERVAL;
         targetTimespan = TARGET_TIMESPAN;
 
         maxTarget = Utils.decodeMPI(Utils.HEX.decode("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"), false);

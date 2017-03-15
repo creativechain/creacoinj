@@ -40,7 +40,7 @@ public class TestNet3Params extends AbstractBitcoinNetParams {
         id = ID_TESTNET;
         // Genesis hash is 000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943
         packetMagic = 0x0b110907;
-        interval = INTERVAL;
+        difficultyAdjustmentInterval = INTERVAL;
         targetTimespan = TARGET_TIMESPAN;
         maxTarget = Utils.decodeCompactBits(0x1e0ffff0);
         port = 19028;
@@ -102,7 +102,7 @@ public class TestNet3Params extends AbstractBitcoinNetParams {
         	// that difficulty is equal to that one.
         	StoredBlock cursor = storedPrev;
         	while (!cursor.getHeader().equals(getGenesisBlock()) &&
-                       cursor.getHeight() % getInterval() != 0 &&
+                       cursor.getHeight() % getDifficultyAdjustmentInterval() != 0 &&
                        cursor.getHeader().getDifficultyTargetAsInteger().equals(getMaxTarget()))
                     cursor = cursor.getPrev(blockStore);
         	BigInteger cursorTarget = cursor.getHeader().getDifficultyTargetAsInteger();

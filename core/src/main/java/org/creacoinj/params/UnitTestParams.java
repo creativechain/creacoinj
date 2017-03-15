@@ -41,7 +41,7 @@ public class UnitTestParams extends AbstractBitcoinNetParams {
         genesisBlock.setDifficultyTarget(Block.EASIEST_DIFFICULTY_TARGET);
         genesisBlock.solve();
         port = 18333;
-        interval = 10;
+        difficultyAdjustmentInterval = 10;
         dumpedPrivateKeyHeader = 239;
         targetTimespan = 200000000;  // 6 years. Just a very big number.
         spendableCoinbaseDepth = 5;

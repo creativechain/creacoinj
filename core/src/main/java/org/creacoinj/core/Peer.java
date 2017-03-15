@@ -1444,7 +1444,7 @@ public class Peer extends PeerSocketHandler {
             log.info("blockChainDownloadLocked({}): ignoring duplicated request: {}", toHash, chainHeadHash);
             for (Sha256Hash hash : pendingBlockDownloads)
                 log.info("Pending block download: {}", hash);
-            log.info(Throwables.getStackTraceAsString(new Throwable()));
+            //log.info(Throwables.getStackTraceAsString(new Throwable()));
             return;
         }
         if (log.isDebugEnabled())

@@ -53,7 +53,7 @@ public abstract class AbstractFullPrunedBlockChainTest {
     private static final Logger log = LoggerFactory.getLogger(AbstractFullPrunedBlockChainTest.class);
 
     protected static final NetworkParameters PARAMS = new UnitTestParams() {
-        @Override public int getInterval() {
+        @Override public int getDifficultyAdjustmentInterval() {
             return 10000;
         }
     };

@@ -74,7 +74,7 @@ public abstract class NetworkParameters {
     protected int addressHeader;
     protected int p2shHeader;
     protected int dumpedPrivateKeyHeader;
-    protected int interval;
+    protected int difficultyAdjustmentInterval;
     protected int targetTimespan;
     protected byte[] alertSigningKey;
     protected int bip32HeaderPub;
@@ -136,7 +136,7 @@ public abstract class NetworkParameters {
         return genesisBlock;
     }
 
-    public static final int TARGET_TIMESPAN = (int) (3.5 * 24 * 60 * 60);  // 2 weeks per difficulty cycle, on average.
+    public static final int TARGET_TIMESPAN = (int) (1 * 24 * 60 * 60);  // 2 weeks per difficulty cycle, on average.
     public static final int TARGET_SPACING = 2 * 60;  // 2 minutes per block.
     public static final int INTERVAL = TARGET_TIMESPAN / TARGET_SPACING;
     
@@ -150,7 +150,7 @@ public abstract class NetworkParameters {
     /**
      * The maximum number of coins to be generated
      */
-    public static final long MAX_COINS = 21000000;
+    public static final long MAX_COINS = 115000000;
 
     /**
      * The maximum money to be generated
@@ -339,7 +339,7 @@ public abstract class NetworkParameters {
     }
 
     /**
-     * How much time in seconds is supposed to pass between "interval" blocks. If the actual elapsed time is
+     * How much time in seconds is supposed to pass between "difficultyAdjustmentInterval" blocks. If the actual elapsed time is
      * significantly different from this value, the network difficulty formula will produce a different value. Both
      * test and main Bitcoin networks use 2 weeks (1209600 seconds).
      */
@@ -364,8 +364,8 @@ public abstract class NetworkParameters {
     }
 
     /** How many blocks pass between difficulty adjustment periods. Bitcoin standardises this to be 2016. */
-    public int getInterval() {
-        return interval;
+    public int getDifficultyAdjustmentInterval() {
+        return difficultyAdjustmentInterval;
     }
 
     /** Maximum target represents the easiest allowable proof of work. */
@@ -449,7 +449,7 @@ public abstract class NetworkParameters {
     public abstract BitcoinSerializer getSerializer(boolean parseRetain);
 
     /**
-     * The number of blocks in the last {@link getMajorityWindow()} blocks
+     * The number of blocks in the last {@link #getMajorityWindow()}  blocks
      * at which to trigger a notice to the user to upgrade their client, where
      * the client does not understand those blocks.
      */
@@ -458,7 +458,7 @@ public abstract class NetworkParameters {
     }
 
     /**
-     * The number of blocks in the last {@link getMajorityWindow()} blocks
+     * The number of blocks in the last {@link #getMajorityWindow()} blocks
      * at which to enforce the requirement that all new blocks are of the
      * newer type (i.e. outdated blocks are rejected).
      */
@@ -520,6 +520,17 @@ public abstract class NetworkParameters {
         }
 
         return verifyFlags;
+    }
+
+    /**
+     * Checks if we are at a reward halving point.
+     * @param height The height of the previous stored block
+     * @return If this is a reward halving point
+     */
+    public final boolean isRewardHalvingPoint(final int height) {
+        List<Integer> points = Arrays.asList(2, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811, 514229, 832040, 1346269, 2178309,
+                3524578, 5702887, 9227465, 14930352, 24157817);
+        return points.contains(height);
     }
 
     public abstract int getProtocolVersionNum(final ProtocolVersion version);

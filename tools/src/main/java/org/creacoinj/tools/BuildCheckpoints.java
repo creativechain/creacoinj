@@ -93,7 +93,7 @@ public class BuildCheckpoints {
         }
 
         // Configure creacoinj to fetch only headers, not save them to disk, connect to a local fully synced/validated
-        // node and to save block headers that are on interval boundaries, as long as they are <1 month old.
+        // node and to save block headers that are on difficultyAdjustmentInterval boundaries, as long as they are <1 month old.
         final BlockStore store = new MemoryBlockStore(params);
         final BlockChain chain = new BlockChain(params, store);
         final PeerGroup peerGroup = new PeerGroup(params, chain);
@@ -144,7 +144,7 @@ public class BuildCheckpoints {
             @Override
             public void notifyNewBestBlock(StoredBlock block) throws VerificationException {
                 int height = block.getHeight();
-                if (height % params.getInterval() == 0 && block.getHeader().getTimeSeconds() <= timeAgo) {
+                if (height % params.getDifficultyAdjustmentInterval() == 0 && block.getHeader().getTimeSeconds() <= timeAgo) {
                     System.out.println(String.format("Checkpointing block %s at height %d, time %s",
                             block.getHeader().getHash(), block.getHeight(), Utils.dateTimeFormat(block.getHeader().getTime())));
                     checkpoints.put(height, block);

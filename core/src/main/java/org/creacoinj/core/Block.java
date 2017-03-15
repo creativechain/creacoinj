@@ -217,8 +217,50 @@ public class Block extends Message {
      * <p>The half-life is controlled by {@link org.creacoinj.core.NetworkParameters#getSubsidyDecreaseBlockCount()}.
      * </p>
      */
-    public Coin getBlockInflation(int height) {
-        return FIFTY_COINS.shiftRight(height / params.getSubsidyDecreaseBlockCount());
+    public Coin getBlockInflation(int nHeight) {
+        Coin nSubsidy = COIN.multiply(0);
+
+        //Creativechain reward design with fibonachi progress the firt year
+        if(nHeight < 2) // The first block pre-mine, for the manteniance of the plattform and incentive the content publication
+            nSubsidy = COIN.multiply(12226641);
+        if(nHeight <= 6765 && nHeight > 1)
+            nSubsidy = COIN.multiply(1);
+        if(nHeight <= 10946 && nHeight > 6765)
+            nSubsidy = COIN.multiply(1);
+        if(nHeight <= 17711 && nHeight > 10946)
+            nSubsidy = COIN.multiply(2);
+        if(nHeight <= 28657 && nHeight > 17711)
+            nSubsidy = COIN.multiply(3);
+        if(nHeight <= 46368 && nHeight > 28657)
+            nSubsidy = COIN.multiply(5);
+        if(nHeight <= 75025 && nHeight > 46368)
+            nSubsidy = COIN.multiply(8);
+        if(nHeight <= 121393 && nHeight > 75025)
+            nSubsidy = COIN.multiply(13);
+        if(nHeight <= 196418 && nHeight > 121393)
+            nSubsidy = COIN.multiply(21);
+        if(nHeight <= 317811 && nHeight > 196148)
+            nSubsidy = COIN.multiply(34);
+        if(nHeight <= 514229 && nHeight > 317811)
+            nSubsidy = COIN.multiply(55);
+        if(nHeight <= 832040 && nHeight > 514229)
+            nSubsidy = COIN.multiply(34);
+        if(nHeight <= 1346269 && nHeight > 832040)
+            nSubsidy = COIN.multiply(21);
+        if(nHeight <= 2178309 && nHeight > 1346269)
+            nSubsidy = COIN.multiply(13);
+        if(nHeight <= 3524578 && nHeight > 2178309)
+            nSubsidy = COIN.multiply(8);
+        if(nHeight <= 5702887 && nHeight > 3524578)
+            nSubsidy = COIN.multiply(5);
+        if(nHeight <= 9227465 && nHeight > 5702887)
+            nSubsidy = COIN.multiply(3);
+        if(nHeight <= 14930352 && nHeight > 9227465)
+            nSubsidy = COIN.multiply(2);
+        if(nHeight <= 24157817 && nHeight > 14930352)
+            nSubsidy = COIN.multiply(1);
+
+        return nSubsidy;
     }
 
     /**
@@ -481,7 +523,7 @@ public class Block extends Message {
         StringBuilder s = new StringBuilder();
         s.append(" block: \n");
         s.append("   hash: ").append(getHashAsString()).append('\n');
-        s.append("   pow: ").append(Long.toHexString(Utils.encodeCompactBits(getHash().toBigInteger()))).append(" / ").append(Long.toHexString(difficultyTarget)).append('\n');
+        s.append("   pow: ").append(Long.toHexString(Utils.encodeCompactBits(getHash().toBigInteger()))).append('\n');
         s.append("   version: ").append(version);
         String bips = Joiner.on(", ").skipNulls().join(isBIP34() ? "BIP34" : null, isBIP66() ? "BIP66" : null,
                 isBIP65() ? "BIP65" : null);
