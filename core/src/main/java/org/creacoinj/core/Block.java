@@ -22,6 +22,7 @@ import com.google.common.base.*;
 import com.google.common.collect.*;
 import com.lambdaworks.crypto.SCrypt;
 import org.creacoinj.script.*;
+import org.creacoinj.wallet.WalletTransaction;
 import org.slf4j.*;
 
 import javax.annotation.*;
@@ -929,10 +930,34 @@ public class Block extends Message {
         this.hash = null;
     }
 
+    public boolean contains(WalletTransaction wtx) {
+        return contains(wtx.getTransaction());
+    }
+
+    public boolean contains(String hexTxHash) {
+        return contains(Sha256Hash.wrap(hexTxHash));
+    }
+
+    public boolean contains(Transaction tx) {
+        return contains(tx.getHash());
+    }
+
+    public boolean contains(Sha256Hash txHash) {
+        List<Transaction> transactions = getTransactions();
+
+        for (Transaction tx : transactions) {
+            if (tx.getHash().equals(txHash)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /** Returns an immutable list of transactions held in this block, or null if this object represents just a header. */
     @Nullable
     public List<Transaction> getTransactions() {
-        return transactions == null ? null : ImmutableList.copyOf(transactions);
+        return transactions == null ? ImmutableList.<Transaction>of() : ImmutableList.copyOf(transactions);
     }
 
     // ///////////////////////////////////////////////////////////////////////////////////////////////
