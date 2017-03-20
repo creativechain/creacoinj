@@ -60,7 +60,7 @@ public class TestNet3Params extends AbstractBitcoinNetParams {
         genesisBlock.setNonce(385270584);
 
         spendableCoinbaseDepth = 100;
-        subsidyDecreaseBlockCount = 210000;
+        subsidyHalvingInterval = 210000;
         String genesisHash = genesisBlock.getHashAsString();
         checkState(genesisHash.equals("ffd5c7b133b9a5a6a47e60980e7cf90d53ab0ec134bcc9fa5f122889a604fed0"));
         alertSigningKey = Utils.HEX.decode("04302390343f91cc401d56d68b123028bf52e5fca1939df127f63c6467cdf9c8e2c14b61104cf817d0b780da337893ecc4aaff1309e536162dabbdb45200ca2b0a");

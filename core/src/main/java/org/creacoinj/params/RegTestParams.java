@@ -34,7 +34,7 @@ public class RegTestParams extends TestNet2Params {
         // By setting the block difficultyAdjustmentInterval for difficulty adjustments to Integer.MAX_VALUE we make sure difficulty never changes.
         difficultyAdjustmentInterval = Integer.MAX_VALUE;
         maxTarget = MAX_TARGET;
-        subsidyDecreaseBlockCount = 150;
+        subsidyHalvingInterval = 150;
         port = 18444;
         id = ID_REGTEST;
 

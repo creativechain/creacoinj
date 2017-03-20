@@ -215,7 +215,7 @@ public class Block extends Message {
      * the system it was 50 coins per block, in late 2012 it went to 25 coins per block, and so on. The size of
      * a coinbase transaction is inflation plus fees.</p>
      *
-     * <p>The half-life is controlled by {@link org.creacoinj.core.NetworkParameters#getSubsidyDecreaseBlockCount()}.
+     * <p>The half-life is controlled by {@link org.creacoinj.core.NetworkParameters#getSubsidyHalvingInterval()}.
      * </p>
      */
     public Coin getBlockInflation(int nHeight) {

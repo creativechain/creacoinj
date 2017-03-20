@@ -204,7 +204,7 @@ public class DefaultRiskAnalysis implements RiskAnalysis {
         if (wallet != null && !wallet.getNetworkParameters().getId().equals(NetworkParameters.ID_MAINNET))
             return Result.OK;
 
-        RuleViolation ruleViolation = isStandard(tx);
+/*        RuleViolation ruleViolation = isStandard(tx);
         if (ruleViolation != RuleViolation.NONE) {
             nonStandard = tx;
             return Result.NON_STANDARD;
@@ -216,7 +216,7 @@ public class DefaultRiskAnalysis implements RiskAnalysis {
                 nonStandard = dep;
                 return Result.NON_STANDARD;
             }
-        }
+        }*/
 
         return Result.OK;
     }

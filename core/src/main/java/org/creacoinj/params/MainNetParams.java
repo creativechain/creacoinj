@@ -48,20 +48,12 @@ public class MainNetParams extends AbstractBitcoinNetParams {
         majorityRejectBlockOutdated = MAINNET_MAJORITY_REJECT_BLOCK_OUTDATED;
         majorityWindow = MAINNET_MAJORITY_WINDOW;
 
-/*
-        genesisBlock.setDifficultyTarget(0x1d00ffffL);
-        genesisBlock.setTime(1231006505L);
-        genesisBlock.setNonce(2083236893);
-*/
-
         genesisBlock.setTime(1488223407L);
         genesisBlock.setNonce(2085003718);
         genesisBlock.setDifficultyTarget(0x1e0ffff0L);
-        //System.out.println(Utils.encodeCompactBits(maxTarget) + " vs " + Utils.encodeCompactBits(BigInteger.valueOf(0x1e0ffff0L)));
-        //System.out.println(Utils.encodeCompactBits(new BigInteger(Utils.HEX.decode("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff"))));
 
         id = ID_MAINNET;
-        subsidyDecreaseBlockCount = 840000;
+        subsidyHalvingInterval = 840000;
         spendableCoinbaseDepth = 100;
         String genesisHash = genesisBlock.getHashAsString();
         checkState(genesisHash.equals("2723d9e13beb2811cc63343863ffee94b85b94af76e08dbd231ebc039984c2f4"),

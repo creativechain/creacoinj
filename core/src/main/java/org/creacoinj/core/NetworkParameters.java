@@ -95,7 +95,7 @@ public abstract class NetworkParameters {
      * The depth of blocks required for a coinbase transaction to be spendable.
      */
     protected int spendableCoinbaseDepth;
-    protected int subsidyDecreaseBlockCount;
+    protected int subsidyHalvingInterval;
     
     protected int[] acceptableAddressCodes;
     protected String[] dnsSeeds;
@@ -136,7 +136,7 @@ public abstract class NetworkParameters {
         return genesisBlock;
     }
 
-    public static final int TARGET_TIMESPAN = (int) (1 * 24 * 60 * 60);  // 2 weeks per difficulty cycle, on average.
+    public static final int TARGET_TIMESPAN = (int) (24 * 60 * 60);  // 1 Day per difficulty cycle, on average.
     public static final int TARGET_SPACING = 2 * 60;  // 2 minutes per block.
     public static final int INTERVAL = TARGET_TIMESPAN / TARGET_SPACING;
     
@@ -273,8 +273,8 @@ public abstract class NetworkParameters {
         return checkpointHash != null;
     }
 
-    public int getSubsidyDecreaseBlockCount() {
-        return subsidyDecreaseBlockCount;
+    public int getSubsidyHalvingInterval() {
+        return subsidyHalvingInterval;
     }
 
     /** Returns DNS names that when resolved, give IP addresses of active peers. */

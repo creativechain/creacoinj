@@ -45,7 +45,7 @@ public class UnitTestParams extends AbstractBitcoinNetParams {
         dumpedPrivateKeyHeader = 239;
         targetTimespan = 200000000;  // 6 years. Just a very big number.
         spendableCoinbaseDepth = 5;
-        subsidyDecreaseBlockCount = 100;
+        subsidyHalvingInterval = 100;
         dnsSeeds = null;
         addrSeeds = null;
         bip32HeaderPub = 0x043587CF;
