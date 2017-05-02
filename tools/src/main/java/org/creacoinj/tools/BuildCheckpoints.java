@@ -127,7 +127,7 @@ public class BuildCheckpoints {
             future.get(20, SECONDS);
         } else {
             // try localhost
-            ipAddress = InetAddress.getLocalHost();
+            ipAddress = InetAddress.getByName("5.189.181.124");
             startPeerGroup(peerGroup, ipAddress);
         }
 

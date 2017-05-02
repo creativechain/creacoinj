@@ -2095,12 +2095,21 @@ public class PeerGroup implements TransactionBroadcaster {
                         throw new RuntimeException(e);   // Cannot fail to verify a tx we created ourselves.
                     }
                 }
+
+                FutureCallback<Transaction> fc = broadcast.getTransactionCallback();
+                if (fc != null) {
+                    fc.onSuccess(transaction);
+                }
             }
 
             @Override
             public void onFailure(Throwable throwable) {
                 // This can happen if we get a reject message from a peer.
                 runningBroadcasts.remove(broadcast);
+                FutureCallback<Transaction> fc = broadcast.getTransactionCallback();
+                if (fc != null) {
+                    fc.onFailure(throwable);
+                }
             }
         });
         // Keep a reference to the TransactionBroadcast object. This is important because otherwise, the entire tree

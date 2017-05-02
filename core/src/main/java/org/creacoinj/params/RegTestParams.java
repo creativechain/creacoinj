@@ -37,10 +37,13 @@ public class RegTestParams extends TestNet2Params {
         subsidyHalvingInterval = 150;
         port = 18444;
         id = ID_REGTEST;
+        packetMagic = 0xfabfb5da;
 
-        majorityEnforceBlockUpgrade = MainNetParams.MAINNET_MAJORITY_ENFORCE_BLOCK_UPGRADE;
-        majorityRejectBlockOutdated = MainNetParams.MAINNET_MAJORITY_REJECT_BLOCK_OUTDATED;
-        majorityWindow = MainNetParams.MAINNET_MAJORITY_WINDOW;
+        majorityEnforceBlockUpgrade = 750;
+        majorityRejectBlockOutdated = 950;
+        majorityWindow = 100;
+        targetTimespan = (int) 3.5 * 24 * 60 * 60;
+
     }
 
     @Override
@@ -55,10 +58,10 @@ public class RegTestParams extends TestNet2Params {
         synchronized (RegTestParams.class) {
             if (genesis == null) {
                 genesis = super.getGenesisBlock();
-                genesis.setNonce(2);
-                genesis.setDifficultyTarget(0x207fFFFFL);
-                genesis.setTime(1296688602L);
-                checkState(genesis.getHashAsString().toLowerCase().equals("0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"));
+                genesis.setNonce(0);
+                genesis.setDifficultyTarget(0x207fffff);
+                genesis.setTime(1296688602);
+                checkState(genesis.getHashAsString().toLowerCase().equals("069928a84afce6486bebb795b47a6ea5109ad2645f8135bbc46bb6220ab04857"));
             }
             return genesis;
         }

@@ -45,6 +45,7 @@ public class TransactionBroadcast {
     private final Transaction tx;
     private int minConnections;
     private int numWaitingFor;
+    private FutureCallback<Transaction> transactionCallback;
 
     /** Used for shuffling the peers before broadcast: unit tests can replace this to make themselves deterministic. */
     @VisibleForTesting
@@ -78,6 +79,14 @@ public class TransactionBroadcast {
                 return future;
             }
         };
+    }
+
+    public void setTransactionCallback(FutureCallback<Transaction> transactionCallback) {
+        this.transactionCallback = transactionCallback;
+    }
+
+    public FutureCallback<Transaction> getTransactionCallback() {
+        return transactionCallback;
     }
 
     public ListenableFuture<Transaction> future() {

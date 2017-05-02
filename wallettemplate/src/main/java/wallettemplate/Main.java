@@ -151,7 +151,7 @@ public class Main extends Application {
         if (params == TestNet3Params.get()) {
             bitcoin.connectToLocalHost();
         } else {
-            String[] peers = {"localhost", /*"5.189.181.124", "80.241.212.178", "217.182.129.22", "5.189.152.67"*/};
+            String[] peers = {"152.80.145.39", "80.241.212.178", "5.189.181.124", "151.80.145.37", "151.80.145.34", "151.80.61.106"};
 
             PeerAddress[] peerAddresses = new PeerAddress[peers.length];
             for (int x = 0; x < peerAddresses.length; x++) {

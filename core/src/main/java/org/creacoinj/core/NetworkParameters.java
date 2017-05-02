@@ -118,7 +118,7 @@ public abstract class NetworkParameters {
             //   "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"
 
             byte[] bytes = Utils.HEX.decode
-                    ("04ffff001d010422323031372d322d3137205374617274204372656174697665636861696e2074657374");
+                    ("04ffff001d01044b4e592054696d65732031204d61792032303137207475726b657920507572676573203420303030204d6f7265206f6666696369616c7320616e6420626c6f636b732077696b697065646961");
             /*            byte[] bytes = Utils.HEX.decode
                     ("04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73");
             */
@@ -204,9 +204,7 @@ public abstract class NetworkParameters {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        return getId().equals(((NetworkParameters)o).getId());
+        return this == o || !(o == null || getClass() != o.getClass()) && getId().equals(((NetworkParameters) o).getId());
     }
 
     @Override
@@ -217,32 +215,34 @@ public abstract class NetworkParameters {
     /** Returns the network parameters for the given string ID or NULL if not recognized. */
     @Nullable
     public static NetworkParameters fromID(String id) {
-        if (id.equals(ID_MAINNET)) {
-            return MainNetParams.get();
-        } else if (id.equals(ID_TESTNET)) {
-            return TestNet3Params.get();
-        } else if (id.equals(ID_UNITTESTNET)) {
-            return UnitTestParams.get();
-        } else if (id.equals(ID_REGTEST)) {
-            return RegTestParams.get();
-        } else {
-            return null;
+        switch (id) {
+            case ID_MAINNET:
+                return MainNetParams.get();
+            case ID_TESTNET:
+                return TestNet3Params.get();
+            case ID_UNITTESTNET:
+                return UnitTestParams.get();
+            case ID_REGTEST:
+                return RegTestParams.get();
+            default:
+                return null;
         }
     }
 
     /** Returns the network parameters for the given string paymentProtocolID or NULL if not recognized. */
     @Nullable
     public static NetworkParameters fromPmtProtocolID(String pmtProtocolId) {
-        if (pmtProtocolId.equals(PAYMENT_PROTOCOL_ID_MAINNET)) {
-            return MainNetParams.get();
-        } else if (pmtProtocolId.equals(PAYMENT_PROTOCOL_ID_TESTNET)) {
-            return TestNet3Params.get();
-        } else if (pmtProtocolId.equals(PAYMENT_PROTOCOL_ID_UNIT_TESTS)) {
-            return UnitTestParams.get();
-        } else if (pmtProtocolId.equals(PAYMENT_PROTOCOL_ID_REGTEST)) {
-            return RegTestParams.get();
-        } else {
-            return null;
+        switch (pmtProtocolId) {
+            case PAYMENT_PROTOCOL_ID_MAINNET:
+                return MainNetParams.get();
+            case PAYMENT_PROTOCOL_ID_TESTNET:
+                return TestNet3Params.get();
+            case PAYMENT_PROTOCOL_ID_UNIT_TESTS:
+                return UnitTestParams.get();
+            case PAYMENT_PROTOCOL_ID_REGTEST:
+                return RegTestParams.get();
+            default:
+                return null;
         }
     }
 
