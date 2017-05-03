@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import com.google.common.collect.*;
-import org.creacoinj.core.listeners.*;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.testing.FakeTxBuilder;
-import org.creacoinj.testing.InboundMessageQueuer;
-import org.creacoinj.testing.TestWithNetworkConnections;
-import org.creacoinj.utils.Threading;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.listeners.WalletCoinsReceivedEventListener;
+import org.creativecoinj.core.listeners.*;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.testing.FakeTxBuilder;
+import org.creativecoinj.testing.InboundMessageQueuer;
+import org.creativecoinj.testing.TestWithNetworkConnections;
+import org.creativecoinj.utils.Threading;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.listeners.WalletCoinsReceivedEventListener;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.SettableFuture;
@@ -52,8 +52,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.testing.FakeTxBuilder.*;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.testing.FakeTxBuilder.*;
 import static org.junit.Assert.*;
 
 @RunWith(value = Parameterized.class)

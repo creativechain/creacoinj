@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import java.math.BigInteger;
 import java.util.Date;

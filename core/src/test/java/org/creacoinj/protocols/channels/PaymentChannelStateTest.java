@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.creacoinj.protocols.channels;
+package org.creativecoinj.protocols.channels;
 
-import org.creacoinj.core.*;
-import org.creacoinj.script.Script;
-import org.creacoinj.script.ScriptBuilder;
-import org.creacoinj.testing.TestWithWallet;
-import org.creacoinj.wallet.SendRequest;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.core.*;
+import org.creativecoinj.script.Script;
+import org.creativecoinj.script.ScriptBuilder;
+import org.creativecoinj.testing.TestWithWallet;
+import org.creativecoinj.wallet.SendRequest;
+import org.creativecoinj.wallet.Wallet;
 
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -40,9 +40,9 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.testing.FakeTxBuilder.createFakeTx;
-import static org.creacoinj.testing.FakeTxBuilder.makeSolvedTestBlock;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.testing.FakeTxBuilder.createFakeTx;
+import static org.creativecoinj.testing.FakeTxBuilder.makeSolvedTestBlock;
 import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)

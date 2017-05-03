@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.store.BlockStoreException;
-import org.creacoinj.store.FullPrunedBlockStore;
-import org.creacoinj.store.PostgresFullPrunedBlockStore;
+import org.creativecoinj.store.BlockStoreException;
+import org.creativecoinj.store.FullPrunedBlockStore;
+import org.creativecoinj.store.PostgresFullPrunedBlockStore;
 import org.junit.After;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -30,10 +30,10 @@ import org.junit.Test;
 public class PostgresFullPrunedBlockChainTest extends AbstractFullPrunedBlockChainTest
 {
     // Replace these with your postgres location/credentials and remove @Ignore to test
-    // You can set up a fresh postgres with the command: create user creacoinj superuser password 'password';
+    // You can set up a fresh postgres with the command: create user creativecoinj superuser password 'password';
     private static final String DB_HOSTNAME = "localhost";
     private static final String DB_NAME = "bitcoinj_test";
-    private static final String DB_USERNAME = "creacoinj";
+    private static final String DB_USERNAME = "creativecoinj";
     private static final String DB_PASSWORD = "password";
     private static final String DB_SCHEMA = "blockstore_schema";
 

@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.core.listeners.TransactionConfidenceEventListener;
-import org.creacoinj.core.TransactionConfidence.ConfidenceType;
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.store.MemoryBlockStore;
-import org.creacoinj.testing.FakeTxBuilder;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.utils.Threading;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.WalletTransaction;
-import org.creacoinj.wallet.listeners.WalletChangeEventListener;
-import org.creacoinj.wallet.listeners.WalletCoinsReceivedEventListener;
-import org.creacoinj.wallet.listeners.WalletReorganizeEventListener;
+import org.creativecoinj.core.listeners.TransactionConfidenceEventListener;
+import org.creativecoinj.core.TransactionConfidence.ConfidenceType;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.store.MemoryBlockStore;
+import org.creativecoinj.testing.FakeTxBuilder;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.utils.Threading;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.WalletTransaction;
+import org.creativecoinj.wallet.listeners.WalletChangeEventListener;
+import org.creativecoinj.wallet.listeners.WalletCoinsReceivedEventListener;
+import org.creativecoinj.wallet.listeners.WalletReorganizeEventListener;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -42,7 +42,7 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.creacoinj.core.Coin.*;
+import static org.creativecoinj.core.Coin.*;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.junit.Assert.*;
 

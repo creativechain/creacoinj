@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import com.google.common.io.ByteStreams;
 
-import org.creacoinj.core.AbstractBlockChain.NewBlockType;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.TestNet2Params;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.script.ScriptOpCodes;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.Wallet.BalanceType;
+import org.creativecoinj.core.AbstractBlockChain.NewBlockType;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.TestNet2Params;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.script.ScriptOpCodes;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.Wallet.BalanceType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,7 +35,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 
-import static org.creacoinj.core.Utils.HEX;
+import static org.creativecoinj.core.Utils.HEX;
 import static org.junit.Assert.*;
 
 public class BlockTest {
@@ -137,7 +137,7 @@ public class BlockTest {
         // We have to be able to reserialize everything exactly as we found it for hashing to work. This test also
         // proves that transaction serialization works, along with all its subobjects like scripts and in/outpoints.
         //
-        // NB: This tests the creacoin serialization protocol.
+        // NB: This tests the creativecoin serialization protocol.
         Block block = PARAMS.getDefaultSerializer().makeBlock(blockBytes);
         assertTrue(Arrays.equals(blockBytes, block.bitcoinSerialize()));
     }

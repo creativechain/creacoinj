@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
-import org.creacoinj.core.*;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.store.MemoryBlockStore;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.core.*;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.store.MemoryBlockStore;
+import org.creativecoinj.wallet.Wallet;
 
 import java.math.BigInteger;
 import java.net.InetAddress;

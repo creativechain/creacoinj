@@ -16,9 +16,9 @@
 
 package wallettemplate.controls;
 
-import org.creacoinj.core.Address;
-import org.creacoinj.core.AddressFormatException;
-import org.creacoinj.core.NetworkParameters;
+import org.creativecoinj.core.Address;
+import org.creativecoinj.core.AddressFormatException;
+import org.creativecoinj.core.NetworkParameters;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import wallettemplate.utils.TextFieldValidator;

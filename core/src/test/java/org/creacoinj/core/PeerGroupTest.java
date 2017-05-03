@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import com.google.common.base.Stopwatch;
 import com.google.common.collect.*;
 import com.google.common.net.*;
 import com.google.common.util.concurrent.*;
-import org.creacoinj.core.listeners.*;
-import org.creacoinj.net.discovery.*;
-import org.creacoinj.testing.*;
-import org.creacoinj.utils.*;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.core.listeners.*;
+import org.creativecoinj.net.discovery.*;
+import org.creativecoinj.testing.*;
+import org.creativecoinj.utils.*;
+import org.creativecoinj.wallet.Wallet;
 import org.junit.*;
 import org.junit.runner.*;
 import org.junit.runners.*;
@@ -36,7 +36,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
 
-import static org.creacoinj.core.Coin.*;
+import static org.creativecoinj.core.Coin.*;
 import static org.junit.Assert.*;
 
 

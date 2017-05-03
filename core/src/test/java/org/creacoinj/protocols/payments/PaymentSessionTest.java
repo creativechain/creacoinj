@@ -15,15 +15,15 @@
  * limitations under the License.
  */
 
-package org.creacoinj.protocols.payments;
+package org.creativecoinj.protocols.payments;
 
-import org.creacoinj.core.*;
-import org.creacoinj.crypto.TrustStoreLoader;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.TestNet3Params;
+import org.creativecoinj.core.*;
+import org.creativecoinj.crypto.TrustStoreLoader;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.TestNet3Params;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.protobuf.ByteString;
-import org.creacoin.protocols.payments.Protos;
+import org.creativecoin.protocols.payments.Protos;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,7 +32,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static org.creacoinj.core.Coin.COIN;
+import static org.creativecoinj.core.Coin.COIN;
 import static org.junit.Assert.*;
 
 public class PaymentSessionTest {

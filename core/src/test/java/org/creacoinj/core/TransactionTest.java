@@ -15,19 +15,19 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.core.TransactionConfidence.*;
-import org.creacoinj.crypto.TransactionSignature;
-import org.creacoinj.params.*;
-import org.creacoinj.script.*;
-import org.creacoinj.testing.*;
+import org.creativecoinj.core.TransactionConfidence.*;
+import org.creativecoinj.crypto.TransactionSignature;
+import org.creativecoinj.params.*;
+import org.creativecoinj.script.*;
+import org.creativecoinj.testing.*;
 import org.easymock.*;
 import org.junit.*;
 
 import java.math.BigInteger;
 import java.util.*;
-import static org.creacoinj.core.Utils.HEX;
+import static org.creativecoinj.core.Utils.HEX;
 
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;

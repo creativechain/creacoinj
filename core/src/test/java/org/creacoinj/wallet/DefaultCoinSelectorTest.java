@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package org.creacoinj.wallet;
+package org.creativecoinj.wallet;
 
-import org.creacoinj.core.*;
-import org.creacoinj.params.*;
-import org.creacoinj.testing.*;
+import org.creativecoinj.core.*;
+import org.creativecoinj.params.*;
+import org.creativecoinj.testing.*;
 import org.junit.*;
 
 import java.net.*;
 import java.util.*;
 
 import static com.google.common.base.Preconditions.*;
-import static org.creacoinj.core.Coin.*;
+import static org.creativecoinj.core.Coin.*;
 import static org.junit.Assert.*;
 
 public class DefaultCoinSelectorTest extends TestWithWallet {

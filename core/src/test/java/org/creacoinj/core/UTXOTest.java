@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,7 +24,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.creacoinj.script.ScriptBuilder;
+import org.creativecoinj.script.ScriptBuilder;
 import org.junit.Test;
 
 public class UTXOTest {

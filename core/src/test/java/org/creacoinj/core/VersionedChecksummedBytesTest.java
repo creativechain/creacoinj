@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.TestNet3Params;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.TestNet3Params;
 import org.junit.Test;
 
-import static org.creacoinj.core.Utils.HEX;
+import static org.creativecoinj.core.Utils.HEX;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.creacoinj.store;
+package org.creativecoinj.store;
 
-import org.creacoinj.core.*;
-import org.creacoinj.params.*;
+import org.creativecoinj.core.*;
+import org.creativecoinj.params.*;
 import org.junit.*;
 
 import java.io.*;

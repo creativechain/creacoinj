@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import junit.framework.TestCase;
 

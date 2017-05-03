@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-package org.creacoinj.testing;
+package org.creativecoinj.testing;
 
-import org.creacoinj.core.*;
-import org.creacoinj.crypto.TransactionSignature;
-import org.creacoinj.script.ScriptBuilder;
-import org.creacoinj.store.BlockStore;
-import org.creacoinj.store.BlockStoreException;
+import org.creativecoinj.core.*;
+import org.creativecoinj.crypto.TransactionSignature;
+import org.creativecoinj.script.ScriptBuilder;
+import org.creativecoinj.store.BlockStore;
+import org.creativecoinj.store.BlockStoreException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Random;
 
-import static org.creacoinj.core.Coin.*;
+import static org.creativecoinj.core.Coin.*;
 import static com.google.common.base.Preconditions.checkState;
 
 public class FakeTxBuilder {

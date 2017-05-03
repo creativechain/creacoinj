@@ -14,26 +14,26 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
-import org.creacoinj.core.*;
-import org.creacoinj.kits.WalletAppKit;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.script.Script;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.listeners.KeyChainEventListener;
-import org.creacoinj.wallet.listeners.ScriptsChangeEventListener;
-import org.creacoinj.wallet.listeners.WalletCoinsReceivedEventListener;
-import org.creacoinj.wallet.listeners.WalletCoinsSentEventListener;
+import org.creativecoinj.core.*;
+import org.creativecoinj.kits.WalletAppKit;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.script.Script;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.listeners.KeyChainEventListener;
+import org.creativecoinj.wallet.listeners.ScriptsChangeEventListener;
+import org.creativecoinj.wallet.listeners.WalletCoinsReceivedEventListener;
+import org.creativecoinj.wallet.listeners.WalletCoinsSentEventListener;
 
 import java.io.File;
 import java.util.List;
 
-import org.creacoinj.core.listeners.TransactionConfidenceEventListener;
+import org.creativecoinj.core.listeners.TransactionConfidenceEventListener;
 
 /**
- * The following example shows how to use the by creacoinj provided WalletAppKit.
- * The WalletAppKit class wraps the boilerplate (Peers, BlockChain, BlockStorage, Wallet) needed to set up a new SPV creacoinj app.
+ * The following example shows how to use the by creativecoinj provided WalletAppKit.
+ * The WalletAppKit class wraps the boilerplate (Peers, BlockChain, BlockStorage, Wallet) needed to set up a new SPV creativecoinj app.
  * 
  * In this example we also define a WalletEventListener class with implementors that are called when the wallet changes (for example sending/receiving money)
  */
@@ -46,8 +46,8 @@ public class Kit {
         // - MainNetParams
         // - TestNet3Params
         // - RegTestParams
-        // While developing your application you probably want to use the Regtest mode and run your local creacoin network. Run bitcoind with the -regtest flag
-        // To test you app with a real network you can use the testnet. The testnet is an alternative creacoin network that follows the same rules as main network. Coins are worth nothing and you can get coins for example from http://faucet.xeno-genesis.com/
+        // While developing your application you probably want to use the Regtest mode and run your local creativecoin network. Run bitcoind with the -regtest flag
+        // To test you app with a real network you can use the testnet. The testnet is an alternative creativecoin network that follows the same rules as main network. Coins are worth nothing and you can get coins for example from http://faucet.xeno-genesis.com/
         // 
         // For more information have a look at: https://bitcoinj.github.io/testing and https://bitcoin.org/en/developer-examples#testing-applications
         NetworkParameters params = TestNet3Params.get();
@@ -61,7 +61,7 @@ public class Kit {
         //kit.connectToLocalHost();
 
         // Now we start the kit and sync the blockchain.
-        // creacoinj is working a lot with the Google Guava libraries. The WalletAppKit extends the AbstractIdleService. Have a look at the introduction to Guava services: https://github.com/google/guava/wiki/ServiceExplained
+        // creativecoinj is working a lot with the Google Guava libraries. The WalletAppKit extends the AbstractIdleService. Have a look at the introduction to Guava services: https://github.com/google/guava/wiki/ServiceExplained
         kit.startAsync();
         kit.awaitRunning();
 

@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.script.ScriptBuilder;
-import org.creacoinj.testing.FakeTxBuilder;
-import org.creacoinj.wallet.AllowUnconfirmedCoinSelector;
-import org.creacoinj.wallet.SendRequest;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.script.ScriptBuilder;
+import org.creativecoinj.testing.FakeTxBuilder;
+import org.creativecoinj.wallet.AllowUnconfirmedCoinSelector;
+import org.creativecoinj.wallet.SendRequest;
+import org.creativecoinj.wallet.Wallet;
 import org.junit.Test;
 
 import com.google.common.collect.Lists;

@@ -15,24 +15,24 @@
  * limitations under the License.
  */
 
-package org.creacoinj.tools;
+package org.creativecoinj.tools;
 
-import org.creacoinj.core.*;
-import org.creacoinj.crypto.*;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.RegTestParams;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.protocols.payments.PaymentProtocol;
-import org.creacoinj.protocols.payments.PaymentProtocolException;
-import org.creacoinj.protocols.payments.PaymentSession;
-import org.creacoinj.script.ScriptBuilder;
-import org.creacoinj.store.*;
-import org.creacoinj.uri.BitcoinURI;
-import org.creacoinj.uri.BitcoinURIParseException;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.wallet.DeterministicSeed;
-import org.creacoinj.wallet.DeterministicUpgradeRequiredException;
-import org.creacoinj.wallet.DeterministicUpgradeRequiresPassword;
+import org.creativecoinj.core.*;
+import org.creativecoinj.crypto.*;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.RegTestParams;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.protocols.payments.PaymentProtocol;
+import org.creativecoinj.protocols.payments.PaymentProtocolException;
+import org.creativecoinj.protocols.payments.PaymentSession;
+import org.creativecoinj.script.ScriptBuilder;
+import org.creativecoinj.store.*;
+import org.creativecoinj.uri.BitcoinURI;
+import org.creativecoinj.uri.BitcoinURIParseException;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.wallet.DeterministicSeed;
+import org.creativecoinj.wallet.DeterministicUpgradeRequiredException;
+import org.creativecoinj.wallet.DeterministicUpgradeRequiresPassword;
 import com.google.common.base.Charsets;
 import com.google.common.base.Splitter;
 import com.google.common.collect.ImmutableList;
@@ -45,19 +45,19 @@ import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
 import joptsimple.util.DateConverter;
 
-import org.creacoinj.core.listeners.BlocksDownloadedEventListener;
-import org.creacoinj.core.listeners.DownloadProgressTracker;
-import org.creacoinj.wallet.MarriedKeyChain;
-import org.creacoinj.wallet.Protos;
-import org.creacoinj.wallet.SendRequest;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.WalletExtension;
-import org.creacoinj.wallet.WalletProtobufSerializer;
-import org.creacoinj.wallet.Wallet.BalanceType;
-import org.creacoinj.wallet.listeners.WalletChangeEventListener;
-import org.creacoinj.wallet.listeners.WalletCoinsReceivedEventListener;
-import org.creacoinj.wallet.listeners.WalletCoinsSentEventListener;
-import org.creacoinj.wallet.listeners.WalletReorganizeEventListener;
+import org.creativecoinj.core.listeners.BlocksDownloadedEventListener;
+import org.creativecoinj.core.listeners.DownloadProgressTracker;
+import org.creativecoinj.wallet.MarriedKeyChain;
+import org.creativecoinj.wallet.Protos;
+import org.creativecoinj.wallet.SendRequest;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.WalletExtension;
+import org.creativecoinj.wallet.WalletProtobufSerializer;
+import org.creativecoinj.wallet.Wallet.BalanceType;
+import org.creativecoinj.wallet.listeners.WalletChangeEventListener;
+import org.creativecoinj.wallet.listeners.WalletCoinsReceivedEventListener;
+import org.creativecoinj.wallet.listeners.WalletCoinsSentEventListener;
+import org.creativecoinj.wallet.listeners.WalletReorganizeEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.spongycastle.crypto.params.KeyParameter;
@@ -80,7 +80,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 
-import static org.creacoinj.core.Coin.parseCoin;
+import static org.creativecoinj.core.Coin.parseCoin;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
@@ -104,7 +104,7 @@ public class WalletTool {
     private static File chainFileName;
     private static ValidationMode mode;
     private static String password;
-    private static org.creacoin.protocols.payments.Protos.PaymentRequest paymentRequest;
+    private static org.creativecoin.protocols.payments.Protos.PaymentRequest paymentRequest;
     private static OptionSpec<Integer> lookaheadSize;
 
     public static class Condition {
@@ -990,7 +990,7 @@ public class WalletTool {
     }
 
     private static void sendPaymentRequest(String location, boolean verifyPki) {
-        if (location.startsWith("http") || location.startsWith("creacoin")) {
+        if (location.startsWith("http") || location.startsWith("creativecoin")) {
             try {
                 ListenableFuture<PaymentSession> future;
                 if (location.startsWith("http")) {
@@ -1010,7 +1010,7 @@ public class WalletTool {
                 System.err.println("Error creating payment session " + e.getMessage());
                 System.exit(1);
             } catch (BitcoinURIParseException e) {
-                System.err.println("Invalid creacoin uri: " + e.getMessage());
+                System.err.println("Invalid creativecoin uri: " + e.getMessage());
                 System.exit(1);
             } catch (InterruptedException e) {
                 // Ignore.
@@ -1028,7 +1028,7 @@ public class WalletTool {
                 System.exit(1);
             }
             try {
-                paymentRequest = org.creacoin.protocols.payments.Protos.PaymentRequest.newBuilder().mergeFrom(stream).build();
+                paymentRequest = org.creativecoin.protocols.payments.Protos.PaymentRequest.newBuilder().mergeFrom(stream).build();
             } catch(IOException e) {
                 System.err.println("Failed to parse payment request from file " + e.getMessage());
                 System.exit(1);

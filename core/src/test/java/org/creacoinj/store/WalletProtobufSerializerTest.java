@@ -15,32 +15,32 @@
  * limitations under the License.
  */
 
-package org.creacoinj.store;
+package org.creativecoinj.store;
 
-import org.creacoinj.core.*;
-import org.creacoinj.core.Transaction.Purpose;
-import org.creacoinj.core.TransactionConfidence.ConfidenceType;
-import org.creacoinj.crypto.DeterministicKey;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.script.ScriptBuilder;
-import org.creacoinj.testing.FakeTxBuilder;
-import org.creacoinj.testing.FooWalletExtension;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.utils.Threading;
-import org.creacoinj.wallet.DeterministicKeyChain;
-import org.creacoinj.wallet.KeyChain;
+import org.creativecoinj.core.*;
+import org.creativecoinj.core.Transaction.Purpose;
+import org.creativecoinj.core.TransactionConfidence.ConfidenceType;
+import org.creativecoinj.crypto.DeterministicKey;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.script.ScriptBuilder;
+import org.creativecoinj.testing.FakeTxBuilder;
+import org.creativecoinj.testing.FooWalletExtension;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.utils.Threading;
+import org.creativecoinj.wallet.DeterministicKeyChain;
+import org.creativecoinj.wallet.KeyChain;
 import com.google.protobuf.ByteString;
 
-import org.creacoinj.wallet.MarriedKeyChain;
-import org.creacoinj.wallet.Protos;
-import org.creacoinj.wallet.UnreadableWalletException;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.WalletExtension;
-import org.creacoinj.wallet.WalletProtobufSerializer;
-import org.creacoinj.wallet.WalletTransaction;
-import org.creacoinj.wallet.WalletTransaction.Pool;
-import org.creacoinj.wallet.listeners.WalletCoinsReceivedEventListener;
+import org.creativecoinj.wallet.MarriedKeyChain;
+import org.creativecoinj.wallet.Protos;
+import org.creativecoinj.wallet.UnreadableWalletException;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.WalletExtension;
+import org.creativecoinj.wallet.WalletProtobufSerializer;
+import org.creativecoinj.wallet.WalletTransaction;
+import org.creativecoinj.wallet.WalletTransaction.Pool;
+import org.creativecoinj.wallet.listeners.WalletCoinsReceivedEventListener;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -54,8 +54,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.testing.FakeTxBuilder.createFakeTx;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.testing.FakeTxBuilder.createFakeTx;
 import static org.junit.Assert.*;
 import static com.google.common.base.Preconditions.checkNotNull;
 

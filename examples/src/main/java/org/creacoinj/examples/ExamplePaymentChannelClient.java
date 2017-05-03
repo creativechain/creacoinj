@@ -15,19 +15,19 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
-import org.creacoinj.core.*;
-import org.creacoinj.kits.WalletAppKit;
-import org.creacoinj.params.RegTestParams;
-import org.creacoinj.protocols.channels.*;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.utils.Threading;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.WalletExtension;
+import org.creativecoinj.core.*;
+import org.creativecoinj.kits.WalletAppKit;
+import org.creativecoinj.params.RegTestParams;
+import org.creativecoinj.protocols.channels.*;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.utils.Threading;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.WalletExtension;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.util.concurrent.FutureCallback;
@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutionException;
 
-import static org.creacoinj.core.Coin.CENT;
+import static org.creativecoinj.core.Coin.CENT;
 
 /**
  * Simple client that connects to the given host, opens a channel, and pays one cent.

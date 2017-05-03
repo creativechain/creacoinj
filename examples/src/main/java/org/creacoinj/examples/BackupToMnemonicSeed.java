@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
-import org.creacoinj.core.NetworkParameters;
-import org.creacoinj.core.Utils;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.wallet.DeterministicSeed;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.core.NetworkParameters;
+import org.creativecoinj.core.Utils;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.wallet.DeterministicSeed;
+import org.creativecoinj.wallet.Wallet;
 
 /**
  * The following example shows you how to create a deterministic seed from a hierarchical deterministic wallet represented as a mnemonic code.

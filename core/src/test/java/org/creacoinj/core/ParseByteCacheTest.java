@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.store.BlockStore;
-import org.creacoinj.store.MemoryBlockStore;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.store.BlockStore;
+import org.creativecoinj.store.MemoryBlockStore;
+import org.creativecoinj.wallet.Wallet;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,10 +29,10 @@ import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.core.Utils.HEX;
-import static org.creacoinj.testing.FakeTxBuilder.createFakeBlock;
-import static org.creacoinj.testing.FakeTxBuilder.createFakeTx;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.core.Utils.HEX;
+import static org.creativecoinj.testing.FakeTxBuilder.createFakeBlock;
+import static org.creativecoinj.testing.FakeTxBuilder.createFakeTx;
 import static org.junit.Assert.*;
 
 public class ParseByteCacheTest {

@@ -15,25 +15,25 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.core.ECKey.ECDSASignature;
-import org.creacoinj.crypto.EncryptedData;
-import org.creacoinj.crypto.KeyCrypter;
-import org.creacoinj.crypto.KeyCrypterScrypt;
-import org.creacoinj.crypto.TransactionSignature;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.utils.BriefLogFormatter;
+import org.creativecoinj.core.ECKey.ECDSASignature;
+import org.creativecoinj.crypto.EncryptedData;
+import org.creativecoinj.crypto.KeyCrypter;
+import org.creativecoinj.crypto.KeyCrypterScrypt;
+import org.creativecoinj.crypto.TransactionSignature;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.utils.BriefLogFormatter;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.protobuf.ByteString;
-import org.creacoinj.wallet.Protos;
-import org.creacoinj.wallet.Protos.ScryptParameters;
+import org.creativecoinj.wallet.Protos;
+import org.creativecoinj.wallet.Protos.ScryptParameters;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -49,8 +49,8 @@ import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
 
-import static org.creacoinj.core.Utils.HEX;
-import static org.creacoinj.core.Utils.reverseBytes;
+import static org.creativecoinj.core.Utils.HEX;
+import static org.creativecoinj.core.Utils.reverseBytes;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static org.junit.Assert.*;
 

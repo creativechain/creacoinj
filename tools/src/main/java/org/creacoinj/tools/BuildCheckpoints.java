@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-package org.creacoinj.tools;
+package org.creativecoinj.tools;
 
-import org.creacoinj.core.listeners.NewBestBlockListener;
-import org.creacoinj.core.*;
-import org.creacoinj.net.discovery.DnsDiscovery;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.RegTestParams;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.store.BlockStore;
-import org.creacoinj.store.MemoryBlockStore;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.utils.Threading;
+import org.creativecoinj.core.listeners.NewBestBlockListener;
+import org.creativecoinj.core.*;
+import org.creativecoinj.net.discovery.DnsDiscovery;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.RegTestParams;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.store.BlockStore;
+import org.creativecoinj.store.MemoryBlockStore;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.utils.Threading;
 import com.google.common.base.Charsets;
 import com.google.common.io.Resources;
 import joptsimple.OptionParser;
@@ -92,7 +92,7 @@ public class BuildCheckpoints {
                 throw new RuntimeException("Unreachable.");
         }
 
-        // Configure creacoinj to fetch only headers, not save them to disk, connect to a local fully synced/validated
+        // Configure creativecoinj to fetch only headers, not save them to disk, connect to a local fully synced/validated
         // node and to save block headers that are on difficultyAdjustmentInterval boundaries, as long as they are <1 month old.
         final BlockStore store = new MemoryBlockStore(params);
         final BlockChain chain = new BlockChain(params, store);

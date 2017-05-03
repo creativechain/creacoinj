@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.creacoinj.net;
+package org.creativecoinj.net;
 
-import org.creacoinj.core.Utils;
+import org.creativecoinj.core.Utils;
 import com.google.common.util.concurrent.SettableFuture;
 import com.google.protobuf.ByteString;
-import org.creacoin.paymentchannel.Protos;
-import org.creacoin.paymentchannel.Protos.TwoWayChannelMessage;
+import org.creativecoin.paymentchannel.Protos;
+import org.creativecoin.paymentchannel.Protos.TwoWayChannelMessage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

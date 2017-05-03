@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
-import org.creacoinj.core.*;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.store.BlockStore;
-import org.creacoinj.store.MemoryBlockStore;
-import org.creacoinj.utils.BriefLogFormatter;
+import org.creativecoinj.core.*;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.store.BlockStore;
+import org.creativecoinj.store.MemoryBlockStore;
+import org.creativecoinj.utils.BriefLogFormatter;
 import com.google.common.util.concurrent.ListenableFuture;
 
 import java.net.InetAddress;

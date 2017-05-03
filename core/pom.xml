@@ -20,19 +20,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.creacoinj</groupId>
-        <artifactId>creacoinj-parent</artifactId>
+        <groupId>org.creativecoinj</groupId>
+        <artifactId>creativecoinj-parent</artifactId>
         <version>0.15-SNAPSHOT</version>
     </parent>
 
-    <artifactId>creacoinj-core</artifactId>
+    <artifactId>creativecoinj-core</artifactId>
 
-    <name>creacoinj</name>
-    <description>A Java creacoin library</description>
+    <name>creativecoinj</name>
+    <description>A Java creativecoin library</description>
 
     <packaging>jar</packaging>
 
-    <url>https://creacoinj.github.io</url>
+    <url>https://creativecoinj.github.io</url>
 
     <licenses>
         <license>
@@ -45,8 +45,8 @@
     <!-- Dummy block to make Maven Central happy: authors list is in AUTHORS -->
     <developers>
         <developer>
-            <name>The creacoinj team</name>
-            <email>creacoinj@googlegroups.com</email>
+            <name>The creativecoinj team</name>
+            <email>creativecoinj@googlegroups.com</email>
         </developer>
     </developers>
 
@@ -157,7 +157,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Verify the dependency chain: see https://github.com/gary-rowe/creacoinjEnforcerRules for
+            <!-- Verify the dependency chain: see https://github.com/gary-rowe/creativecoinjEnforcerRules for
                more information on this.
             -->
             <plugin>
@@ -279,8 +279,8 @@
                 <configuration>
                     <excludes>
                         <exclude>**/Protos*.class</exclude> <!-- Exclude generated protobuf classes -->
-                        <exclude>org/creacoinj/jni/*</exclude> <!-- Exclude JNI classes -->
-                        <exclude>org/creacoin/*</exclude> <!-- Exclude native classes -->
+                        <exclude>org/creativecoinj/jni/*</exclude> <!-- Exclude JNI classes -->
+                        <exclude>org/creativecoin/*</exclude> <!-- Exclude native classes -->
                     </excludes>
                 </configuration>
                 <executions>
@@ -331,7 +331,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Coveralls is a online code coverage tool, you can track code coverage here: https://coveralls.io/r/creacoinj/creacoinj -->
+            <!-- Coveralls is a online code coverage tool, you can track code coverage here: https://coveralls.io/r/creativecoinj/creativecoinj -->
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
@@ -353,7 +353,7 @@
             <version>3.2</version>
             <scope>test</scope>
         </dependency>
-        <!-- creacoinj consumers are expected to provide their own SLF4J adapters
+        <!-- creativecoinj consumers are expected to provide their own SLF4J adapters
              such as logback, slf4j-log4j12, slf4j-jcl and so on
              see http://www.slf4j.org/faq.html -->
         <dependency>

@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package org.creacoinj.utils;
+package org.creativecoinj.utils;
 
-import static org.creacoinj.core.Coin.CENT;
-import static org.creacoinj.core.Coin.COIN;
-import static org.creacoinj.core.Coin.SATOSHI;
-import static org.creacoinj.core.Coin.ZERO;
+import static org.creativecoinj.core.Coin.CENT;
+import static org.creativecoinj.core.Coin.COIN;
+import static org.creativecoinj.core.Coin.SATOSHI;
+import static org.creativecoinj.core.Coin.ZERO;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Locale;
 
 import org.junit.Test;
 
-import org.creacoinj.core.Coin;
+import org.creativecoinj.core.Coin;
 
 public class MonetaryFormatTest {
 

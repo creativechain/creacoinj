@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
@@ -25,8 +25,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import org.junit.Test;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.TestNet3Params;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.TestNet3Params;
 
 public class DumpedPrivateKeyTest {
 

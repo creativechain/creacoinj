@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import com.google.common.collect.*;
-import org.creacoinj.core.TransactionConfidence.*;
-import org.creacoinj.store.*;
-import org.creacoinj.testing.*;
-import org.creacoinj.wallet.*;
+import org.creativecoinj.core.TransactionConfidence.*;
+import org.creativecoinj.store.*;
+import org.creativecoinj.testing.*;
+import org.creativecoinj.wallet.*;
 import org.junit.*;
 import org.junit.runner.*;
 import org.junit.runners.*;
@@ -29,7 +29,7 @@ import org.junit.runners.*;
 import java.math.*;
 import java.util.*;
 
-import static org.creacoinj.core.Utils.*;
+import static org.creativecoinj.core.Utils.*;
 import static org.junit.Assert.*;
 
 @RunWith(value = Parameterized.class)

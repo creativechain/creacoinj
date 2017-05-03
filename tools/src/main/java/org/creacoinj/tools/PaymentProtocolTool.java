@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package org.creacoinj.tools;
+package org.creativecoinj.tools;
 
-import org.creacoinj.crypto.TrustStoreLoader;
-import org.creacoinj.protocols.payments.PaymentProtocol;
-import org.creacoinj.protocols.payments.PaymentProtocolException;
-import org.creacoinj.protocols.payments.PaymentSession;
-import org.creacoinj.uri.BitcoinURI;
-import org.creacoinj.uri.BitcoinURIParseException;
-import org.creacoin.protocols.payments.Protos;
+import org.creativecoinj.crypto.TrustStoreLoader;
+import org.creativecoinj.protocols.payments.PaymentProtocol;
+import org.creativecoinj.protocols.payments.PaymentProtocolException;
+import org.creativecoinj.protocols.payments.PaymentSession;
+import org.creativecoinj.uri.BitcoinURI;
+import org.creativecoinj.uri.BitcoinURIParseException;
+import org.creativecoin.protocols.payments.Protos;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -36,11 +36,11 @@ import java.util.concurrent.ExecutionException;
 
 import static java.lang.String.format;
 
-/** Takes a URL or creacoin URI and prints information about the payment request. */
+/** Takes a URL or creativecoin URI and prints information about the payment request. */
 public class PaymentProtocolTool {
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.err.println("Provide a creacoin URI or URL as the argument.");
+            System.err.println("Provide a creativecoin URI or URL as the argument.");
             return;
         }
         dump(args[0]);
@@ -57,11 +57,11 @@ public class PaymentProtocolTool {
                 session = new PaymentSession(request);
             } else if ("http".equals(uri.getScheme())) {
                 session = PaymentSession.createFromUrl(arg).get();
-            } else if ("creacoin".equals(uri.getScheme())) {
+            } else if ("creativecoin".equals(uri.getScheme())) {
                 BitcoinURI bcuri = new BitcoinURI(arg);
                 final String paymentRequestUrl = bcuri.getPaymentRequestUrl();
                 if (paymentRequestUrl == null) {
-                    System.err.println("No r= param in creacoin URI");
+                    System.err.println("No r= param in creativecoin URI");
                     return;
                 }
                 session = PaymentSession.createFromBitcoinUri(bcuri).get();

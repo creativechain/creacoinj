@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.creacoinj.wallet;
+package org.creativecoinj.wallet;
 
-import org.creacoinj.core.*;
-import org.creacoinj.crypto.*;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.utils.Threading;
-import org.creacoinj.wallet.listeners.KeyChainEventListener;
+import org.creativecoinj.core.*;
+import org.creativecoinj.crypto.*;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.utils.Threading;
+import org.creativecoinj.wallet.listeners.KeyChainEventListener;
 
 import com.google.common.collect.ImmutableList;
 import org.junit.Before;

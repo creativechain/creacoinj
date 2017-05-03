@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
-import org.creacoinj.core.*;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.store.BlockStore;
-import org.creacoinj.store.MemoryBlockStore;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.listeners.WalletCoinsReceivedEventListener;
+import org.creativecoinj.core.*;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.store.BlockStore;
+import org.creativecoinj.store.MemoryBlockStore;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.listeners.WalletCoinsReceivedEventListener;
 
 import java.io.File;
 

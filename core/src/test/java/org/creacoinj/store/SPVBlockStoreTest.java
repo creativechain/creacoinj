@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.creacoinj.store;
+package org.creativecoinj.store;
 
-import org.creacoinj.core.Address;
-import org.creacoinj.core.ECKey;
-import org.creacoinj.core.NetworkParameters;
-import org.creacoinj.core.StoredBlock;
-import org.creacoinj.params.UnitTestParams;
+import org.creativecoinj.core.Address;
+import org.creativecoinj.core.ECKey;
+import org.creativecoinj.core.NetworkParameters;
+import org.creativecoinj.core.StoredBlock;
+import org.creativecoinj.params.UnitTestParams;
 import org.junit.Test;
 
 import java.io.File;

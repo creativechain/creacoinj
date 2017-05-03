@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.creacoinj.net.discovery;
+package org.creativecoinj.net.discovery;
 
-import org.creacoinj.params.MainNetParams;
+import org.creativecoinj.params.MainNetParams;
 import org.junit.Test;
 
 import java.net.InetSocketAddress;

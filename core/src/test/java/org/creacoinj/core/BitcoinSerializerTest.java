@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.params.MainNetParams;
+import org.creativecoinj.params.MainNetParams;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -26,7 +26,7 @@ import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-import static org.creacoinj.core.Utils.HEX;
+import static org.creativecoinj.core.Utils.HEX;
 import static org.junit.Assert.*;
 
 public class BitcoinSerializerTest {

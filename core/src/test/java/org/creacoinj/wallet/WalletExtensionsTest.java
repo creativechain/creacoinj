@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.creacoinj.wallet;
+package org.creativecoinj.wallet;
 
-import org.creacoinj.testing.FooWalletExtension;
-import org.creacoinj.testing.TestWithWallet;
+import org.creativecoinj.testing.FooWalletExtension;
+import org.creativecoinj.testing.TestWithWallet;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

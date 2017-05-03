@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
 import java.io.IOException;
 import java.math.BigInteger;
@@ -24,24 +24,24 @@ import java.util.EnumSet;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.creacoinj.core.Coin;
-import org.creacoinj.core.ECKey;
-import org.creacoinj.core.NetworkParameters;
-import org.creacoinj.core.ScriptException;
-import org.creacoinj.core.Transaction;
-import org.creacoinj.core.TransactionInput;
-import org.creacoinj.core.TransactionOutput;
-import org.creacoinj.core.Utils;
-import org.creacoinj.crypto.TransactionSignature;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.script.Script;
-import org.creacoinj.script.ScriptBuilder;
-import org.creacoinj.script.ScriptChunk;
-import static org.creacoinj.script.ScriptOpCodes.getOpCodeName;
-import org.creacoinj.signers.LocalTransactionSigner;
-import org.creacoinj.signers.TransactionSigner.ProposedTransaction;
-import org.creacoinj.wallet.KeyBag;
-import org.creacoinj.wallet.RedeemData;
+import org.creativecoinj.core.Coin;
+import org.creativecoinj.core.ECKey;
+import org.creativecoinj.core.NetworkParameters;
+import org.creativecoinj.core.ScriptException;
+import org.creativecoinj.core.Transaction;
+import org.creativecoinj.core.TransactionInput;
+import org.creativecoinj.core.TransactionOutput;
+import org.creativecoinj.core.Utils;
+import org.creativecoinj.crypto.TransactionSignature;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.script.Script;
+import org.creativecoinj.script.ScriptBuilder;
+import org.creativecoinj.script.ScriptChunk;
+import static org.creativecoinj.script.ScriptOpCodes.getOpCodeName;
+import org.creativecoinj.signers.LocalTransactionSigner;
+import org.creativecoinj.signers.TransactionSigner.ProposedTransaction;
+import org.creativecoinj.wallet.KeyBag;
+import org.creativecoinj.wallet.RedeemData;
 
 /**
  * Test case generator for transactions with low-S and high-S signatures, to

@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
-import org.creacoinj.core.listeners.PreMessageReceivedEventListener;
-import org.creacoinj.core.*;
-import org.creacoinj.kits.WalletAppKit;
-import org.creacoinj.params.RegTestParams;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.utils.Threading;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.core.listeners.PreMessageReceivedEventListener;
+import org.creativecoinj.core.*;
+import org.creativecoinj.kits.WalletAppKit;
+import org.creativecoinj.params.RegTestParams;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.utils.Threading;
+import org.creativecoinj.wallet.Wallet;
 
 import java.io.File;
 
-import static org.creacoinj.core.Coin.*;
+import static org.creativecoinj.core.Coin.*;
 
 /**
  * This is a little test app that waits for a coin on a local regtest node, then  generates two transactions that double

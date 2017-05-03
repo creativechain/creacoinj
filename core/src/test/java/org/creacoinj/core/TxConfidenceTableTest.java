@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.params.*;
-import org.creacoinj.testing.*;
-import org.creacoinj.utils.*;
+import org.creativecoinj.params.*;
+import org.creativecoinj.testing.*;
+import org.creativecoinj.utils.*;
 import org.junit.*;
 
 import java.net.*;
 
-import static org.creacoinj.core.Coin.*;
+import static org.creativecoinj.core.Coin.*;
 import static org.junit.Assert.*;
 
 public class TxConfidenceTableTest {

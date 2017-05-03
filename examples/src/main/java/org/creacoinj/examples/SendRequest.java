@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import org.creacoinj.core.*;
-import org.creacoinj.kits.WalletAppKit;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.Wallet.BalanceType;
+import org.creativecoinj.core.*;
+import org.creativecoinj.kits.WalletAppKit;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.Wallet.BalanceType;
 
 import java.io.File;
 

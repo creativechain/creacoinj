@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package org.creacoinj.protocols.channels;
+package org.creativecoinj.protocols.channels;
 
-import org.creacoinj.core.*;
-import org.creacoinj.protocols.channels.PaymentChannelClient.VersionSelector;
-import org.creacoinj.testing.TestWithWallet;
-import org.creacoinj.utils.Threading;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.WalletExtension;
-import org.creacoinj.wallet.WalletFiles;
-import org.creacoinj.wallet.WalletProtobufSerializer;
+import org.creativecoinj.core.*;
+import org.creativecoinj.protocols.channels.PaymentChannelClient.VersionSelector;
+import org.creativecoinj.testing.TestWithWallet;
+import org.creativecoinj.utils.Threading;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.WalletExtension;
+import org.creativecoinj.wallet.WalletFiles;
+import org.creativecoinj.wallet.WalletProtobufSerializer;
 
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.SettableFuture;
 import com.google.protobuf.ByteString;
-import org.creacoin.paymentchannel.Protos;
+import org.creativecoin.paymentchannel.Protos;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,11 +48,11 @@ import java.util.Collection;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.protocols.channels.PaymentChannelClient.VersionSelector.*;
-import static org.creacoinj.protocols.channels.PaymentChannelCloseException.CloseReason;
-import static org.creacoinj.testing.FakeTxBuilder.createFakeBlock;
-import static org.creacoin.paymentchannel.Protos.TwoWayChannelMessage.MessageType;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.protocols.channels.PaymentChannelClient.VersionSelector.*;
+import static org.creativecoinj.protocols.channels.PaymentChannelCloseException.CloseReason;
+import static org.creativecoinj.testing.FakeTxBuilder.createFakeBlock;
+import static org.creativecoin.paymentchannel.Protos.TwoWayChannelMessage.MessageType;
 import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
@@ -557,7 +557,7 @@ public class ChannelConnectionTest extends TestWithWallet {
     private static Wallet roundTripClientWallet(Wallet wallet) throws Exception {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         new WalletProtobufSerializer().writeWallet(wallet, bos);
-        org.creacoinj.wallet.Protos.Wallet proto = WalletProtobufSerializer.parseToProto(new ByteArrayInputStream(bos.toByteArray()));
+        org.creativecoinj.wallet.Protos.Wallet proto = WalletProtobufSerializer.parseToProto(new ByteArrayInputStream(bos.toByteArray()));
         StoredPaymentChannelClientStates state = new StoredPaymentChannelClientStates(null, failBroadcaster);
         return new WalletProtobufSerializer().readWallet(wallet.getParams(), new WalletExtension[] { state }, proto);
     }
@@ -566,7 +566,7 @@ public class ChannelConnectionTest extends TestWithWallet {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         new WalletProtobufSerializer().writeWallet(wallet, bos);
         StoredPaymentChannelServerStates state = new StoredPaymentChannelServerStates(null, failBroadcaster);
-        org.creacoinj.wallet.Protos.Wallet proto = WalletProtobufSerializer.parseToProto(new ByteArrayInputStream(bos.toByteArray()));
+        org.creativecoinj.wallet.Protos.Wallet proto = WalletProtobufSerializer.parseToProto(new ByteArrayInputStream(bos.toByteArray()));
         return new WalletProtobufSerializer().readWallet(wallet.getParams(), new WalletExtension[] { state }, proto);
     }
 

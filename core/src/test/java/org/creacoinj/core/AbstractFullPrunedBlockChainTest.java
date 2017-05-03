@@ -15,19 +15,19 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import com.google.common.collect.Lists;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.script.Script;
-import org.creacoinj.store.BlockStoreException;
-import org.creacoinj.store.FullPrunedBlockStore;
-import org.creacoinj.utils.BlockFileLoader;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.wallet.SendRequest;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.WalletTransaction;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.script.Script;
+import org.creativecoinj.store.BlockStoreException;
+import org.creativecoinj.store.FullPrunedBlockStore;
+import org.creativecoinj.utils.BlockFileLoader;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.wallet.SendRequest;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.WalletTransaction;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -38,7 +38,7 @@ import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.creacoinj.core.Coin.FIFTY_COINS;
+import static org.creativecoinj.core.Coin.FIFTY_COINS;
 import static org.junit.Assert.*;
 import org.junit.rules.ExpectedException;
 
@@ -257,7 +257,7 @@ public abstract class AbstractFullPrunedBlockChainTest {
         }
         rollingBlock = rollingBlock.createNextBlock(null);
 
-        // Create creacoin spend of 1 BTC.
+        // Create creativecoin spend of 1 BTC.
         ECKey toKey = new ECKey();
         Coin amount = Coin.valueOf(100000000);
         Address address = new Address(PARAMS, toKey.getPubKeyHash());

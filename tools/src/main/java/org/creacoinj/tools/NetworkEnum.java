@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.creacoinj.tools;
+package org.creativecoinj.tools;
 
 public enum NetworkEnum {
     MAIN,

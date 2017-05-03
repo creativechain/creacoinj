@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.store.BlockStoreException;
-import org.creacoinj.store.FullPrunedBlockStore;
-import org.creacoinj.store.MySQLFullPrunedBlockStore;
+import org.creativecoinj.store.BlockStoreException;
+import org.creativecoinj.store.FullPrunedBlockStore;
+import org.creativecoinj.store.MySQLFullPrunedBlockStore;
 import org.junit.After;
 import org.junit.Ignore;
 
@@ -36,7 +36,7 @@ public class MySQLFullPrunedBlockChainTest extends AbstractFullPrunedBlockChainT
     // Replace these with your mysql location/credentials and remove @Ignore to test
     private static final String DB_HOSTNAME = "localhost";
     private static final String DB_NAME = "bitcoinj_test";
-    private static final String DB_USERNAME = "creacoinj";
+    private static final String DB_USERNAME = "creativecoinj";
     private static final String DB_PASSWORD = "password";
 
     @Override

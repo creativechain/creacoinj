@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import org.creacoinj.core.Transaction.SigHash;
-import org.creacoinj.crypto.TransactionSignature;
-import org.creacoinj.script.Script;
-import org.creacoinj.script.ScriptBuilder;
+import org.creativecoinj.core.Transaction.SigHash;
+import org.creativecoinj.crypto.TransactionSignature;
+import org.creativecoinj.script.Script;
+import org.creativecoinj.script.ScriptBuilder;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
@@ -32,8 +32,8 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.*;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.script.ScriptOpCodes.*;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.script.ScriptOpCodes.*;
 import static com.google.common.base.Preconditions.checkNotNull;
 import static com.google.common.base.Preconditions.checkState;
 

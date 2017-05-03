@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.creacoinj.protocols.channels;
+package org.creativecoinj.protocols.channels;
 
-import org.creacoinj.core.*;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.WalletExtension;
-import org.creacoin.paymentchannel.Protos;
+import org.creativecoinj.core.*;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.WalletExtension;
+import org.creativecoin.paymentchannel.Protos;
 import org.easymock.Capture;
 import org.easymock.EasyMock;
 import org.junit.Before;
@@ -32,11 +32,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
-import static org.creacoin.paymentchannel.Protos.TwoWayChannelMessage;
-import static org.creacoin.paymentchannel.Protos.TwoWayChannelMessage.MessageType.*;
-import static org.creacoinj.protocols.channels.PaymentChannelClient.VersionSelector.VERSION_1;
-import static org.creacoinj.protocols.channels.PaymentChannelClient.VersionSelector.VERSION_2;
-import static org.creacoinj.protocols.channels.PaymentChannelClient.VersionSelector.VERSION_2_ALLOW_1;
+import static org.creativecoin.paymentchannel.Protos.TwoWayChannelMessage;
+import static org.creativecoin.paymentchannel.Protos.TwoWayChannelMessage.MessageType.*;
+import static org.creativecoinj.protocols.channels.PaymentChannelClient.VersionSelector.VERSION_1;
+import static org.creativecoinj.protocols.channels.PaymentChannelClient.VersionSelector.VERSION_2;
+import static org.creativecoinj.protocols.channels.PaymentChannelClient.VersionSelector.VERSION_2_ALLOW_1;
 import static org.easymock.EasyMock.capture;
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.replay;

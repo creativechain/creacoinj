@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.creacoinj.protocols.channels;
+package org.creativecoinj.protocols.channels;
 
-import org.creacoinj.core.Coin;
-import org.creacoinj.core.TransactionBroadcaster;
-import org.creacoinj.core.Utils;
-import org.creacoinj.wallet.Wallet;
-import org.creacoin.paymentchannel.Protos;
+import org.creativecoinj.core.Coin;
+import org.creativecoinj.core.TransactionBroadcaster;
+import org.creativecoinj.core.Utils;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoin.paymentchannel.Protos;
 import org.easymock.Capture;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,8 +31,8 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import static junit.framework.TestCase.assertTrue;
-import static org.creacoin.paymentchannel.Protos.TwoWayChannelMessage;
-import static org.creacoin.paymentchannel.Protos.TwoWayChannelMessage.MessageType;
+import static org.creativecoin.paymentchannel.Protos.TwoWayChannelMessage;
+import static org.creativecoin.paymentchannel.Protos.TwoWayChannelMessage.MessageType;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.assertEquals;
 

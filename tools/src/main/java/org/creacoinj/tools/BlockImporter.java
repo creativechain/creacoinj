@@ -14,23 +14,23 @@
  * limitations under the License.
  */
 
-package org.creacoinj.tools;
+package org.creativecoinj.tools;
 
-import org.creacoinj.core.*;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.store.*;
-import org.creacoinj.utils.BlockFileLoader;
+import org.creativecoinj.core.*;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.store.*;
+import org.creativecoinj.utils.BlockFileLoader;
 import com.google.common.base.Preconditions;
 
 import java.io.File;
 
-/** Very thin wrapper around {@link org.creacoinj.utils.BlockFileLoader} */
+/** Very thin wrapper around {@link org.creativecoinj.utils.BlockFileLoader} */
 public class BlockImporter {
     public static void main(String[] args) throws BlockStoreException, VerificationException, PrunedException {
         System.out.println("USAGE: BlockImporter (prod|test) (H2|Disk|MemFull|Mem|SPV) [blockStore]");
         System.out.println("       blockStore is required unless type is Mem or MemFull");
-        System.out.println("       eg BlockImporter prod H2 /home/user/creacoinj.h2store");
+        System.out.println("       eg BlockImporter prod H2 /home/user/creativecoinj.h2store");
         System.out.println("       Does full verification if the store supports it");
         Preconditions.checkArgument(args.length == 2 || args.length == 3);
         

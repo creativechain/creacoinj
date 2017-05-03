@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.creacoinj.utils;
+package org.creativecoinj.utils;
 
-import org.creacoinj.core.Utils;
+import org.creativecoinj.core.Utils;
 
 import org.junit.Before;
 import org.junit.Test;

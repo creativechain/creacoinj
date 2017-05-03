@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package org.creacoinj.wallet;
+package org.creativecoinj.wallet;
 
-import org.creacoinj.core.BloomFilter;
-import org.creacoinj.core.ECKey;
-import org.creacoinj.core.Utils;
-import org.creacoinj.crypto.KeyCrypter;
-import org.creacoinj.crypto.KeyCrypterException;
-import org.creacoinj.crypto.KeyCrypterScrypt;
-import org.creacoinj.utils.Threading;
+import org.creativecoinj.core.BloomFilter;
+import org.creativecoinj.core.ECKey;
+import org.creativecoinj.core.Utils;
+import org.creativecoinj.crypto.KeyCrypter;
+import org.creativecoinj.crypto.KeyCrypterException;
+import org.creativecoinj.crypto.KeyCrypterScrypt;
+import org.creativecoinj.utils.Threading;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
-import org.creacoinj.wallet.listeners.AbstractKeyChainEventListener;
+import org.creativecoinj.wallet.listeners.AbstractKeyChainEventListener;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
 import java.net.InetAddress;
-import org.creacoinj.core.FullPrunedBlockChain;
-import org.creacoinj.core.PeerGroup;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.store.FullPrunedBlockStore;
-import org.creacoinj.store.LevelDBFullPrunedBlockStore;
+import org.creativecoinj.core.FullPrunedBlockChain;
+import org.creativecoinj.core.PeerGroup;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.store.FullPrunedBlockStore;
+import org.creativecoinj.store.LevelDBFullPrunedBlockStore;
 
 public class LevelDB {
     public static void main(String[] args) throws Exception {

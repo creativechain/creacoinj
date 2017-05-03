@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.store.BlockStoreException;
-import org.creacoinj.store.FullPrunedBlockStore;
-import org.creacoinj.store.LevelDBFullPrunedBlockStore;
+import org.creativecoinj.store.BlockStoreException;
+import org.creativecoinj.store.FullPrunedBlockStore;
+import org.creativecoinj.store.LevelDBFullPrunedBlockStore;
 import org.junit.After;
 
 import java.io.File;

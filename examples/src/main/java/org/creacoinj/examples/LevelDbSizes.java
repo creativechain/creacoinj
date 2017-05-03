@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
 import static org.fusesource.leveldbjni.JniDBFactory.*;
 

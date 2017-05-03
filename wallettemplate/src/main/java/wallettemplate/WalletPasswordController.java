@@ -17,7 +17,7 @@
 package wallettemplate;
 
 import javafx.application.Platform;
-import org.creacoinj.crypto.KeyCrypterScrypt;
+import org.creativecoinj.crypto.KeyCrypterScrypt;
 import com.google.common.primitives.Longs;
 import com.google.protobuf.ByteString;
 import javafx.beans.property.ReadOnlyObjectProperty;

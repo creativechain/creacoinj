@@ -14,19 +14,19 @@
  * limitations under the License.
  */
 
-package org.creacoinj.testing;
+package org.creativecoinj.testing;
 
-import org.creacoinj.core.*;
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.store.BlockStore;
-import org.creacoinj.store.MemoryBlockStore;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.core.*;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.store.BlockStore;
+import org.creativecoinj.store.MemoryBlockStore;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.wallet.Wallet;
 
 import javax.annotation.Nullable;
 
-import static org.creacoinj.testing.FakeTxBuilder.createFakeBlock;
-import static org.creacoinj.testing.FakeTxBuilder.createFakeTx;
+import static org.creativecoinj.testing.FakeTxBuilder.createFakeBlock;
+import static org.creativecoinj.testing.FakeTxBuilder.createFakeTx;
 
 // TODO: This needs to be somewhat rewritten - the "sendMoneyToWallet" methods aren't sending via the block chain object
 

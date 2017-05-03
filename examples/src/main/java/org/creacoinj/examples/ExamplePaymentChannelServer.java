@@ -15,20 +15,20 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
-import org.creacoinj.core.Coin;
-import org.creacoinj.core.NetworkParameters;
-import org.creacoinj.core.Sha256Hash;
-import org.creacoinj.core.VerificationException;
-import org.creacoinj.kits.WalletAppKit;
-import org.creacoinj.params.RegTestParams;
-import org.creacoinj.protocols.channels.*;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.wallet.WalletExtension;
+import org.creativecoinj.core.Coin;
+import org.creativecoinj.core.NetworkParameters;
+import org.creativecoinj.core.Sha256Hash;
+import org.creativecoinj.core.VerificationException;
+import org.creativecoinj.kits.WalletAppKit;
+import org.creativecoinj.params.RegTestParams;
+import org.creativecoinj.protocols.channels.*;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.wallet.WalletExtension;
 
 import com.google.common.collect.ImmutableList;
 

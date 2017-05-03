@@ -15,51 +15,51 @@
  * limitations under the License.
  */
 
-package org.creacoinj.wallet;
+package org.creativecoinj.wallet;
 
-import org.creacoinj.core.listeners.TransactionConfidenceEventListener;
-import org.creacoinj.core.AbstractBlockChain;
-import org.creacoinj.core.Address;
-import org.creacoinj.core.Block;
-import org.creacoinj.core.BlockChain;
-import org.creacoinj.core.Coin;
-import org.creacoinj.core.ECKey;
-import org.creacoinj.core.InsufficientMoneyException;
-import org.creacoinj.core.PeerAddress;
-import org.creacoinj.core.Sha256Hash;
-import org.creacoinj.core.StoredBlock;
-import org.creacoinj.core.Transaction;
-import org.creacoinj.core.TransactionConfidence;
-import org.creacoinj.core.TransactionInput;
-import org.creacoinj.core.TransactionOutPoint;
-import org.creacoinj.core.TransactionOutput;
-import org.creacoinj.core.Utils;
-import org.creacoinj.core.VerificationException;
-import org.creacoinj.core.TransactionConfidence.ConfidenceType;
-import org.creacoinj.crypto.*;
-import org.creacoinj.script.Script;
-import org.creacoinj.script.ScriptBuilder;
-import org.creacoinj.signers.StatelessTransactionSigner;
-import org.creacoinj.signers.TransactionSigner;
-import org.creacoinj.store.BlockStoreException;
-import org.creacoinj.store.MemoryBlockStore;
-import org.creacoinj.testing.*;
-import org.creacoinj.utils.ExchangeRate;
-import org.creacoinj.utils.Fiat;
-import org.creacoinj.utils.Threading;
-import org.creacoinj.wallet.Wallet.BalanceType;
-import org.creacoinj.wallet.WalletTransaction.Pool;
-import org.creacoinj.wallet.listeners.KeyChainEventListener;
-import org.creacoinj.wallet.listeners.WalletChangeEventListener;
-import org.creacoinj.wallet.listeners.WalletCoinsReceivedEventListener;
-import org.creacoinj.wallet.listeners.WalletCoinsSentEventListener;
+import org.creativecoinj.core.listeners.TransactionConfidenceEventListener;
+import org.creativecoinj.core.AbstractBlockChain;
+import org.creativecoinj.core.Address;
+import org.creativecoinj.core.Block;
+import org.creativecoinj.core.BlockChain;
+import org.creativecoinj.core.Coin;
+import org.creativecoinj.core.ECKey;
+import org.creativecoinj.core.InsufficientMoneyException;
+import org.creativecoinj.core.PeerAddress;
+import org.creativecoinj.core.Sha256Hash;
+import org.creativecoinj.core.StoredBlock;
+import org.creativecoinj.core.Transaction;
+import org.creativecoinj.core.TransactionConfidence;
+import org.creativecoinj.core.TransactionInput;
+import org.creativecoinj.core.TransactionOutPoint;
+import org.creativecoinj.core.TransactionOutput;
+import org.creativecoinj.core.Utils;
+import org.creativecoinj.core.VerificationException;
+import org.creativecoinj.core.TransactionConfidence.ConfidenceType;
+import org.creativecoinj.crypto.*;
+import org.creativecoinj.script.Script;
+import org.creativecoinj.script.ScriptBuilder;
+import org.creativecoinj.signers.StatelessTransactionSigner;
+import org.creativecoinj.signers.TransactionSigner;
+import org.creativecoinj.store.BlockStoreException;
+import org.creativecoinj.store.MemoryBlockStore;
+import org.creativecoinj.testing.*;
+import org.creativecoinj.utils.ExchangeRate;
+import org.creativecoinj.utils.Fiat;
+import org.creativecoinj.utils.Threading;
+import org.creativecoinj.wallet.Wallet.BalanceType;
+import org.creativecoinj.wallet.WalletTransaction.Pool;
+import org.creativecoinj.wallet.listeners.KeyChainEventListener;
+import org.creativecoinj.wallet.listeners.WalletChangeEventListener;
+import org.creativecoinj.wallet.listeners.WalletCoinsReceivedEventListener;
+import org.creativecoinj.wallet.listeners.WalletCoinsSentEventListener;
 import org.easymock.EasyMock;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.protobuf.ByteString;
-import org.creacoinj.wallet.Protos.Wallet.EncryptionType;
+import org.creativecoinj.wallet.Protos.Wallet.EncryptionType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -79,9 +79,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.core.Utils.HEX;
-import static org.creacoinj.testing.FakeTxBuilder.*;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.core.Utils.HEX;
+import static org.creativecoinj.testing.FakeTxBuilder.*;
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.replay;
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -804,7 +804,7 @@ public class WalletTest extends TestWithWallet {
         Transaction send1 = checkNotNull(wallet.createSend(OTHER_ADDRESS, value2));
         Transaction send2 = checkNotNull(wallet.createSend(OTHER_ADDRESS, value2));
         byte[] buf = send1.bitcoinSerialize();
-        buf[43] = 0;  // Break the signature: creacoinj won't check in SPV mode and this is easier than other mutations.
+        buf[43] = 0;  // Break the signature: creativecoinj won't check in SPV mode and this is easier than other mutations.
         send1 = PARAMS.getDefaultSerializer().makeTransaction(buf);
         wallet.commitTx(send2);
         wallet.allowSpendingUnconfirmedTransactions();
@@ -1775,7 +1775,7 @@ public class WalletTest extends TestWithWallet {
     @Test
     public void autosaveImmediate() throws Exception {
         // Test that the wallet will save itself automatically when it changes.
-        File f = File.createTempFile("creacoinj-unit-test", null);
+        File f = File.createTempFile("creativecoinj-unit-test", null);
         Sha256Hash hash1 = Sha256Hash.of(f);
         // Start with zero delay and ensure the wallet file changes after adding a key.
         wallet.autosaveToFile(f, 0, TimeUnit.SECONDS, null);
@@ -1797,7 +1797,7 @@ public class WalletTest extends TestWithWallet {
         // an auto-save cycle of 1 second.
         final File[] results = new File[2];
         final CountDownLatch latch = new CountDownLatch(3);
-        File f = File.createTempFile("creacoinj-unit-test", null);
+        File f = File.createTempFile("creativecoinj-unit-test", null);
         Sha256Hash hash1 = Sha256Hash.of(f);
         wallet.autosaveToFile(f, 1, TimeUnit.SECONDS,
                 new WalletFiles.Listener() {

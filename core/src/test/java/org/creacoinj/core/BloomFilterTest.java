@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.wallet.KeyChainGroup;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.wallet.KeyChainGroup;
+import org.creativecoinj.wallet.Wallet;
 import org.junit.Test;
 
 import java.util.Arrays;
 
-import static org.creacoinj.core.Utils.HEX;
+import static org.creativecoinj.core.Utils.HEX;
 import static org.junit.Assert.*;
 
 public class BloomFilterTest {

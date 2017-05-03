@@ -14,21 +14,21 @@
  * limitations under the License.
  */
 
-package org.creacoinj.protocols.payments;
+package org.creativecoinj.protocols.payments;
 
-import org.creacoinj.core.*;
-import org.creacoinj.crypto.X509Utils;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.protocols.payments.PaymentProtocol.Output;
-import org.creacoinj.protocols.payments.PaymentProtocol.PkiVerificationData;
-import org.creacoinj.protocols.payments.PaymentProtocolException.PkiVerificationException;
-import org.creacoinj.script.ScriptBuilder;
-import org.creacoinj.testing.FakeTxBuilder;
-import org.creacoin.protocols.payments.Protos;
-import org.creacoin.protocols.payments.Protos.Payment;
-import org.creacoin.protocols.payments.Protos.PaymentACK;
-import org.creacoin.protocols.payments.Protos.PaymentRequest;
+import org.creativecoinj.core.*;
+import org.creativecoinj.crypto.X509Utils;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.protocols.payments.PaymentProtocol.Output;
+import org.creativecoinj.protocols.payments.PaymentProtocol.PkiVerificationData;
+import org.creativecoinj.protocols.payments.PaymentProtocolException.PkiVerificationException;
+import org.creativecoinj.script.ScriptBuilder;
+import org.creativecoinj.testing.FakeTxBuilder;
+import org.creativecoin.protocols.payments.Protos;
+import org.creativecoin.protocols.payments.Protos.Payment;
+import org.creativecoin.protocols.payments.Protos.PaymentACK;
+import org.creativecoin.protocols.payments.Protos.PaymentRequest;
 import org.junit.Before;
 import org.junit.Test;
 

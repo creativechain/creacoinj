@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-package org.creacoinj.wallet;
+package org.creativecoinj.wallet;
 
 import com.google.common.collect.*;
-import org.creacoinj.core.*;
-import org.creacoinj.crypto.*;
-import org.creacoinj.params.*;
-import org.creacoinj.script.*;
-import org.creacoinj.testing.FakeTxBuilder;
-import org.creacoinj.wallet.DefaultRiskAnalysis.*;
+import org.creativecoinj.core.*;
+import org.creativecoinj.crypto.*;
+import org.creativecoinj.params.*;
+import org.creativecoinj.script.*;
+import org.creativecoinj.testing.FakeTxBuilder;
+import org.creativecoinj.wallet.DefaultRiskAnalysis.*;
 import org.junit.*;
 
 import java.util.*;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.script.ScriptOpCodes.*;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.script.ScriptOpCodes.*;
 import static org.junit.Assert.*;
 
 public class DefaultRiskAnalysisTest {

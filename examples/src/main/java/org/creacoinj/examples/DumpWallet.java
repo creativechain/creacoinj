@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
 import java.io.File;
 
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.wallet.Wallet;
 
 /**
  * DumpWallet loads a serialized wallet and prints information about what it contains.

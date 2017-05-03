@@ -18,14 +18,15 @@ package wallettemplate;
 
 import com.google.common.util.concurrent.*;
 import javafx.scene.input.*;
-import org.creacoinj.core.NetworkParameters;
-import org.creacoinj.core.PeerAddress;
-import org.creacoinj.core.Utils;
-import org.creacoinj.kits.WalletAppKit;
-import org.creacoinj.params.*;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.utils.Threading;
-import org.creacoinj.wallet.DeterministicSeed;
+import org.creativecoinj.core.NetworkParameters;
+import org.creativecoinj.core.PeerAddress;
+import org.creativecoinj.core.Utils;
+import org.creativecoinj.kits.WalletAppKit;
+import org.creativecoinj.net.discovery.SeedPeers;
+import org.creativecoinj.params.*;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.utils.Threading;
+import org.creativecoinj.wallet.DeterministicSeed;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -43,8 +44,10 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
 
 import static wallettemplate.utils.GuiUtils.*;
 
@@ -105,7 +108,7 @@ public class Main extends Application {
 
         // Make log output concise.
         BriefLogFormatter.init();
-        // Tell creacoinj to run event handlers on the JavaFX UI thread. This keeps things simple and means
+        // Tell creativecoinj to run event handlers on the JavaFX UI thread. This keeps things simple and means
         // we cannot forget to switch threads when adding event handlers. Unfortunately, the DownloadListener
         // we give to the app kit is currently an exception and runs on a library thread. It'll get fixed in
         // a future version.
@@ -143,26 +146,22 @@ public class Main extends Application {
                 // their own money!
                 bitcoin.wallet().allowSpendingUnconfirmedTransactions();
                 Platform.runLater(controller::onBitcoinSetup);
-                //creacoin.peerGroup().connectToLocalHost();
+                bitcoin.peerGroup().setMinBroadcastConnections(1);
+                //creativecoin.peerGroup().connectToLocalHost();
             }
         };
-        // Now configure and start the appkit. This will take a second or two - we could show a temporary splash screen
-        // or progress widget to keep the user engaged whilst we initialise, but we don't.
-        if (params == TestNet3Params.get()) {
-            bitcoin.connectToLocalHost();
-        } else {
-            String[] peers = {"152.80.145.39", "80.241.212.178", "5.189.181.124", "151.80.145.37", "151.80.145.34", "151.80.61.106"};
+
+        try {
+            InetSocketAddress[] peers = new SeedPeers(params).getPeers(0, 0, TimeUnit.SECONDS);
 
             PeerAddress[] peerAddresses = new PeerAddress[peers.length];
             for (int x = 0; x < peerAddresses.length; x++) {
-                try {
-                    peerAddresses[x] = new PeerAddress(params, InetAddress.getByName(peers[x]), params.getPort());
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
-                }
+                peerAddresses[x] = new PeerAddress(params, peers[x].getAddress(), params.getPort());
             }
 
-            bitcoin.setPeerNodes(peerAddresses);   // You should run a regtest mode bitcoind locally.
+            bitcoin.setPeerNodes(peerAddresses);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
         bitcoin.setDownloadListener(controller.progressBarUpdater())

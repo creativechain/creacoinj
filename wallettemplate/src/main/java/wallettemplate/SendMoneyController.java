@@ -17,9 +17,9 @@
 package wallettemplate;
 
 import javafx.scene.layout.HBox;
-import org.creacoinj.core.*;
-import org.creacoinj.wallet.SendRequest;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.core.*;
+import org.creativecoinj.wallet.SendRequest;
+import org.creativecoinj.wallet.Wallet;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;

@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.TestNet2Params;
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.store.BlockStore;
-import org.creacoinj.store.MemoryBlockStore;
-import org.creacoinj.testing.FakeTxBuilder;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.Wallet.BalanceType;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.TestNet2Params;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.store.BlockStore;
+import org.creativecoinj.store.MemoryBlockStore;
+import org.creativecoinj.testing.FakeTxBuilder;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.Wallet.BalanceType;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import org.junit.rules.ExpectedException;
@@ -38,9 +38,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.testing.FakeTxBuilder.createFakeBlock;
-import static org.creacoinj.testing.FakeTxBuilder.createFakeTx;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.testing.FakeTxBuilder.createFakeBlock;
+import static org.creativecoinj.testing.FakeTxBuilder.createFakeTx;
 import static org.junit.Assert.*;
 
 // Handling of chain splits/reorgs are in ChainSplitTests.

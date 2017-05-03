@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.creacoinj.testing;
+package org.creativecoinj.testing;
 
-import org.creacoinj.signers.TransactionSigner;
-import org.creacoinj.wallet.KeyBag;
+import org.creativecoinj.signers.TransactionSigner;
+import org.creativecoinj.wallet.KeyBag;
 
 public class NopTransactionSigner implements TransactionSigner {
     private boolean isReady;

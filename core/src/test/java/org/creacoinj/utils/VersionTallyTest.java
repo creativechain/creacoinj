@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package org.creacoinj.utils;
+package org.creativecoinj.utils;
 
-import org.creacoinj.core.BlockChain;
-import org.creacoinj.core.Context;
-import org.creacoinj.core.NetworkParameters;
-import org.creacoinj.core.StoredBlock;
-import org.creacoinj.params.UnitTestParams;
-import org.creacoinj.store.BlockStore;
-import org.creacoinj.store.BlockStoreException;
-import org.creacoinj.store.MemoryBlockStore;
-import org.creacoinj.testing.FakeTxBuilder;
+import org.creativecoinj.core.BlockChain;
+import org.creativecoinj.core.Context;
+import org.creativecoinj.core.NetworkParameters;
+import org.creativecoinj.core.StoredBlock;
+import org.creativecoinj.params.UnitTestParams;
+import org.creativecoinj.store.BlockStore;
+import org.creativecoinj.store.BlockStoreException;
+import org.creativecoinj.store.MemoryBlockStore;
+import org.creativecoinj.testing.FakeTxBuilder;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;

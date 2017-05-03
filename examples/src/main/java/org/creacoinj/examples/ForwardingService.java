@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
-import org.creacoinj.core.*;
-import org.creacoinj.crypto.KeyCrypterException;
-import org.creacoinj.kits.WalletAppKit;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.RegTestParams;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.utils.BriefLogFormatter;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.listeners.WalletCoinsReceivedEventListener;
+import org.creativecoinj.core.*;
+import org.creativecoinj.crypto.KeyCrypterException;
+import org.creativecoinj.kits.WalletAppKit;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.RegTestParams;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.utils.BriefLogFormatter;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.listeners.WalletCoinsReceivedEventListener;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -84,7 +84,7 @@ public class ForwardingService {
         kit.wallet().addCoinsReceivedEventListener(new WalletCoinsReceivedEventListener() {
             @Override
             public void onCoinsReceived(Wallet w, Transaction tx, Coin prevBalance, Coin newBalance) {
-                // Runs in the dedicated "user thread" (see creacoinj docs for more info on this).
+                // Runs in the dedicated "user thread" (see creativecoinj docs for more info on this).
                 //
                 // The transaction "tx" can either be pending, or included into a block (we didn't see the broadcast).
                 Coin value = tx.getValueSentToMe(w);

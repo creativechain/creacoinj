@@ -16,9 +16,9 @@
 
 package wallettemplate;
 
-import org.creacoinj.core.Utils;
-import org.creacoinj.crypto.MnemonicCode;
-import org.creacoinj.wallet.DeterministicSeed;
+import org.creativecoinj.core.Utils;
+import org.creativecoinj.crypto.MnemonicCode;
+import org.creativecoinj.wallet.DeterministicSeed;
 import com.google.common.base.Splitter;
 import com.google.common.util.concurrent.Service;
 import javafx.application.Platform;
@@ -170,7 +170,7 @@ public class WalletSettingsController {
 
         long birthday = datePicker.getValue().atStartOfDay().toEpochSecond(ZoneOffset.UTC);
         DeterministicSeed seed = new DeterministicSeed(Splitter.on(' ').splitToList(wordsArea.getText()), null, "", birthday);
-        // Shut down creacoinj and restart it with the new seed.
+        // Shut down creativecoinj and restart it with the new seed.
         Main.bitcoin.addListener(new Service.Listener() {
             @Override
             public void terminated(Service.State from) {

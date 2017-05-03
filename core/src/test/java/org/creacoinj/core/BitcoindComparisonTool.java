@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import com.google.common.base.*;
 import com.google.common.collect.*;
 import com.google.common.util.concurrent.*;
-import org.creacoinj.core.listeners.*;
-import org.creacoinj.net.*;
-import org.creacoinj.params.*;
-import org.creacoinj.store.*;
-import org.creacoinj.utils.*;
+import org.creativecoinj.core.listeners.*;
+import org.creativecoinj.net.*;
+import org.creativecoinj.params.*;
+import org.creativecoinj.store.*;
+import org.creativecoinj.utils.*;
 import org.slf4j.*;
 
 import java.io.*;
@@ -33,8 +33,8 @@ import java.util.*;
 import java.util.concurrent.atomic.*;
 
 /**
- * A tool for comparing the blocks which are accepted/rejected by bitcoind/creacoinj
- * It is designed to run as a testnet-in-a-box network between a single bitcoind node and creacoinj
+ * A tool for comparing the blocks which are accepted/rejected by bitcoind/creativecoinj
+ * It is designed to run as a testnet-in-a-box network between a single bitcoind node and creativecoinj
  * It is not an automated unit-test because it requires a bit more set-up...read comments below
  */
 public class BitcoindComparisonTool {
@@ -302,7 +302,7 @@ public class BitcoindComparisonTool {
                 bitcoind.ping().get();
                 if (!chain.getChainHead().getHeader().getHash().equals(bitcoindChainHead)) {
                     rulesSinceFirstFail++;
-                    log.error("ERROR: bitcoind and creacoinj acceptance differs on block \"" + block.ruleName + "\"");
+                    log.error("ERROR: bitcoind and creativecoinj acceptance differs on block \"" + block.ruleName + "\"");
                 }
                 if (block.sendOnce)
                     preloadedBlocks.remove(nextBlock.getHash());

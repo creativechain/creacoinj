@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
-import org.creacoinj.core.NetworkParameters;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.RegTestParams;
-import org.creacoinj.params.TestNet3Params;
+import org.creativecoinj.core.NetworkParameters;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.RegTestParams;
+import org.creativecoinj.params.TestNet3Params;
 
 public enum NetworkEnum {
     MAIN,

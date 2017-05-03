@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.creacoinj.utils;
+package org.creativecoinj.utils;
 
-import static org.creacoinj.utils.Fiat.parseFiat;
+import static org.creativecoinj.utils.Fiat.parseFiat;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;

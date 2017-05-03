@@ -16,10 +16,10 @@
 
 package wallettemplate.utils;
 
-import org.creacoinj.core.listeners.DownloadProgressTracker;
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.listeners.WalletChangeEventListener;
-import org.creacoinj.core.*;
+import org.creativecoinj.core.listeners.DownloadProgressTracker;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.listeners.WalletChangeEventListener;
+import org.creativecoinj.core.*;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.beans.property.ReadOnlyObjectProperty;
@@ -29,7 +29,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import java.util.Date;
 
 /**
- * A class that exposes relevant creacoin stuff as JavaFX bindable properties.
+ * A class that exposes relevant creativecoin stuff as JavaFX bindable properties.
  */
 public class BitcoinUIModel {
     private SimpleObjectProperty<Address> address = new SimpleObjectProperty<>();

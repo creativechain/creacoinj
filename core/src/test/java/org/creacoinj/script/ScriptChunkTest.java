@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.creacoinj.script;
+package org.creativecoinj.script;
 
-import static org.creacoinj.script.ScriptOpCodes.OP_PUSHDATA1;
-import static org.creacoinj.script.ScriptOpCodes.OP_PUSHDATA2;
-import static org.creacoinj.script.ScriptOpCodes.OP_PUSHDATA4;
+import static org.creativecoinj.script.ScriptOpCodes.OP_PUSHDATA1;
+import static org.creativecoinj.script.ScriptOpCodes.OP_PUSHDATA2;
+import static org.creativecoinj.script.ScriptOpCodes.OP_PUSHDATA4;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 

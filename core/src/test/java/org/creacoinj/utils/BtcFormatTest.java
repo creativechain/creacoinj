@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.creacoinj.utils;
+package org.creativecoinj.utils;
 
-import org.creacoinj.core.Coin;
+import org.creativecoinj.core.Coin;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -29,12 +29,12 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.core.NetworkParameters.MAX_MONEY;
-import static org.creacoinj.utils.BtcAutoFormat.Style.CODE;
-import static org.creacoinj.utils.BtcAutoFormat.Style.SYMBOL;
-import static org.creacoinj.utils.BtcFixedFormat.REPEATING_DOUBLETS;
-import static org.creacoinj.utils.BtcFixedFormat.REPEATING_TRIPLETS;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.core.NetworkParameters.MAX_MONEY;
+import static org.creativecoinj.utils.BtcAutoFormat.Style.CODE;
+import static org.creativecoinj.utils.BtcAutoFormat.Style.SYMBOL;
+import static org.creativecoinj.utils.BtcFixedFormat.REPEATING_DOUBLETS;
+import static org.creativecoinj.utils.BtcFixedFormat.REPEATING_TRIPLETS;
 import static java.text.NumberFormat.Field.DECIMAL_SEPARATOR;
 import static java.util.Locale.*;
 import static org.junit.Assert.*;

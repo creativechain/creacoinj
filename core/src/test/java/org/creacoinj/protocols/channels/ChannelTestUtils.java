@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package org.creacoinj.protocols.channels;
+package org.creativecoinj.protocols.channels;
 
-import org.creacoinj.core.Coin;
-import org.creacoinj.core.Sha256Hash;
-import org.creacoinj.core.TransactionBroadcaster;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.core.Coin;
+import org.creativecoinj.core.Sha256Hash;
+import org.creativecoinj.core.TransactionBroadcaster;
+import org.creativecoinj.wallet.Wallet;
 
 import com.google.common.base.Objects;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.protobuf.ByteString;
-import org.creacoin.paymentchannel.Protos;
+import org.creativecoin.paymentchannel.Protos;
 import org.spongycastle.crypto.params.KeyParameter;
 
 import javax.annotation.Nullable;

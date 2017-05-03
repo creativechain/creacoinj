@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.creacoinj.testing;
+package org.creativecoinj.testing;
 
-import org.creacoinj.core.Sha256Hash;
-import org.creacoinj.crypto.ChildNumber;
-import org.creacoinj.crypto.DeterministicKey;
-import org.creacoinj.signers.CustomTransactionSigner;
-import org.creacoinj.wallet.DeterministicKeyChain;
+import org.creativecoinj.core.Sha256Hash;
+import org.creativecoinj.crypto.ChildNumber;
+import org.creativecoinj.crypto.DeterministicKey;
+import org.creativecoinj.signers.CustomTransactionSigner;
+import org.creativecoinj.wallet.DeterministicKeyChain;
 import com.google.common.collect.ImmutableList;
 
 import java.util.List;

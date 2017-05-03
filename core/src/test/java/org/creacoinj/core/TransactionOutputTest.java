@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
 import com.google.common.collect.ImmutableList;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.script.Script;
-import org.creacoinj.script.ScriptBuilder;
-import org.creacoinj.testing.TestWithWallet;
-import org.creacoinj.wallet.SendRequest;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.script.Script;
+import org.creativecoinj.script.ScriptBuilder;
+import org.creativecoinj.testing.TestWithWallet;
+import org.creativecoinj.wallet.SendRequest;
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.Before;

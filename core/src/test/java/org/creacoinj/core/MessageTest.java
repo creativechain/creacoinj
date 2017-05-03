@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.params.UnitTestParams;
+import org.creativecoinj.params.UnitTestParams;
 import org.junit.Test;
 
 public class MessageTest {

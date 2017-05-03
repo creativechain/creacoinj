@@ -20,14 +20,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.creacoinj</groupId>
-        <artifactId>creacoinj-parent</artifactId>
+        <groupId>org.creativecoinj</groupId>
+        <artifactId>creativecoinj-parent</artifactId>
         <version>0.15-SNAPSHOT</version>
     </parent>
 
     <artifactId>wallettemplate</artifactId>
 
-    <name>creacoinj Wallet-Template</name>
+    <name>creativecoinj Wallet-Template</name>
 
     <build>
         <plugins>
@@ -72,8 +72,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.creacoinj</groupId>
-            <artifactId>creacoinj-core</artifactId>
+            <groupId>org.creativecoinj</groupId>
+            <artifactId>creativecoinj-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.creacoinj.testing;
+package org.creativecoinj.testing;
 
 import com.google.common.base.*;
 import com.google.common.util.concurrent.*;
-import org.creacoinj.core.*;
-import org.creacoinj.net.*;
-import org.creacoinj.store.*;
-import org.creacoinj.utils.*;
+import org.creativecoinj.core.*;
+import org.creativecoinj.net.*;
+import org.creativecoinj.store.*;
+import org.creativecoinj.utils.*;
 
 import java.net.*;
 import java.util.concurrent.*;
@@ -82,7 +82,7 @@ public class TestWithPeerGroup extends TestWithNetworkConnections {
             peerGroup = createPeerGroup(new BlockingClientManager());
         peerGroup.setPingIntervalMsec(0);  // Disable the pings as they just get in the way of most tests.
         peerGroup.addWallet(wallet);
-        peerGroup.setUseLocalhostPeerWhenPossible(false); // Prevents from connecting to creacoin nodes on localhost.
+        peerGroup.setUseLocalhostPeerWhenPossible(false); // Prevents from connecting to creativecoin nodes on localhost.
     }
 
     protected boolean blockJobs = false;

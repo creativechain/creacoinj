@@ -16,9 +16,9 @@
 
 package wallettemplate;
 
-import org.creacoinj.core.listeners.DownloadProgressTracker;
-import org.creacoinj.core.Coin;
-import org.creacoinj.utils.MonetaryFormat;
+import org.creativecoinj.core.listeners.DownloadProgressTracker;
+import org.creativecoinj.core.Coin;
+import org.creativecoinj.utils.MonetaryFormat;
 import javafx.animation.FadeTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;

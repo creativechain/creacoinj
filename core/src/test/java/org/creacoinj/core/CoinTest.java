@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import static org.creacoinj.core.Coin.*;
-import static org.creacoinj.core.NetworkParameters.MAX_MONEY;
+import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.core.NetworkParameters.MAX_MONEY;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

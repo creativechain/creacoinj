@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.creacoinj.testing;
+package org.creativecoinj.testing;
 
-import org.creacoinj.wallet.Wallet;
-import org.creacoinj.wallet.WalletExtension;
+import org.creativecoinj.wallet.Wallet;
+import org.creativecoinj.wallet.WalletExtension;
 
 import java.util.Arrays;
 

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.creacoinj.testing;
+package org.creativecoinj.testing;
 
-import org.creacoinj.core.*;
-import org.creacoinj.utils.Threading;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.core.*;
+import org.creativecoinj.utils.Threading;
+import org.creativecoinj.wallet.Wallet;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;

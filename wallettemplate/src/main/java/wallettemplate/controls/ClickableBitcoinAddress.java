@@ -16,8 +16,8 @@
 
 package wallettemplate.controls;
 
-import org.creacoinj.core.Address;
-import org.creacoinj.uri.BitcoinURI;
+import org.creativecoinj.core.Address;
+import org.creativecoinj.uri.BitcoinURI;
 import de.jensd.fx.fontawesome.AwesomeDude;
 import de.jensd.fx.fontawesome.AwesomeIcon;
 import javafx.beans.binding.StringExpression;

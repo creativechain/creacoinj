@@ -15,16 +15,16 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
-import org.creacoinj.core.listeners.PeerConnectedEventListener;
-import org.creacoinj.core.listeners.PeerDisconnectedEventListener;
-import org.creacoinj.core.NetworkParameters;
-import org.creacoinj.core.Peer;
-import org.creacoinj.core.PeerGroup;
-import org.creacoinj.net.discovery.DnsDiscovery;
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.utils.BriefLogFormatter;
+import org.creativecoinj.core.listeners.PeerConnectedEventListener;
+import org.creativecoinj.core.listeners.PeerDisconnectedEventListener;
+import org.creativecoinj.core.NetworkParameters;
+import org.creativecoinj.core.Peer;
+import org.creativecoinj.core.PeerGroup;
+import org.creativecoinj.net.discovery.DnsDiscovery;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.utils.BriefLogFormatter;
 import com.google.common.collect.Lists;
 
 import javax.swing.*;

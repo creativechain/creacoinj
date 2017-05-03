@@ -15,13 +15,13 @@
  * limitations under the License.
  */
 
-package org.creacoinj.core;
+package org.creativecoinj.core;
 
-import org.creacoinj.params.MainNetParams;
-import org.creacoinj.params.Networks;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.script.Script;
-import org.creacoinj.script.ScriptBuilder;
+import org.creativecoinj.params.MainNetParams;
+import org.creativecoinj.params.Networks;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.script.Script;
+import org.creativecoinj.script.ScriptBuilder;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -31,7 +31,7 @@ import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.creacoinj.core.Utils.HEX;
+import static org.creativecoinj.core.Utils.HEX;
 import static org.junit.Assert.*;
 
 public class AddressTest {

@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package org.creacoinj.examples;
+package org.creativecoinj.examples;
 
-import org.creacoinj.core.listeners.DownloadProgressTracker;
-import org.creacoinj.core.*;
-import org.creacoinj.net.discovery.DnsDiscovery;
-import org.creacoinj.params.TestNet3Params;
-import org.creacoinj.store.SPVBlockStore;
-import org.creacoinj.wallet.DeterministicSeed;
-import org.creacoinj.wallet.Wallet;
+import org.creativecoinj.core.listeners.DownloadProgressTracker;
+import org.creativecoinj.core.*;
+import org.creativecoinj.net.discovery.DnsDiscovery;
+import org.creativecoinj.params.TestNet3Params;
+import org.creativecoinj.store.SPVBlockStore;
+import org.creativecoinj.wallet.DeterministicSeed;
+import org.creativecoinj.wallet.Wallet;
 
 import java.io.File;
 
