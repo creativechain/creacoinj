@@ -403,7 +403,7 @@ public class PaymentProtocol {
             final NetworkParameters params = address.getParameters();
             if (params.hasMaxMoney() && amount.compareTo(params.getMaxMoney()) > 0)
                 throw new IllegalArgumentException("Amount too big: " + amount);
-            output.setAmount(amount.value);
+            output.setAmount(amount.getValue());
         } else {
             output.setAmount(0);
         }

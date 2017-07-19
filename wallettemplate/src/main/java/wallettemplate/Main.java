@@ -144,6 +144,7 @@ public class Main extends Application {
             protected void onSetupCompleted() {
                 // Don't make the user wait for confirmations for now, as the intention is they're sending it
                 // their own money!
+                bitcoin.wallet().reset();
                 bitcoin.wallet().allowSpendingUnconfirmedTransactions();
                 Platform.runLater(controller::onBitcoinSetup);
                 bitcoin.peerGroup().setMinBroadcastConnections(1);

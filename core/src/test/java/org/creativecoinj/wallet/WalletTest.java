@@ -2878,7 +2878,7 @@ public class WalletTest extends TestWithWallet {
         StoredBlock block = new StoredBlock(makeSolvedTestBlock(blockStore, OTHER_ADDRESS), BigInteger.ONE, 1);
         Random rng = new Random();
         for (int i = 0; i < rng.nextInt(100) + 1; i++) {
-            Transaction tx = createFakeTx(PARAMS, Coin.valueOf(rng.nextInt((int) COIN.value)), myAddress);
+            Transaction tx = createFakeTx(PARAMS, Coin.valueOf(rng.nextInt((int) COIN.getValue())), myAddress);
             wallet.receiveFromBlock(tx, block, AbstractBlockChain.NewBlockType.BEST_CHAIN, i);
         }
         SendRequest request = SendRequest.emptyWallet(OTHER_ADDRESS);

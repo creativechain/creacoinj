@@ -149,7 +149,7 @@ public class WalletSettingsController {
     public void restoreClicked(ActionEvent event) {
         // Don't allow a restore unless this wallet is presently empty. We don't want to end up with two wallets, too
         // much complexity, even though WalletAppKit will keep the current one as a backup file in case of disaster.
-        if (Main.bitcoin.wallet().getBalance().value > 0) {
+        if (Main.bitcoin.wallet().getBalance().getValue() > 0) {
             informationalAlert("Wallet is not empty",
                     "You must empty this wallet out before attempting to restore an older one, as mixing wallets " +
                             "together can lead to invalidated backups.");

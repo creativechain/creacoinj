@@ -1288,7 +1288,7 @@ public abstract class BtcFormat extends Format {
 	    satoshis = ((BigDecimal)qty).movePointRight(Coin.SMALLEST_UNIT_EXPONENT).
                        setScale(0,BigDecimal.ROUND_HALF_UP).unscaledValue();
 	else if (qty instanceof Coin)
-	    satoshis = BigInteger.valueOf(((Coin)qty).value);
+	    satoshis = BigInteger.valueOf(((Coin)qty).getValue());
 	else
 	    throw new IllegalArgumentException("Cannot format a " + qty.getClass().getSimpleName() +
                                                " as a Bicoin value");

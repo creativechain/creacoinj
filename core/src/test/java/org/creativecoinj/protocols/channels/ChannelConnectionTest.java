@@ -622,7 +622,7 @@ public class ChannelConnectionTest extends TestWithWallet {
                 .setInitiate(Protos.Initiate.newBuilder().setExpireTimeSecs(Utils.currentTimeSeconds() + 60 * 60 * 48)
                         .setMinAcceptedChannelSize(100)
                         .setMultisigKey(ByteString.copyFrom(new ECKey().getPubKey()))
-                        .setMinPayment(Transaction.MIN_NONDUST_OUTPUT.value))
+                        .setMinPayment(Transaction.MIN_NONDUST_OUTPUT.getValue()))
                 .setType(MessageType.INITIATE).build());
 
         pair.clientRecorder.checkNextMsg(MessageType.ERROR);
@@ -645,9 +645,9 @@ public class ChannelConnectionTest extends TestWithWallet {
         client.receiveMessage(pair.serverRecorder.checkNextMsg(MessageType.SERVER_VERSION));
         client.receiveMessage(Protos.TwoWayChannelMessage.newBuilder()
                 .setInitiate(Protos.Initiate.newBuilder().setExpireTimeSecs(Utils.currentTimeSeconds())
-                        .setMinAcceptedChannelSize(COIN.add(SATOSHI).value)
+                        .setMinAcceptedChannelSize(COIN.add(SATOSHI).getValue())
                         .setMultisigKey(ByteString.copyFrom(new ECKey().getPubKey()))
-                        .setMinPayment(Transaction.MIN_NONDUST_OUTPUT.value))
+                        .setMinPayment(Transaction.MIN_NONDUST_OUTPUT.getValue()))
                 .setType(MessageType.INITIATE).build());
         pair.clientRecorder.checkNextMsg(MessageType.ERROR);
         assertEquals(CloseReason.SERVER_REQUESTED_TOO_MUCH_VALUE, pair.clientRecorder.q.take());
@@ -671,9 +671,9 @@ public class ChannelConnectionTest extends TestWithWallet {
         client.receiveMessage(pair.serverRecorder.checkNextMsg(MessageType.SERVER_VERSION));
         client.receiveMessage(Protos.TwoWayChannelMessage.newBuilder()
                 .setInitiate(Protos.Initiate.newBuilder().setExpireTimeSecs(Utils.currentTimeSeconds())
-                        .setMinAcceptedChannelSize(COIN.add(SATOSHI).value)
+                        .setMinAcceptedChannelSize(COIN.add(SATOSHI).getValue())
                         .setMultisigKey(ByteString.copyFrom(new ECKey().getPubKey()))
-                        .setMinPayment(Transaction.REFERENCE_DEFAULT_MIN_TX_FEE.value))
+                        .setMinPayment(Transaction.REFERENCE_DEFAULT_MIN_TX_FEE.getValue()))
                 .setType(MessageType.INITIATE).build());
         if (useRefunds()) {
             final Protos.TwoWayChannelMessage provideRefund = pair.clientRecorder.checkNextMsg(MessageType.PROVIDE_REFUND);
@@ -700,9 +700,9 @@ public class ChannelConnectionTest extends TestWithWallet {
         try {
             client.receiveMessage(Protos.TwoWayChannelMessage.newBuilder()
                     .setInitiate(Protos.Initiate.newBuilder().setExpireTimeSecs(Utils.currentTimeSeconds())
-                            .setMinAcceptedChannelSize(CENT.value)
+                            .setMinAcceptedChannelSize(CENT.getValue())
                             .setMultisigKey(ByteString.copyFrom(new ECKey().getPubKey()))
-                            .setMinPayment(Transaction.REFERENCE_DEFAULT_MIN_TX_FEE.value))
+                            .setMinPayment(Transaction.REFERENCE_DEFAULT_MIN_TX_FEE.getValue()))
                     .setType(MessageType.INITIATE).build());
             fail();
         } catch (InsufficientMoneyException expected) {

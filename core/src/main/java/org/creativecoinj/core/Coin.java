@@ -28,7 +28,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * Represents a monetary Bitcoin value. This class is immutable.
  */
-public final class Coin implements Monetary, Comparable<Coin>, Serializable {
+public final class Coin extends AbstractCoin {
 
     /**
      * Number of decimals for one Bitcoin. This constant is useful for quick adapting to other coins because a lot of
@@ -77,14 +77,10 @@ public final class Coin implements Monetary, Comparable<Coin>, Serializable {
      * Represents a monetary value of minus one satoshi.
      */
     public static final Coin NEGATIVE_SATOSHI = Coin.valueOf(-1);
-
-    /**
-     * The number of satoshis of this monetary value.
-     */
-    public final long value;
+    private static final long serialVersionUID = 4874976947290673350L;
 
     private Coin(final long satoshis) {
-        this.value = satoshis;
+        super(satoshis, "CREA", SMALLEST_UNIT_EXPONENT);
     }
 
     public static Coin valueOf(final long satoshis) {
@@ -259,12 +255,6 @@ public final class Coin implements Monetary, Comparable<Coin>, Serializable {
         return new Coin(this.value >> n);
     }
 
-    @Override
-    public int signum() {
-        if (this.value == 0)
-            return 0;
-        return this.value < 0 ? -1 : 1;
-    }
 
     public Coin negate() {
         return new Coin(-this.value);
@@ -284,6 +274,7 @@ public final class Coin implements Monetary, Comparable<Coin>, Serializable {
      * Returns the value as a 0.12 type string. More digits after the decimal place will be used
      * if necessary, but two will always be present.
      */
+    @Override
     public String toFriendlyString() {
         return FRIENDLY_FORMAT.format(this).toString();
     }
@@ -297,13 +288,9 @@ public final class Coin implements Monetary, Comparable<Coin>, Serializable {
      * For instance, a value of 150000 satoshis gives an output string of "0.0015" BTC
      * </p>
      */
+    @Override
     public String toPlainString() {
         return PLAIN_FORMAT.format(this).toString();
-    }
-
-    @Override
-    public String toString() {
-        return Long.toString(value);
     }
 
     @Override
@@ -311,15 +298,5 @@ public final class Coin implements Monetary, Comparable<Coin>, Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         return this.value == ((Coin)o).value;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) this.value;
-    }
-
-    @Override
-    public int compareTo(final Coin other) {
-        return Longs.compare(this.value, other.value);
     }
 }

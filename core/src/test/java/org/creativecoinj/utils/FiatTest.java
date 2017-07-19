@@ -33,8 +33,8 @@ public class FiatTest {
 
     @Test
     public void testParseFiat() {
-        assertEquals(1, Fiat.parseFiat("EUR", "0.0001").value);
-        assertEquals(1, Fiat.parseFiat("EUR", "0.00010").value);
+        assertEquals(1, Fiat.parseFiat("EUR", "0.0001").getValue());
+        assertEquals(1, Fiat.parseFiat("EUR", "0.00010").getValue());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -44,8 +44,8 @@ public class FiatTest {
 
     @Test
     public void testParseFiatInexact() {
-        assertEquals(1, Fiat.parseFiatInexact("EUR", "0.0001").value);
-        assertEquals(1, Fiat.parseFiatInexact("EUR", "0.00011").value);
+        assertEquals(1, Fiat.parseFiatInexact("EUR", "0.0001").getValue());
+        assertEquals(1, Fiat.parseFiatInexact("EUR", "0.00011").getValue());
     }
 
     @Test

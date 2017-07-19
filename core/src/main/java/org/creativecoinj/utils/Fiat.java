@@ -21,6 +21,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+import org.creativecoinj.core.AbstractCoin;
 import org.creativecoinj.core.Monetary;
 import com.google.common.base.Objects;
 import com.google.common.math.LongMath;
@@ -32,23 +33,18 @@ import com.google.common.primitives.Longs;
  * 
  * This class is immutable.
  */
-public final class Fiat implements Monetary, Comparable<Fiat>, Serializable {
+public class Fiat extends AbstractCoin {
 
     /**
      * The absolute value of exponent of the value of a "smallest unit" in scientific notation. We picked 4 rather than
      * 2, because in financial applications it's common to use sub-cent precision.
      */
     public static final int SMALLEST_UNIT_EXPONENT = 4;
+    private static final long serialVersionUID = -6919730770425481642L;
 
-    /**
-     * The number of smallest units of this monetary value.
-     */
-    public final long value;
-    public final String currencyCode;
 
-    private Fiat(final String currencyCode, final long value) {
-        this.value = value;
-        this.currencyCode = currencyCode;
+    public Fiat(String currencyCode, long value) {
+        super(value, currencyCode, SMALLEST_UNIT_EXPONENT);
     }
 
     public static Fiat valueOf(final String currencyCode, final long value) {
@@ -58,18 +54,6 @@ public final class Fiat implements Monetary, Comparable<Fiat>, Serializable {
     @Override
     public int smallestUnitExponent() {
         return SMALLEST_UNIT_EXPONENT;
-    }
-
-    /**
-     * Returns the number of "smallest units" of this monetary value.
-     */
-    @Override
-    public long getValue() {
-        return value;
-    }
-
-    public String getCurrencyCode() {
-        return currencyCode;
     }
 
     /**
@@ -114,31 +98,8 @@ public final class Fiat implements Monetary, Comparable<Fiat>, Serializable {
         }
     }
 
-    public Fiat add(final Fiat value) {
-        checkArgument(value.currencyCode.equals(currencyCode));
-        return new Fiat(currencyCode, LongMath.checkedAdd(this.value, value.value));
-    }
-
-    public Fiat subtract(final Fiat value) {
-        checkArgument(value.currencyCode.equals(currencyCode));
-        return new Fiat(currencyCode, LongMath.checkedSubtract(this.value, value.value));
-    }
-
-    public Fiat multiply(final long factor) {
-        return new Fiat(currencyCode, LongMath.checkedMultiply(this.value, factor));
-    }
-
-    public Fiat divide(final long divisor) {
-        return new Fiat(currencyCode, this.value / divisor);
-    }
-
     public Fiat[] divideAndRemainder(final long divisor) {
         return new Fiat[] { new Fiat(currencyCode, this.value / divisor), new Fiat(currencyCode, this.value % divisor) };
-    }
-
-    public long divide(final Fiat divisor) {
-        checkArgument(divisor.currencyCode.equals(currencyCode));
-        return this.value / divisor.value;
     }
 
     /**
@@ -235,12 +196,5 @@ public final class Fiat implements Monetary, Comparable<Fiat>, Serializable {
     @Override
     public int hashCode() {
         return Objects.hashCode(value, currencyCode);
-    }
-
-    @Override
-    public int compareTo(final Fiat other) {
-        if (!this.currencyCode.equals(other.currencyCode))
-            return this.currencyCode.compareTo(other.currencyCode);
-        return Longs.compare(this.value, other.value);
     }
 }

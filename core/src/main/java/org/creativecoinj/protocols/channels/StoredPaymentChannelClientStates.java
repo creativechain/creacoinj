@@ -306,12 +306,12 @@ public class StoredPaymentChannelClientStates implements WalletExtension {
                         .setMajorVersion(channel.majorVersion)
                         .setId(ByteString.copyFrom(channel.id.getBytes()))
                         .setContractTransaction(ByteString.copyFrom(channel.contract.unsafeBitcoinSerialize()))
-                        .setRefundFees(channel.refundFees.value)
+                        .setRefundFees(channel.refundFees.getValue())
                         .setRefundTransaction(ByteString.copyFrom(channel.refund.unsafeBitcoinSerialize()))
                         .setMyKey(ByteString.copyFrom(new byte[0])) // Not  used, but protobuf message requires
                         .setMyPublicKey(ByteString.copyFrom(channel.myKey.getPubKey()))
                         .setServerKey(ByteString.copyFrom(channel.serverKey.getPubKey()))
-                        .setValueToMe(channel.valueToMe.value)
+                        .setValueToMe(channel.valueToMe.getValue())
                         .setExpiryTime(channel.expiryTime);
                 if (channel.close != null)
                     value.setCloseTransactionHash(ByteString.copyFrom(channel.close.getHash().getBytes()));

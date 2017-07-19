@@ -242,7 +242,7 @@ public class StoredPaymentChannelServerStates implements WalletExtension {
                 checkNotNull(channel.myKey.getPrivKeyBytes());
                 ServerState.StoredServerPaymentChannel.Builder channelBuilder = ServerState.StoredServerPaymentChannel.newBuilder()
                         .setMajorVersion(channel.majorVersion)
-                        .setBestValueToMe(channel.bestValueToMe.value)
+                        .setBestValueToMe(channel.bestValueToMe.getValue())
                         .setRefundTransactionUnlockTimeSecs(channel.refundTransactionUnlockTimeSecs)
                         .setContractTransaction(ByteString.copyFrom(channel.contract.unsafeBitcoinSerialize()))
                         .setMyKey(ByteString.copyFrom(channel.myKey.getPrivKeyBytes()));

@@ -48,11 +48,11 @@ public class DefaultCoinSelector implements CoinSelector {
         // bit over (excessive value will be change).
         long total = 0;
         for (TransactionOutput output : sortedOutputs) {
-            if (total >= target.value) break;
+            if (total >= target.getValue()) break;
             // Only pick chain-included transactions, or transactions that are ours and pending.
             if (!shouldSelect(output.getParentTransaction())) continue;
             selected.add(output);
-            total += output.getValue().value;
+            total += output.getValue().getValue();
         }
         // Total may be lower than target here, if the given candidates were insufficient to create to requested
         // transaction.
@@ -67,8 +67,8 @@ public class DefaultCoinSelector implements CoinSelector {
                 int depth2 = b.getParentTransactionDepthInBlocks();
                 Coin aValue = a.getValue();
                 Coin bValue = b.getValue();
-                BigInteger aCoinDepth = BigInteger.valueOf(aValue.value).multiply(BigInteger.valueOf(depth1));
-                BigInteger bCoinDepth = BigInteger.valueOf(bValue.value).multiply(BigInteger.valueOf(depth2));
+                BigInteger aCoinDepth = BigInteger.valueOf(aValue.getValue()).multiply(BigInteger.valueOf(depth1));
+                BigInteger bCoinDepth = BigInteger.valueOf(bValue.getValue()).multiply(BigInteger.valueOf(depth2));
                 int c1 = bCoinDepth.compareTo(aCoinDepth);
                 if (c1 != 0) return c1;
                 // The "coin*days" destroyed are equal, sort by value alone to get the lowest transaction size.

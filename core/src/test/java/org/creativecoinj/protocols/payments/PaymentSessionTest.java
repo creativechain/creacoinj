@@ -79,7 +79,7 @@ public class PaymentSessionTest {
         assertEquals(paymentMemo, payment.getMemo());
         assertEquals(merchantData, payment.getMerchantData());
         assertEquals(1, payment.getRefundToCount());
-        assertEquals(coin.value, payment.getRefundTo(0).getAmount());
+        assertEquals(coin.getValue(), payment.getRefundTo(0).getAmount());
         TransactionOutput refundOutput = new TransactionOutput(PARAMS, null, coin, refundAddr);
         ByteString refundScript = ByteString.copyFrom(refundOutput.getScriptBytes());
         assertTrue(refundScript.equals(payment.getRefundTo(0).getScript()));
@@ -149,7 +149,7 @@ public class PaymentSessionTest {
 
     private Protos.PaymentRequest newSimplePaymentRequest(String netID) {
         Protos.Output.Builder outputBuilder = Protos.Output.newBuilder()
-                .setAmount(coin.value)
+                .setAmount(coin.getValue())
                 .setScript(ByteString.copyFrom(outputToMe.getScriptBytes()));
         Protos.PaymentDetails paymentDetails = Protos.PaymentDetails.newBuilder()
                 .setNetwork(netID)
@@ -168,7 +168,7 @@ public class PaymentSessionTest {
 
     private Protos.PaymentRequest newExpiredPaymentRequest() {
         Protos.Output.Builder outputBuilder = Protos.Output.newBuilder()
-                .setAmount(coin.value)
+                .setAmount(coin.getValue())
                 .setScript(ByteString.copyFrom(outputToMe.getScriptBytes()));
         Protos.PaymentDetails paymentDetails = Protos.PaymentDetails.newBuilder()
                 .setNetwork("test")

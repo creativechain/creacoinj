@@ -270,7 +270,7 @@ public class PaymentChannelClient implements IPaymentChannelClient {
 
         // For now we require a hard-coded value. In future this will have to get more complex and dynamic as the fees
         // start to float.
-        final long maxMin = clientChannelProperties.acceptableMinPayment().value;
+        final long maxMin = clientChannelProperties.acceptableMinPayment().getValue();
         if (initiate.getMinPayment() > maxMin) {
             log.error("Server requested a min payment of {} but we only accept up to {}", initiate.getMinPayment(), maxMin);
             errorBuilder.setCode(Protos.Error.ErrorCode.MIN_PAYMENT_TOO_LARGE);
@@ -329,7 +329,7 @@ public class PaymentChannelClient implements IPaymentChannelClient {
                     PaymentChannelClientState.IncrementedPayment payment = state().incrementPaymentBy(Coin.valueOf(minPayment), userKeySetup);
                     Protos.UpdatePayment.Builder initialMsg = provideContractBuilder.getInitialPaymentBuilder();
                     initialMsg.setSignature(ByteString.copyFrom(payment.signature.encodeToBitcoin()));
-                    initialMsg.setClientChangeValue(state.getValueRefunded().value);
+                    initialMsg.setClientChangeValue(state.getValueRefunded().getValue());
                 } catch (ValueOutOfRangeException e) {
                     throw new IllegalStateException(e);  // This cannot happen.
                 }
@@ -370,7 +370,7 @@ public class PaymentChannelClient implements IPaymentChannelClient {
             PaymentChannelClientState.IncrementedPayment payment = state().incrementPaymentBy(Coin.valueOf(minPayment), userKey);
             Protos.UpdatePayment.Builder initialMsg = contractMsg.getInitialPaymentBuilder();
             initialMsg.setSignature(ByteString.copyFrom(payment.signature.encodeToBitcoin()));
-            initialMsg.setClientChangeValue(state.getValueRefunded().value);
+            initialMsg.setClientChangeValue(state.getValueRefunded().getValue());
         } catch (ValueOutOfRangeException e) {
             throw new IllegalStateException(e);  // This cannot happen.
         }
@@ -683,7 +683,7 @@ public class PaymentChannelClient implements IPaymentChannelClient {
             PaymentChannelV1ClientState.IncrementedPayment payment = state().incrementPaymentBy(size, userKey);
             Protos.UpdatePayment.Builder updatePaymentBuilder = Protos.UpdatePayment.newBuilder()
                     .setSignature(ByteString.copyFrom(payment.signature.encodeToBitcoin()))
-                    .setClientChangeValue(state.getValueRefunded().value);
+                    .setClientChangeValue(state.getValueRefunded().getValue());
             if (info != null) updatePaymentBuilder.setInfo(info);
 
             increasePaymentFuture = SettableFuture.create();
