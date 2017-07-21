@@ -84,4 +84,12 @@ public class BitcoinUIModel {
     public ReadOnlyObjectProperty<Coin> balanceProperty() {
         return balance;
     }
+
+    public void progress(double pct, int blocksLeft, Date date) {
+        Platform.runLater(() -> syncProgress.set(pct / 100.0));
+    }
+
+    public void doneDownload() {
+        Platform.runLater(() -> syncProgress.set(1.0));
+    }
 }

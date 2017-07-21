@@ -18,9 +18,8 @@ package wallettemplate;
 
 import com.google.common.util.concurrent.*;
 import javafx.scene.input.*;
-import org.creativecoinj.core.NetworkParameters;
-import org.creativecoinj.core.PeerAddress;
-import org.creativecoinj.core.Utils;
+import org.creativecoinj.core.*;
+import org.creativecoinj.core.listeners.DownloadProgressTracker;
 import org.creativecoinj.kits.WalletAppKit;
 import org.creativecoinj.net.discovery.SeedPeers;
 import org.creativecoinj.params.*;
@@ -36,6 +35,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import wallettemplate.controls.NotificationBarPane;
+import wallettemplate.utils.BitcoinUIModel;
 import wallettemplate.utils.GuiUtils;
 import wallettemplate.utils.TextFieldValidator;
 
@@ -47,12 +47,13 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.URL;
 import java.net.UnknownHostException;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static wallettemplate.utils.GuiUtils.*;
 
 public class Main extends Application {
-    public static NetworkParameters params = MainNetParams.get();
+    public static NetworkParameters params = TestNet3Params.get();
     public static final String APP_NAME = "WalletTemplate";
     private static final String WALLET_FILE_NAME = APP_NAME.replaceAll("[^a-zA-Z0-9.-]", "_") + "-"
             + params.getPaymentProtocolId();
@@ -65,6 +66,7 @@ public class Main extends Application {
     public MainController controller;
     public NotificationBarPane notificationBar;
     public Stage mainWindow;
+    private Miner miner;
 
     @Override
     public void start(Stage mainWindow) throws Exception {
@@ -144,28 +146,53 @@ public class Main extends Application {
             protected void onSetupCompleted() {
                 // Don't make the user wait for confirmations for now, as the intention is they're sending it
                 // their own money!
-                bitcoin.wallet().reset();
                 bitcoin.wallet().allowSpendingUnconfirmedTransactions();
                 Platform.runLater(controller::onBitcoinSetup);
                 bitcoin.peerGroup().setMinBroadcastConnections(1);
+                miner = new Miner(bitcoin.wallet().currentReceiveKey());
+                miner.start();
                 //creativecoin.peerGroup().connectToLocalHost();
             }
         };
 
         try {
-            InetSocketAddress[] peers = new SeedPeers(params).getPeers(0, 0, TimeUnit.SECONDS);
+            PeerAddress[] peerAddresses = new PeerAddress[1];
 
-            PeerAddress[] peerAddresses = new PeerAddress[peers.length];
-            for (int x = 0; x < peerAddresses.length; x++) {
-                peerAddresses[x] = new PeerAddress(params, peers[x].getAddress(), params.getPort());
-            }
+            peerAddresses[0] = new PeerAddress(params, InetAddress.getByName("192.168.1.18"), params.getPort());
 
             bitcoin.setPeerNodes(peerAddresses);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        bitcoin.setDownloadListener(controller.progressBarUpdater())
+        BitcoinUIModel model = controller.getModel();
+        DownloadProgressTracker downloadProgressTracker = new DownloadProgressTracker() {
+
+            @Override
+            public void onBlocksDownloaded(Peer peer, Block block, @Nullable FilteredBlock filteredBlock, int blocksLeft) {
+                System.out.println("onBlocksDownloaded");
+                if (blocksLeft == 0) {
+                    miner.reset();
+                }
+                super.onBlocksDownloaded(peer, block, filteredBlock, blocksLeft);
+            }
+
+            @Override
+            protected void progress(double pct, int blocksSoFar, Date date) {
+                System.out.println("progress: " + pct + ", blockLeft: " + blocksSoFar);
+                super.progress(pct, blocksSoFar, date);
+                model.progress(pct, blocksSoFar, date);
+            }
+
+            @Override
+            protected void doneDownload() {
+                System.out.println("doneDownload");
+                miner.reset();
+                super.doneDownload();
+                model.doneDownload();
+            }
+        };
+        bitcoin.setDownloadListener(downloadProgressTracker)
                .setBlockingStartup(false)
                .setUserAgent(APP_NAME, "1.0");
         if (seed != null)

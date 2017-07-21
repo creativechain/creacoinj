@@ -19,19 +19,16 @@ package org.creativecoinj.params;
 
 import static com.google.common.base.Preconditions.checkState;
 
-import org.creativecoinj.core.Block;
-import org.creativecoinj.core.Coin;
-import org.creativecoinj.core.NetworkParameters;
-import org.creativecoinj.core.StoredBlock;
-import org.creativecoinj.core.Transaction;
+import com.google.common.base.Stopwatch;
+import org.creativecoinj.core.*;
 import org.creativecoinj.utils.MonetaryFormat;
-import org.creativecoinj.core.VerificationException;
 import org.creativecoinj.store.BlockStore;
 import org.creativecoinj.store.BlockStoreException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import org.creativecoinj.core.BitcoinSerializer;
+import java.math.BigInteger;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Parameters for Bitcoin-like networks.
@@ -61,12 +58,8 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
 
     @Override
     public void checkDifficultyTransitions(final StoredBlock storedPrev, final Block nextBlock,	final BlockStore blockStore) throws VerificationException, BlockStoreException {
-/*
         final Block prev = storedPrev.getHeader();
 
-        if (nextBlock.getHashAsString().equals("43d13a56c0893412f83a1386102e4c29616f93f198a7983c361af8d957bd607d")) {
-            System.out.println("block with bad difficulty");
-        }
         // Is this supposed to be a difficulty transition point?
         if (!isDifficultyTransitionPoint(storedPrev.getHeight())) {
 
@@ -134,7 +127,6 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
             throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
                     newTargetCompact + " vs " + receivedTargetCompact);
         }
-*/
 
     }
 

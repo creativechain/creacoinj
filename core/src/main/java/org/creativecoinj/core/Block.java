@@ -116,7 +116,7 @@ public class Block extends Message {
     protected int optimalEncodingMessageSize;
 
     /** Special case constructor, used for the genesis node, cloneAsHeader and unit tests. */
-    Block(NetworkParameters params, long setVersion) {
+    public Block(NetworkParameters params, long setVersion) {
         super(params);
         // Set up a few basic things. We are not complete after this though.
         version = setVersion;
@@ -221,8 +221,8 @@ public class Block extends Message {
     public Coin getBlockInflation(int nHeight) {
         Coin nSubsidy = COIN.multiply(0);
 
-        //Creativechain reward design with fibonachi progress the firt year
-        if(nHeight < 2) // The first block pre-mine, for the manteniance of the plattform and incentive the content publication
+        //Creativechain reward design with fibonacci progress the first year
+        if(nHeight < 2) // The first block pre-mine, for the maintenance of the platform and incentive the content publication
             nSubsidy = COIN.multiply(12226641);
         if(nHeight <= 6765 && nHeight > 1)
             nSubsidy = COIN.multiply(1);
@@ -451,6 +451,9 @@ public class Block extends Message {
         try {
             ByteArrayOutputStream bos = new UnsafeByteArrayOutputStream(HEADER_SIZE);
             writeHeader(bos);
+            if (System.currentTimeMillis() >= NetworkParameters.KECCAK_TIME) {
+                return Sha256Hash.wrap(Sha256Hash.keccakHash(bos.toByteArray()));
+            }
             return Sha256Hash.wrapReversed(Sha256Hash.hashTwice(bos.toByteArray()));
         } catch (IOException e) {
             throw new RuntimeException(e); // Cannot happen.
@@ -573,13 +576,14 @@ public class Block extends Message {
      */
     public BigInteger getDifficultyTargetAsInteger() throws VerificationException {
         BigInteger target = Utils.decodeCompactBits(difficultyTarget);
-        if (target.signum() <= 0 || target.compareTo(params.maxTarget) > 0)
-            throw new VerificationException("Difficulty target is bad: " + target.toString());
+        if (target.signum() <= 0 || target.compareTo(params.maxTarget) > 0) {
+            throw new VerificationException("Difficulty target is bad: " + target.toString() + " < " + params.maxTarget.toString());
+        }
         return target;
     }
 
     /** Returns true if the hash of the block is OK (lower than difficulty target). */
-    protected boolean checkProofOfWork(boolean throwException) throws VerificationException {
+    public boolean checkProofOfWork(boolean throwException) throws VerificationException {
         // This part is key - it is what proves the block was as difficult to make as it claims
         // to be. Note however that in the context of this function, the block can claim to be
         // as difficult as it wants to be .... if somebody was able to take control of our network
@@ -589,8 +593,8 @@ public class Block extends Message {
         // To prevent this attack from being possible, elsewhere we check that the difficultyTarget
         // field is of the right value. This requires us to have the preceeding blocks.
 
-/*        BigInteger target = getDifficultyTargetAsInteger();
-        BigInteger blockHash = getHash().toBigInteger();
+        BigInteger target = getDifficultyTargetAsInteger();
+/*        BigInteger blockHash = getHash().toBigInteger();
         if (blockHash.compareTo(target) > 0) {
             System.out.println("POW FAILED: " + toString());
             // Proof of work check failed!
@@ -601,7 +605,7 @@ public class Block extends Message {
                 return false;
         }*/
 
-        BigInteger target = getDifficultyTargetAsInteger();
+
         byte[] bytes;
 
         try (ByteArrayOutputStream bos = new UnsafeByteArrayOutputStream(Block.HEADER_SIZE)) {
@@ -839,7 +843,7 @@ public class Block extends Message {
     }
 
     /** Adds a transaction to this block, with or without checking the sanity of doing so */
-    void addTransaction(Transaction t, boolean runSanityChecks) {
+    public void addTransaction(Transaction t, boolean runSanityChecks) {
         unCacheTransactions();
         if (transactions == null) {
             transactions = new ArrayList<>();
@@ -868,7 +872,7 @@ public class Block extends Message {
         return prevBlockHash;
     }
 
-    void setPrevBlockHash(Sha256Hash prevBlockHash) {
+    public void setPrevBlockHash(Sha256Hash prevBlockHash) {
         unCacheHeader();
         this.prevBlockHash = prevBlockHash;
         this.hash = null;
@@ -971,7 +975,7 @@ public class Block extends Message {
      * @param height block height, if known, or -1 otherwise.
      */
     @VisibleForTesting
-    void addCoinbaseTransaction(byte[] pubKeyTo, Coin value, final int height) {
+    public void addCoinbaseTransaction(byte[] pubKeyTo, Coin value, final int height) {
         unCacheTransactions();
         transactions = new ArrayList<>();
         Transaction coinbase = new Transaction(params);

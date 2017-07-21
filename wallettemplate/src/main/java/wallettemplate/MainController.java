@@ -112,4 +112,8 @@ public class MainController {
     public DownloadProgressTracker progressBarUpdater() {
         return model.getDownloadProgressTracker();
     }
+
+    public BitcoinUIModel getModel() {
+        return model;
+    }
 }

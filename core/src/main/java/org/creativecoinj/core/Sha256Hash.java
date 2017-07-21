@@ -196,6 +196,12 @@ public class Sha256Hash implements Serializable, Comparable<Sha256Hash> {
         return hashTwice(input, 0, input.length);
     }
 
+    public static byte[] keccakHash(byte[] input) {
+        String inputHex = Utils.HEX.encode(input);
+        Keccak k = new Keccak();
+        return k.getHash(inputHex, KeccakParams.KECCAK_256).getBytes();
+    }
+
     /**
      * Calculates the SHA-256 hash of the given byte range,
      * and then hashes the resulting hash again.

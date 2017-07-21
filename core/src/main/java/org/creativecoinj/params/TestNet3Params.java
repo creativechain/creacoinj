@@ -39,12 +39,12 @@ public class TestNet3Params extends AbstractBitcoinNetParams {
         super();
         id = ID_TESTNET;
         // Genesis hash is 000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943
-        packetMagic = 0xfcc1b7dc;
+        packetMagic = 0xcacacaca;
         difficultyAdjustmentInterval = INTERVAL;
         targetTimespan = TARGET_TIMESPAN;
-        maxTarget = Utils.decodeCompactBits(0x1e0ffff0);
-        port = 19333;
-        addressHeader = 111;
+        maxTarget = Utils.decodeCompactBits(0x1e0fffffL);
+        port = 11946;
+        addressHeader = 87;
         p2shHeader = 196;
         acceptableAddressCodes = new int[] { addressHeader, p2shHeader };
         dumpedPrivateKeyHeader = 239;
@@ -55,14 +55,14 @@ public class TestNet3Params extends AbstractBitcoinNetParams {
         majorityRejectBlockOutdated = TestNet2Params.TESTNET_MAJORITY_REJECT_BLOCK_OUTDATED;
         majorityWindow = TestNet2Params.TESTNET_MAJORITY_WINDOW;
 
-        genesisBlock.setTime(1317798646);
+        genesisBlock.setTime(1493596800);
         genesisBlock.setDifficultyTarget(0x1e0ffff0);
-        genesisBlock.setNonce(1328910);
+        genesisBlock.setNonce(560278);
 
         spendableCoinbaseDepth = 100;
         subsidyHalvingInterval = 210000;
         String genesisHash = genesisBlock.getHashAsString();
-        checkState(genesisHash.equals("bf9becbfd3bdf48b023eff63b5d4a5eb6ff65b2815dca244d849c938cb4b5a65"));
+        checkState(genesisHash.equals("ae48f41a796dfffad00bfdb10c6597cb380f5a49681ced87777084cd75076c6f"));
         alertSigningKey = Utils.HEX.decode("04302390343f91cc401d56d68b123028bf52e5fca1939df127f63c6467cdf9c8e2c14b61104cf817d0b780da337893ecc4aaff1309e536162dabbdb45200ca2b0a");
 
         dnsSeeds = null;
