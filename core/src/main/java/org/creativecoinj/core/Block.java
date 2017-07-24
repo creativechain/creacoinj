@@ -32,6 +32,7 @@ import java.security.GeneralSecurityException;
 import java.util.*;
 
 import static org.creativecoinj.core.Coin.*;
+import static org.creativecoinj.core.NetworkParameters.KECCAK_TIME;
 import static org.creativecoinj.core.Sha256Hash.*;
 
 /**
@@ -451,9 +452,6 @@ public class Block extends Message {
         try {
             ByteArrayOutputStream bos = new UnsafeByteArrayOutputStream(HEADER_SIZE);
             writeHeader(bos);
-            if (System.currentTimeMillis() >= NetworkParameters.KECCAK_TIME) {
-                return Sha256Hash.wrap(Sha256Hash.keccakHash(bos.toByteArray()));
-            }
             return Sha256Hash.wrapReversed(Sha256Hash.hashTwice(bos.toByteArray()));
         } catch (IOException e) {
             throw new RuntimeException(e); // Cannot happen.
@@ -593,8 +591,8 @@ public class Block extends Message {
         // To prevent this attack from being possible, elsewhere we check that the difficultyTarget
         // field is of the right value. This requires us to have the preceeding blocks.
 
-        BigInteger target = getDifficultyTargetAsInteger();
-/*        BigInteger blockHash = getHash().toBigInteger();
+/*        BigInteger target = getDifficultyTargetAsInteger();
+        BigInteger blockHash = getHash().toBigInteger();
         if (blockHash.compareTo(target) > 0) {
             System.out.println("POW FAILED: " + toString());
             // Proof of work check failed!
@@ -605,7 +603,7 @@ public class Block extends Message {
                 return false;
         }*/
 
-
+        BigInteger target = getDifficultyTargetAsInteger();
         byte[] bytes;
 
         try (ByteArrayOutputStream bos = new UnsafeByteArrayOutputStream(Block.HEADER_SIZE)) {
@@ -625,7 +623,11 @@ public class Block extends Message {
 
         byte[] hashed;
         try {
-            hashed = Utils.reverseBytes(SCrypt.scryptJ(bytes, bytes, 1024, 1, 1, 32));
+            if (time >= KECCAK_TIME) {
+                hashed = Sha256Hash.keccakHash(bytes);
+            } else {
+                hashed = Utils.reverseBytes(SCrypt.scryptJ(bytes, bytes, 1024, 1, 1, 32));
+            }
         } catch (GeneralSecurityException e) {
             throw new RuntimeException(e); //Cannot happen
         }
