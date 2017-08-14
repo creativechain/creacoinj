@@ -64,7 +64,7 @@ public abstract class NetworkParameters {
     /** The string used by the payment protocol to represent unit testing (note that this is non-standard). */
     public static final String PAYMENT_PROTOCOL_ID_UNIT_TESTS = "unittest";
     public static final String PAYMENT_PROTOCOL_ID_REGTEST = "regtest";
-    public static final long KECCAK_TIME = 9999999999999L;
+    public static final long KECCAK_TIME = 0x59772BB8L; // 2017 Jul 25 11:30:00 UTC
     // TODO: Seed nodes should be here as well.
 
     protected Block genesisBlock;

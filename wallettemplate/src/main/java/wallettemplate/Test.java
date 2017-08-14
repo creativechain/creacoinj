@@ -1,6 +1,9 @@
 package wallettemplate;
 
+import org.creativecoinj.core.Block;
+import org.creativecoinj.core.Sha256Hash;
 import org.creativecoinj.core.Utils;
+import org.creativecoinj.params.TestNet3Params;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -11,45 +14,12 @@ import java.math.RoundingMode;
  */
 public class Test {
 
-    // CREA      FIAT
-    // 1 ------- PRICE
-    // A ------- ?
-
     public static void main(String[] args) throws InterruptedException {
-        final long COIN = 100000000L;
-        final long MAX_ERAS = 50000000;
-        long supply = 0;
-        int halvingInterval = 50;
-        long startReward = 100 * COIN;
-        int eras = 0;
-        long height = 0;
-        int countHalving = 0;
+        byte[] headerBytes = Utils.HEX.decode("040000007de9e810cd73e50094e2b0994932f2030827496c057f51" +
+                "ec2a7acd4bfa0a000000b983350ee0dc32ae24e1ff3cf66461cc73044559b0b76c3c7fc8e79ba917b779617759" +
+                "ffff0f1eb0080300");
 
-        while (true) {
-            boolean changeEra = countHalving == halvingInterval;
-            if (changeEra) {
-                countHalving = 0;
-                eras += 1;
-                //System.out.println("Changing to ERA " + eras + " on block " + height);
-            }
-
-            long subsidy = Math.round(startReward * (100d / eras));
-            if (subsidy == 0) {
-                break;
-            }
-            //subsidy <<= eras;
-
-            supply += subsidy;
-            if (changeEra) {
-                System.out.println("Era: " + eras + ", Block " + height + ", Reward:" + BigDecimal.valueOf(subsidy, 8).toPlainString() + " EXC, Circulating: " + BigDecimal.valueOf(supply, 8).toPlainString() + " EXC, " +
-                        BigDecimal.valueOf(height * 60d / (60*60*24*365)).toPlainString() + " years");
-            }
-            height++;
-            countHalving++;
-            //Thread.sleep(50);
-        }
-
-        //System.out.println("Coin live: " + (BigDecimal.valueOf(height * 60d / (60*60*24*365)).toPlainString() + " years"));
-
+        System.out.println(Sha256Hash.wrapReversed(Sha256Hash.keccakHash(headerBytes)).toString());
+        System.out.println(new Block(TestNet3Params.get(), headerBytes).getHashAsString());
     }
 }

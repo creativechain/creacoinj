@@ -158,7 +158,7 @@ public class Main extends Application {
         try {
             PeerAddress[] peerAddresses = new PeerAddress[1];
 
-            peerAddresses[0] = new PeerAddress(params, InetAddress.getByName("192.168.1.18"), params.getPort());
+            peerAddresses[0] = new PeerAddress(params, InetAddress.getByName("192.168.42.136"), params.getPort());
 
             bitcoin.setPeerNodes(peerAddresses);
         } catch (Exception e) {

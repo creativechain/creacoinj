@@ -305,7 +305,7 @@ public class Block extends Message {
         time = readUint32();
         difficultyTarget = readUint32();
         nonce = readUint32();
-        hash = Sha256Hash.wrapReversed(Sha256Hash.hashTwice(payload, offset, cursor - offset));
+        //hash = Sha256Hash.wrapReversed(Sha256Hash.hashTwice(payload, offset, cursor - offset));
         headerBytesValid = serializer.isParseRetainMode();
 
         // transactions
@@ -452,6 +452,9 @@ public class Block extends Message {
         try {
             ByteArrayOutputStream bos = new UnsafeByteArrayOutputStream(HEADER_SIZE);
             writeHeader(bos);
+            if (time >= KECCAK_TIME) {
+                return Sha256Hash.wrapReversed(Sha256Hash.keccakHash(bos.toByteArray()));
+            }
             return Sha256Hash.wrapReversed(Sha256Hash.hashTwice(bos.toByteArray()));
         } catch (IOException e) {
             throw new RuntimeException(e); // Cannot happen.
@@ -624,7 +627,7 @@ public class Block extends Message {
         byte[] hashed;
         try {
             if (time >= KECCAK_TIME) {
-                hashed = Sha256Hash.keccakHash(bytes);
+                hashed = Utils.reverseBytes(Sha256Hash.keccakHash(bytes));
             } else {
                 hashed = Utils.reverseBytes(SCrypt.scryptJ(bytes, bytes, 1024, 1, 1, 32));
             }

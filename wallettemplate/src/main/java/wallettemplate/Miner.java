@@ -79,7 +79,7 @@ public class Miner extends Thread {
     @Override
     public void run() {
         try {
-            String url = "http://crea:tivecoin@192.168.42.142:9600/";
+            String url = "http://crea:tivecoin@192.168.42.136:9600/";
             bitcoinClient = new BitcoinRpcClient(url);
             while (true) {
 
@@ -111,7 +111,7 @@ public class Miner extends Thread {
                     System.out.println("Resolved " + block.toString() + " in " + (System.currentTimeMillis() - start) + "ms");
                 } else {
                     reset = false;
-                    System.out.println("Chain restarted!");
+                    System.out.println("Work restarted!");
                 }
             }
         } catch (Exception e) {

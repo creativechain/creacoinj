@@ -197,9 +197,9 @@ public class Sha256Hash implements Serializable, Comparable<Sha256Hash> {
     }
 
     public static byte[] keccakHash(byte[] input) {
-        String inputHex = Utils.HEX.encode(input);
-        Keccak k = new Keccak();
-        return k.getHash(inputHex, KeccakParams.KECCAK_256).getBytes();
+        Keccak k = new Keccak(256);
+        k.update(input, 0, input.length);
+        return k.digest();
     }
 
     /**
