@@ -39,7 +39,6 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
      * Scheme part for Bitcoin URIs.
      */
     public static final String CREATIVECOIN_SCHEME = "creativecoin";
-    public static final int REWARD_HALVING_INTERVAL = 840000;
 
     private static final Logger log = LoggerFactory.getLogger(AbstractBitcoinNetParams.class);
 
@@ -53,7 +52,8 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
      * @return If this is a difficulty transition point
      */
     public final boolean isDifficultyTransitionPoint(final int height) {
-        return ((height + 1) % this.getDifficultyAdjustmentInterval()) == 0;
+        int diffInterval = (height +1) >= changePowHeight ? getDifficultyAdjustmentIntervalV2() : getDifficultyAdjustmentInterval();
+        return ((height + 1) % diffInterval) == 0;
     }
 
     @Override
@@ -93,41 +93,81 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
             log.info("Difficulty transition traversal took {}", watch);
 
         Block blockIntervalAgo = cursor.getHeader();
-        int timespan = (int) (prev.getTimeSeconds() - blockIntervalAgo.getTimeSeconds());
-        // Limit the adjustment step.
-        final int targetTimespan = this.getTargetTimespan();
-
-        if (timespan < targetTimespan / 4) {
-            timespan = targetTimespan / 4;
-        }
-
-        if (timespan > targetTimespan * 4) {
-            timespan = targetTimespan * 4;
-        }
-
-        BigInteger newTarget = Utils.decodeCompactBits(prev.getDifficultyTarget());
-        newTarget = newTarget.multiply(BigInteger.valueOf(timespan));
-        newTarget = newTarget.divide(BigInteger.valueOf(targetTimespan));
-
-        if (newTarget.compareTo(this.getMaxTarget()) > 0) {
-            log.info("Difficulty hit proof of work limit: {}", newTarget.toString(16));
-            newTarget = this.getMaxTarget();
-        }
-
-        int accuracyBytes = (int) (nextBlock.getDifficultyTarget() >>> 24) - 3;
+        long timespan = (prev.getTimeSeconds() - blockIntervalAgo.getTimeSeconds());
         long receivedTargetCompact = nextBlock.getDifficultyTarget();
 
-        // The calculated difficulty is to a higher precision than received, so reduce here.
-        BigInteger mask = BigInteger.valueOf(0xFFFFFFL).shiftLeft(accuracyBytes * 8);
-        newTarget = newTarget.and(mask);
-        long newTargetCompact = Utils.encodeCompactBits(newTarget);
+        if (isNewPowActive(storedPrev.getHeight()+1)) {
+            //Digishield implementation
+            BigInteger powLimit = keccakMaxTarget;
+            long retargetTimespan = newPowTargetTimespan;
 
-        if (newTargetCompact != receivedTargetCompact) {
-            System.out.println(newTarget.doubleValue());
-            throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
-                    newTargetCompact + " vs " + receivedTargetCompact);
+            if (timespan < (retargetTimespan - (retargetTimespan / 4))) {
+                timespan = (retargetTimespan - (retargetTimespan / 4));
+            }
+
+            if (timespan > (retargetTimespan + (retargetTimespan / 2))) {
+                timespan = (retargetTimespan + (retargetTimespan / 2));
+            }
+
+            //Restarting the difficulty with the new PoW as if it were the genesis block
+            BigInteger newTarget;
+            if (isNewPowActive(storedPrev.getHeight())) {
+                newTarget = Utils.decodeCompactBits(prev.getDifficultyTarget());
+            } else {
+                newTarget = powLimit;
+            }
+
+            newTarget = newTarget.multiply(BigInteger.valueOf(timespan));
+            newTarget = newTarget.multiply(BigInteger.valueOf(retargetTimespan));
+
+            if (newTarget.compareTo(powLimit) > 0) {
+                log.info("Difficulty hit proof of work limit: {}", newTarget.toString(16));
+                newTarget = powLimit;
+            }
+
+            long newTargetCompact = Utils.encodeCompactBits(newTarget);
+
+            if (newTargetCompact != receivedTargetCompact) {
+                System.out.println(newTarget.doubleValue());
+                throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
+                        newTargetCompact + " vs " + receivedTargetCompact);
+            }
+
+        } else {
+            // Limit the adjustment step.
+            final int targetTimespan = this.getTargetTimespan();
+
+            if (timespan < targetTimespan / 4) {
+                timespan = targetTimespan / 4;
+            }
+
+            if (timespan > targetTimespan * 4) {
+                timespan = targetTimespan * 4;
+            }
+
+            BigInteger newTarget = Utils.decodeCompactBits(prev.getDifficultyTarget());
+            newTarget = newTarget.multiply(BigInteger.valueOf(timespan));
+            newTarget = newTarget.divide(BigInteger.valueOf(targetTimespan));
+
+            if (newTarget.compareTo(this.getMaxTarget()) > 0) {
+                log.info("Difficulty hit proof of work limit: {}", newTarget.toString(16));
+                newTarget = this.getMaxTarget();
+            }
+
+            int accuracyBytes = (int) (nextBlock.getDifficultyTarget() >>> 24) - 3;
+
+
+            // The calculated difficulty is to a higher precision than received, so reduce here.
+            BigInteger mask = BigInteger.valueOf(0xFFFFFFL).shiftLeft(accuracyBytes * 8);
+            newTarget = newTarget.and(mask);
+            long newTargetCompact = Utils.encodeCompactBits(newTarget);
+
+            if (newTargetCompact != receivedTargetCompact) {
+                System.out.println(newTarget.doubleValue());
+                throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
+                        newTargetCompact + " vs " + receivedTargetCompact);
+            }
         }
-
     }
 
     @Override

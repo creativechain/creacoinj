@@ -32,7 +32,6 @@ public class RegTestParams extends TestNet2Params {
         super();
         // Difficulty adjustments are disabled for regtest. 
         // By setting the block difficultyAdjustmentInterval for difficulty adjustments to Integer.MAX_VALUE we make sure difficulty never changes.
-        difficultyAdjustmentInterval = Integer.MAX_VALUE;
         maxTarget = MAX_TARGET;
         subsidyHalvingInterval = 150;
         port = 18444;

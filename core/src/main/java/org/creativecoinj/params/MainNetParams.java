@@ -31,8 +31,10 @@ public class MainNetParams extends AbstractBitcoinNetParams {
 
     public MainNetParams() {
         super();
-        difficultyAdjustmentInterval = INTERVAL;
-        targetTimespan = TARGET_TIMESPAN;
+        targetSpacing = 2 * 60;
+        targetTimespan = 24 * 60 * 60;
+        newPowTargetTimespan = 2 * 60;
+        changePowHeight = 46368;
 
         maxTarget = Utils.decodeMPI(Utils.HEX.decode("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"), false);
         dumpedPrivateKeyHeader = 128;

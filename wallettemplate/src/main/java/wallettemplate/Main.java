@@ -149,8 +149,8 @@ public class Main extends Application {
                 bitcoin.wallet().allowSpendingUnconfirmedTransactions();
                 Platform.runLater(controller::onBitcoinSetup);
                 bitcoin.peerGroup().setMinBroadcastConnections(1);
-                miner = new Miner(bitcoin.wallet().currentReceiveKey());
-                miner.start();
+                //miner = new Miner(bitcoin.wallet().currentReceiveKey());
+                //miner.start();
                 //creativecoin.peerGroup().connectToLocalHost();
             }
         };
@@ -158,7 +158,7 @@ public class Main extends Application {
         try {
             PeerAddress[] peerAddresses = new PeerAddress[1];
 
-            peerAddresses[0] = new PeerAddress(params, InetAddress.getByName("192.168.42.136"), params.getPort());
+            peerAddresses[0] = new PeerAddress(params, InetAddress.getByName("5.189.152.67"), params.getPort());
 
             bitcoin.setPeerNodes(peerAddresses);
         } catch (Exception e) {
@@ -172,7 +172,7 @@ public class Main extends Application {
             public void onBlocksDownloaded(Peer peer, Block block, @Nullable FilteredBlock filteredBlock, int blocksLeft) {
                 System.out.println("onBlocksDownloaded");
                 if (blocksLeft == 0) {
-                    miner.reset();
+                    //miner.reset();
                 }
                 super.onBlocksDownloaded(peer, block, filteredBlock, blocksLeft);
             }
@@ -187,7 +187,7 @@ public class Main extends Application {
             @Override
             protected void doneDownload() {
                 System.out.println("doneDownload");
-                miner.reset();
+                //miner.reset();
                 super.doneDownload();
                 model.doneDownload();
             }

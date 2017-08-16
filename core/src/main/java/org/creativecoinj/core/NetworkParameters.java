@@ -64,21 +64,24 @@ public abstract class NetworkParameters {
     /** The string used by the payment protocol to represent unit testing (note that this is non-standard). */
     public static final String PAYMENT_PROTOCOL_ID_UNIT_TESTS = "unittest";
     public static final String PAYMENT_PROTOCOL_ID_REGTEST = "regtest";
-    public static final long KECCAK_TIME = 0x59772BB8L; // 2017 Jul 25 11:30:00 UTC
+
     // TODO: Seed nodes should be here as well.
 
     protected Block genesisBlock;
     protected BigInteger maxTarget;
+    protected BigInteger keccakMaxTarget = Utils.decodeMPI(Utils.HEX.decode("000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"), false);
     protected int port;
     protected long packetMagic;  // Indicates message origin network and is used to seek to the next message when stream state is unknown.
     protected int addressHeader;
     protected int p2shHeader;
     protected int dumpedPrivateKeyHeader;
-    protected int difficultyAdjustmentInterval;
     protected int targetTimespan;
+    protected int targetSpacing;
+    protected int newPowTargetTimespan;
     protected byte[] alertSigningKey;
     protected int bip32HeaderPub;
     protected int bip32HeaderPriv;
+    protected int changePowHeight;
 
     /** Used to check majorities for block version upgrade */
     protected int majorityEnforceBlockUpgrade;
@@ -365,8 +368,13 @@ public abstract class NetworkParameters {
 
     /** How many blocks pass between difficulty adjustment periods. Bitcoin standardises this to be 2016. */
     public int getDifficultyAdjustmentInterval() {
-        return difficultyAdjustmentInterval;
+        return targetTimespan / targetSpacing;
     }
+
+    public int getDifficultyAdjustmentIntervalV2() {
+        return newPowTargetTimespan / targetSpacing;
+    }
+
 
     /** Maximum target represents the easiest allowable proof of work. */
     public BigInteger getMaxTarget() {
@@ -522,6 +530,9 @@ public abstract class NetworkParameters {
         return verifyFlags;
     }
 
+    public boolean isNewPowActive(int height) {
+        return height >= changePowHeight;
+    }
     /**
      * Checks if we are at a reward halving point.
      * @param height The height of the previous stored block

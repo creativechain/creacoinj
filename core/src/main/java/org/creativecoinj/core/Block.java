@@ -32,7 +32,7 @@ import java.security.GeneralSecurityException;
 import java.util.*;
 
 import static org.creativecoinj.core.Coin.*;
-import static org.creativecoinj.core.NetworkParameters.KECCAK_TIME;
+
 import static org.creativecoinj.core.Sha256Hash.*;
 
 /**
@@ -92,6 +92,9 @@ public class Block extends Message {
     public static final long BLOCK_VERSION_BIP66 = 3;
     /** Block version introduced in BIP 65: OP_CHECKLOCKTIMEVERIFY */
     public static final long BLOCK_VERSION_BIP65 = 4;
+
+    /** Block version of new pow */
+    public static final long BLOCK_VERSION_KECCAK = (7 << 9);
 
     // Fields defined as part of the protocol format.
     private long version;
@@ -452,7 +455,7 @@ public class Block extends Message {
         try {
             ByteArrayOutputStream bos = new UnsafeByteArrayOutputStream(HEADER_SIZE);
             writeHeader(bos);
-            if (time >= KECCAK_TIME) {
+            if (hasNewPowVersion()) {
                 return Sha256Hash.wrapReversed(Sha256Hash.keccakHash(bos.toByteArray()));
             }
             return Sha256Hash.wrapReversed(Sha256Hash.hashTwice(bos.toByteArray()));
@@ -481,6 +484,10 @@ public class Block extends Message {
         return hash;
     }
 
+
+    public final boolean hasNewPowVersion() {
+        return (version & BLOCK_VERSION_KECCAK) == BLOCK_VERSION_KECCAK;
+    }
     /**
      * The number that is one greater than the largest representable SHA-256
      * hash.
@@ -576,9 +583,10 @@ public class Block extends Message {
      * is thrown.
      */
     public BigInteger getDifficultyTargetAsInteger() throws VerificationException {
+        BigInteger maxTarget = hasNewPowVersion() ? params.keccakMaxTarget : params.maxTarget;
         BigInteger target = Utils.decodeCompactBits(difficultyTarget);
-        if (target.signum() <= 0 || target.compareTo(params.maxTarget) > 0) {
-            throw new VerificationException("Difficulty target is bad: " + target.toString() + " < " + params.maxTarget.toString());
+        if (target.signum() <= 0 || target.compareTo(maxTarget) > 0) {
+            throw new VerificationException("Difficulty target is bad: " + target.toString() + " < " + maxTarget.toString());
         }
         return target;
     }
@@ -626,7 +634,7 @@ public class Block extends Message {
 
         byte[] hashed;
         try {
-            if (time >= KECCAK_TIME) {
+            if (hasNewPowVersion()) {
                 hashed = Utils.reverseBytes(Sha256Hash.keccakHash(bytes));
             } else {
                 hashed = Utils.reverseBytes(SCrypt.scryptJ(bytes, bytes, 1024, 1, 1, 32));
