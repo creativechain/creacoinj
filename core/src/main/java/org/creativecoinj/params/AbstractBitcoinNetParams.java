@@ -74,9 +74,12 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
         // We need to find a block far back in the chain. It's OK that this is expensive because it only occurs every
         // two weeks after the initial block chain download.
         final Stopwatch watch = Stopwatch.createStarted();
-        Sha256Hash hash = prev.getHash();
+        boolean isNewPowChange = isNewPowActive(storedPrev.getHeight()+1);
+
+        Sha256Hash hash = isNewPowChange ? prev.getPrevBlockHash() : prev.getHash();
         StoredBlock cursor = null;
-        final int interval = this.getDifficultyAdjustmentInterval();
+
+        final int interval = isNewPowChange ? this.getDifficultyAdjustmentIntervalV2() : this.getDifficultyAdjustmentInterval();
         for (int i = 0; i < interval; i++) {
             cursor = blockStore.get(hash);
             if (cursor == null) {
@@ -86,8 +89,11 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
             }
             hash = cursor.getHeader().getPrevBlockHash();
         }
-        checkState(cursor != null && isDifficultyTransitionPoint(cursor.getHeight() - 1),
-                "Didn't arrive at a transition point.");
+        if (!isNewPowChange) {
+            checkState(cursor != null && isDifficultyTransitionPoint(cursor.getHeight() - 1),
+                    "Didn't arrive at a transition point.");
+        }
+
         watch.stop();
         if (watch.elapsed(TimeUnit.MILLISECONDS) > 50)
             log.info("Difficulty transition traversal took {}", watch);
@@ -96,17 +102,16 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
         long timespan = (prev.getTimeSeconds() - blockIntervalAgo.getTimeSeconds());
         long receivedTargetCompact = nextBlock.getDifficultyTarget();
 
-        if (isNewPowActive(storedPrev.getHeight()+1)) {
+        if (isNewPowChange) {
             //Digishield implementation
             BigInteger powLimit = keccakMaxTarget;
-            long retargetTimespan = newPowTargetTimespan;
 
-            if (timespan < (retargetTimespan - (retargetTimespan / 4))) {
-                timespan = (retargetTimespan - (retargetTimespan / 4));
+            if (timespan < (newPowTargetTimespan - (newPowTargetTimespan / 4))) {
+                timespan = (newPowTargetTimespan - (newPowTargetTimespan / 4));
             }
 
-            if (timespan > (retargetTimespan + (retargetTimespan / 2))) {
-                timespan = (retargetTimespan + (retargetTimespan / 2));
+            if (timespan > (newPowTargetTimespan + (newPowTargetTimespan / 2))) {
+                timespan = (newPowTargetTimespan + (newPowTargetTimespan / 2));
             }
 
             //Restarting the difficulty with the new PoW as if it were the genesis block
@@ -118,7 +123,7 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
             }
 
             newTarget = newTarget.multiply(BigInteger.valueOf(timespan));
-            newTarget = newTarget.multiply(BigInteger.valueOf(retargetTimespan));
+            newTarget = newTarget.divide(BigInteger.valueOf(newPowTargetTimespan));
 
             if (newTarget.compareTo(powLimit) > 0) {
                 log.info("Difficulty hit proof of work limit: {}", newTarget.toString(16));
@@ -128,9 +133,8 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
             long newTargetCompact = Utils.encodeCompactBits(newTarget);
 
             if (newTargetCompact != receivedTargetCompact) {
-                System.out.println(newTarget.doubleValue());
                 throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
-                        newTargetCompact + " vs " + receivedTargetCompact);
+                        Long.toHexString(newTargetCompact) + " vs " + Long.toHexString(receivedTargetCompact));
             }
 
         } else {

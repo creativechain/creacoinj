@@ -15,11 +15,17 @@ import java.math.RoundingMode;
 public class Test {
 
     public static void main(String[] args) throws InterruptedException {
-        byte[] headerBytes = Utils.HEX.decode("040000007de9e810cd73e50094e2b0994932f2030827496c057f51" +
-                "ec2a7acd4bfa0a000000b983350ee0dc32ae24e1ff3cf66461cc73044559b0b76c3c7fc8e79ba917b779617759" +
-                "ffff0f1eb0080300");
 
-        System.out.println(Sha256Hash.wrapReversed(Sha256Hash.keccakHash(headerBytes)).toString());
-        System.out.println(new Block(TestNet3Params.get(), headerBytes).getHashAsString());
+        long[] bits = new long[]{503365631, 503377646};
+
+        for (long b : bits) {
+            BigInteger target = Utils.decodeCompactBits(b);
+            System.out.println(Long.toHexString(b) + ": " + target.toString(16));
+        }
+
+        BigInteger t = Utils.decodeMPI(Utils.HEX.decode("000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"), false);
+        long d = Utils.encodeCompactBits(t);
+        System.out.println(Long.toHexString(d) + ": " + t.toString(16));
+
     }
 }

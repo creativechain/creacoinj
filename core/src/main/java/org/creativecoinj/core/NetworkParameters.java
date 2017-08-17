@@ -69,7 +69,7 @@ public abstract class NetworkParameters {
 
     protected Block genesisBlock;
     protected BigInteger maxTarget;
-    protected BigInteger keccakMaxTarget = Utils.decodeMPI(Utils.HEX.decode("000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"), false);
+    protected BigInteger keccakMaxTarget = Utils.decodeCompactBits(0x1e00ffff);
     protected int port;
     protected long packetMagic;  // Indicates message origin network and is used to seek to the next message when stream state is unknown.
     protected int addressHeader;
@@ -140,8 +140,6 @@ public abstract class NetworkParameters {
     }
 
     public static final int TARGET_TIMESPAN = (int) (24 * 60 * 60);  // 1 Day per difficulty cycle, on average.
-    public static final int TARGET_SPACING = 2 * 60;  // 2 minutes per block.
-    public static final int INTERVAL = TARGET_TIMESPAN / TARGET_SPACING;
     
     /**
      * Blocks with a timestamp after this should enforce BIP 16, aka "Pay to script hash". This BIP changed the
