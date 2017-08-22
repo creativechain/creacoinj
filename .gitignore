@@ -8,3 +8,5 @@ target
 *.spvchain
 *.wallet
 /out
+checkpoints
+checkpoints.txt
