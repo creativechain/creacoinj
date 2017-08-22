@@ -89,8 +89,7 @@ public class MainNetParams extends AbstractBitcoinNetParams {
         }; */
 
         addrSeeds = new int[] {
-                0x1681B6D9, 0x25915097, 0x22915097, 0xB2D4F150, 0x3B0BD0A2, 0x4398BD05, 0x7CB5BD05
-                //0xD9B68116, 0x97509125, 0x97509122, 0x50F1D4B2, 0xA2D00B3B, 0x05BD9843, 0x05BDB57C
+                0x1681B6D9, 0x25915097, 0x22915097, 0xB2D4F150, 0x3B0BD0A2, 0x7CB5BD05
         };
     }
 

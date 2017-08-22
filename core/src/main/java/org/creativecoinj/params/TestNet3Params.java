@@ -69,7 +69,7 @@ public class TestNet3Params extends AbstractBitcoinNetParams {
 
         dnsSeeds = null;
         addrSeeds = new int[]{
-                0x4398bd05
+                0x4398bd05, 0x706ad990
         };
     }
 
