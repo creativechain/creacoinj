@@ -17,8 +17,11 @@
 
 package org.creativecoinj.tools;
 
+import org.creativecoinj.core.listeners.DownloadProgressTracker;
 import org.creativecoinj.core.listeners.NewBestBlockListener;
 import org.creativecoinj.core.*;
+import org.creativecoinj.core.listeners.PeerConnectedEventListener;
+import org.creativecoinj.core.listeners.PeerDisconnectedEventListener;
 import org.creativecoinj.net.discovery.DnsDiscovery;
 import org.creativecoinj.params.MainNetParams;
 import org.creativecoinj.params.RegTestParams;
@@ -33,6 +36,8 @@ import joptsimple.OptionParser;
 import joptsimple.OptionSet;
 import joptsimple.OptionSpec;
 
+import javax.annotation.Nullable;
+import javax.xml.bind.SchemaOutputResolver;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -144,7 +149,9 @@ public class BuildCheckpoints {
             @Override
             public void notifyNewBestBlock(StoredBlock block) throws VerificationException {
                 int height = block.getHeight();
-                if (height % params.getDifficultyAdjustmentInterval() == 0 && block.getHeader().getTimeSeconds() <= timeAgo) {
+
+                int interval = params.isNewPowActive(height) ? params.getDifficultyAdjustmentIntervalV2() : params.getDifficultyAdjustmentInterval();
+                if (height % interval == 0 && block.getHeader().getTimeSeconds() <= timeAgo) {
                     System.out.println(String.format("Checkpointing block %s at height %d, time %s",
                             block.getHeader().getHash(), block.getHeight(), Utils.dateTimeFormat(block.getHeader().getTime())));
                     checkpoints.put(height, block);
@@ -152,7 +159,22 @@ public class BuildCheckpoints {
             }
         });
 
+        System.out.println("Downloading blocks... ");
+        peerGroup.addDisconnectedEventListener(new PeerDisconnectedEventListener() {
+            @Override
+            public void onPeerDisconnected(Peer peer, int peerCount) {
+                System.out.println("Peer " + peer + " disconnected");
+            }
+        });
+
+        peerGroup.addConnectedEventListener(new PeerConnectedEventListener() {
+            @Override
+            public void onPeerConnected(Peer peer, int peerCount) {
+                System.out.println("Peer " + peer + " connected");
+            }
+        });
         peerGroup.downloadBlockChain();
+        System.out.println("Blocks downloaded!");
 
         checkState(checkpoints.size() > 0);
 

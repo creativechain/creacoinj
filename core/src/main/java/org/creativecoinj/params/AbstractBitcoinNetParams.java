@@ -138,39 +138,41 @@ public abstract class AbstractBitcoinNetParams extends NetworkParameters {
             }
 
         } else {
-            // Limit the adjustment step.
-            final int targetTimespan = this.getTargetTimespan();
 
-            if (timespan < targetTimespan / 4) {
-                timespan = targetTimespan / 4;
+            if (equals(TestNet3Params.get())) {
+                // Limit the adjustment step.
+                final int targetTimespan = this.getTargetTimespan();
+
+                if (timespan < targetTimespan / 4) {
+                    timespan = targetTimespan / 4;
+                }
+
+                if (timespan > targetTimespan * 4) {
+                    timespan = targetTimespan * 4;
+                }
+
+                BigInteger newTarget = Utils.decodeCompactBits(prev.getDifficultyTarget());
+                newTarget = newTarget.multiply(BigInteger.valueOf(timespan));
+                newTarget = newTarget.divide(BigInteger.valueOf(targetTimespan));
+
+                if (newTarget.compareTo(this.getMaxTarget()) > 0) {
+                    log.info("Difficulty hit proof of work limit: {}", newTarget.toString(16));
+                    newTarget = this.getMaxTarget();
+                }
+
+                int accuracyBytes = (int) (nextBlock.getDifficultyTarget() >>> 24) - 3;
+
+                // The calculated difficulty is to a higher precision than received, so reduce here.
+                BigInteger mask = BigInteger.valueOf(0xFFFFFFL).shiftLeft(accuracyBytes * 8);
+                newTarget = newTarget.and(mask);
+                long newTargetCompact = Utils.encodeCompactBits(newTarget);
+
+                if (newTargetCompact != receivedTargetCompact) {
+                    throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
+                            newTargetCompact + " vs " + receivedTargetCompact);
+                }
             }
 
-            if (timespan > targetTimespan * 4) {
-                timespan = targetTimespan * 4;
-            }
-
-            BigInteger newTarget = Utils.decodeCompactBits(prev.getDifficultyTarget());
-            newTarget = newTarget.multiply(BigInteger.valueOf(timespan));
-            newTarget = newTarget.divide(BigInteger.valueOf(targetTimespan));
-
-            if (newTarget.compareTo(this.getMaxTarget()) > 0) {
-                log.info("Difficulty hit proof of work limit: {}", newTarget.toString(16));
-                newTarget = this.getMaxTarget();
-            }
-
-            int accuracyBytes = (int) (nextBlock.getDifficultyTarget() >>> 24) - 3;
-
-
-            // The calculated difficulty is to a higher precision than received, so reduce here.
-            BigInteger mask = BigInteger.valueOf(0xFFFFFFL).shiftLeft(accuracyBytes * 8);
-            newTarget = newTarget.and(mask);
-            long newTargetCompact = Utils.encodeCompactBits(newTarget);
-
-            if (newTargetCompact != receivedTargetCompact) {
-                System.out.println(newTarget.doubleValue());
-                throw new VerificationException("Network provided difficulty bits do not match what was calculated: " +
-                        newTargetCompact + " vs " + receivedTargetCompact);
-            }
         }
     }
 

@@ -53,7 +53,7 @@ import java.util.concurrent.TimeUnit;
 import static wallettemplate.utils.GuiUtils.*;
 
 public class Main extends Application {
-    public static NetworkParameters params = TestNet3Params.get();
+    public static NetworkParameters params = MainNetParams.get();
     public static final String APP_NAME = "WalletTemplate";
     private static final String WALLET_FILE_NAME = APP_NAME.replaceAll("[^a-zA-Z0-9.-]", "_") + "-"
             + params.getPaymentProtocolId();
@@ -170,7 +170,6 @@ public class Main extends Application {
 
             @Override
             public void onBlocksDownloaded(Peer peer, Block block, @Nullable FilteredBlock filteredBlock, int blocksLeft) {
-                System.out.println("onBlocksDownloaded");
                 if (blocksLeft == 0) {
                     //miner.reset();
                 }
@@ -179,14 +178,12 @@ public class Main extends Application {
 
             @Override
             protected void progress(double pct, int blocksSoFar, Date date) {
-                System.out.println("progress: " + pct + ", blockLeft: " + blocksSoFar);
                 super.progress(pct, blocksSoFar, date);
                 model.progress(pct, blocksSoFar, date);
             }
 
             @Override
             protected void doneDownload() {
-                System.out.println("doneDownload");
                 //miner.reset();
                 super.doneDownload();
                 model.doneDownload();
